@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/relativeLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity">
+
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="262dp"
+    android:layout_height="123dp"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="86dp"
+    android:layout_marginTop="73dp"
+    android:text="New Account"
+    android:textSize="45dp"
+    tools:layout_editor_absoluteX="74dp"
+    tools:layout_editor_absoluteY="242dp" />
+
+    <Button
+        android:id="@+id/shopperbutton"
+        android:layout_width="282dp"
+        android:layout_height="92dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="262dp"
+        android:text="Shopper"
+        android:textSize="45dp"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="273dp" />
+
+    <Button
+    android:id="@+id/buyerbutton"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="194dp"
+    android:text="Buyer"
+    android:textSize="45dp"
+    tools:layout_editor_absoluteX="122dp"
+    tools:layout_editor_absoluteY="273dp" />
+
+</RelativeLayout>
