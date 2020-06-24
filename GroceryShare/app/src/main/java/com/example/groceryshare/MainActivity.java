@@ -1,50 +1,68 @@
-package com.example.groceryshare;
+package com.example.shopperapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.content.Intent;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    private Button loginbutton;
-    private Button signupbutton;
+    //Write to file initialization
+    EditText firstNameShop;
+    EditText lastNameShop;
+    EditText addressShop;
+    EditText emailShop;
+    EditText passwordShop;
+    String firstNameTextShop;
+    String lastNameTextShop;
+    String addressTextShop;
+    String emailTextShop;
+    String passwordTextShop;
+    //Screen toggle initialization
+    Button next_activity_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /* use findViewById() to get the EditTexts */
+        firstNameShop = (EditText)findViewById(R.id.firstNameS);
+        lastNameShop = (EditText)findViewById(R.id.lastNameS);
+        addressShop = (EditText)findViewById(R.id.addressBuyerSetUp);
+        emailShop = (EditText)findViewById(R.id.emailBuyerSetUp);
+        passwordShop = (EditText)findViewById(R.id.PasswordBuyerSetUp);
 
-        loginbutton = (Button) findViewById(R.id.button);
-        loginbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
+        /* use findViewById() to get the next Button */
+        next_activity_button = (Button) findViewById(R.id.buyerSetUpDone);
+        // Add_button add click listener
+        next_activity_button.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
-                openLogin();
 
+                /*
+                 Intents are objects of the android.content.Intent type. Your code can send them
+                 to the Android system defining the components you are targeting.
+                 Intent to start an activity called SecondActivity with the following code:
+                */
+                firstNameTextShop = firstNameShop.getText().toString();
+                lastNameTextShop = lastNameShop.getText().toString();
+                addressTextShop = addressShop.getText().toString();
+                emailTextShop = emailShop.getText().toString();
+                passwordTextShop= passwordShop.getText().toString();
+                System.out.print("First Name: ");
+                System.out.println(firstNameTextShop);
+                System.out.println("Last Name: " + lastNameTextShop);
+                System.out.println("Address: " + addressTextShop);
+                System.out.println("Email: " + emailTextShop);
+                System.out.println("Password: " + passwordTextShop);
+                //add way to handle empty or bad input
+                Intent intent = new Intent(MainActivity.this, BuyerHomeScreen.class);
+
+                // start the activity connect to the specified class
+                startActivity(intent);
             }
+
         });
-
-        signupbutton = (Button) findViewById(R.id.button2);
-        signupbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSignup();
-
-            }
-        });
-
-    }
-
-    public void openLogin(){
-        Intent intent = new Intent(this,Activity2.class);
-        startActivity(intent);
-    }
-
-    public void openSignup(){
-        Intent intent = new Intent(this,Activity3.class);
-        startActivity(intent);
     }
 }
-
-
