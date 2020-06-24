@@ -1,18 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/lightwhite"
+    android:padding="10dp"
     tools:context=".MainActivity">
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Hello World!"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_black_24dp"/>
+        <TextView
+            android:id="@+id/LogInbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log in"
+            android:gravity="end"
+            android:textColor="@color/blackcolor"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="  Create Your\nBuyer Account"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/img"
+            android:layout_marginTop="40dp">
+            tools:context=".ProfileActivity">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="#FFFFFF"
+                android:src="@drawable/ic_baseline_add_a_photo_24" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/FullNameInput"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:hint=" Your Full Name"
+            android:layout_marginTop="35dp"
+            android:paddingLeft="15dp"
+            android:inputType="text"
+            android:textColorHint="@color/fullwhite"
+            android:elevation="5dp"
+            android:background="@drawable/btn"
+            />
+        <EditText
+            android:id="@+id/AddressInput"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:hint=" Full Home Address "
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:inputType="textPostalAddress"
+            android:textColorHint="@color/fullwhite"
+            android:elevation="5dp"
+            android:background="@drawable/btn"
+            />
+        <EditText
+            android:id="@+id/BirthdayInput"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:hint=" Birthday "
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:inputType="date"
+            android:textColorHint="@color/fullwhite"
+            android:elevation="5dp"
+            android:background="@drawable/btn"
+            />
+        <EditText
+            android:id="@+id/DisabilitiesInput"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:hint=" Disabilities "
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:inputType="text"
+            android:textColorHint="@color/fullwhite"
+            android:elevation="5dp"
+            android:background="@drawable/btn"
+            />
+        <EditText
+            android:id="@+id/EmailInput"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:hint=" Email "
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/fullwhite"
+            android:elevation="5dp"
+            android:background="@drawable/btn"
+            />
+        <EditText
+            android:id="@+id/PasswordInput"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:hint=" Password "
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:inputType="textPassword"
+            android:textColorHint="@color/fullwhite"
+            android:elevation="5dp"
+            android:background="@drawable/btn"
+            />
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:id="@+id/nextButton"
+            android:text="Next"
+            android:textColor="@color/whitecolor"
+            android:textAllCaps="false"
+            android:layout_marginTop="25dp"
+            android:elevation="5dp"
+            android:background="@drawable/joinbtn"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="   By Pressing 'Next' You agree\n    to our terms and conditions"
+            android:textColor="@color/fullwhite" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
