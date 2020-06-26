@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:294128377437:android:04971f3079ab5ea56377b4",
         "android_client_info": {
-          "package_name": "com.masher.shoppingfriends"
+          "package_name": "com.example.groceryshare"
         }
       },
       "oauth_client": [
