@@ -19,14 +19,14 @@ public class BuyerSignup2 extends AppCompatActivity {
     Button joinButton;
     //    TextField Data Collection End
 
-//    ImageView img; //used for the back button navigation
+    ImageView img; //used for the back button navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_signup2);
 
-//        img = findViewById(R.id.GoBackIcon);//defines the back button image
+        img = findViewById(R.id.GoBackIcon);//defines the back button image
 
         nameInput = (EditText) findViewById(R.id.FullNameInput);
         addressInput = (EditText) findViewById(R.id.AddressInput);
@@ -52,8 +52,14 @@ public class BuyerSignup2 extends AppCompatActivity {
     }
 
     //used to navigate back to the previous screen
-//    public void goBack() {
-//        Intent intent = new Intent(this, BuyerSignup.class);
-//        startActivity(intent);
-//    }
+    public void goBack(View v) {
+        Intent intent = new Intent(this, BuyerSignup.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the Login Screen
+    public void goLogIn(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

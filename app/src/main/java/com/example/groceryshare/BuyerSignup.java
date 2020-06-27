@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.io.IOException;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -30,10 +31,15 @@ public class BuyerSignup extends AppCompatActivity {
     Button nextButton;
 //    TextField Data Collection End
 
+    ImageView img; //used for the back button navigation
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyersignup);
+
+        img = findViewById(R.id.GoBackIcon);//defines the back button image
 
         ProfileImage = (CircleImageView) findViewById(R.id.profile_image);
         ProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +72,18 @@ public class BuyerSignup extends AppCompatActivity {
 
     public void gotoNext(){
         Intent intent = new Intent(this, BuyerSignup2.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, NewAccountActivity.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the Login Screen
+    public void goLogIn(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
