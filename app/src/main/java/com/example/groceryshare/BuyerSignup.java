@@ -65,7 +65,7 @@ public class BuyerSignup extends AppCompatActivity {
     }
 
     public void gotoNext(){
-        Intent intent = new Intent(this, BuyerSignupContinued.class);
+        Intent intent = new Intent(this, BuyerSignup2.class);
         startActivity(intent);
     }
 

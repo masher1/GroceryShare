@@ -8,9 +8,8 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class BuyerSignupContinued extends AppCompatActivity {
-
-//  TextField Data Collection Start
+public class BuyerSignup2 extends AppCompatActivity {
+    //  TextField Data Collection Start
     String name, address, birthday, disabilities;
     EditText nameInput;
     EditText addressInput;
@@ -18,16 +17,16 @@ public class BuyerSignupContinued extends AppCompatActivity {
     EditText disabilitiesInput;
 
     Button joinButton;
-//    TextField Data Collection End
+    //    TextField Data Collection End
 
-    ImageView img; //used for the back button navigation
+//    ImageView img; //used for the back button navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buyersignup_continued);
+        setContentView(R.layout.activity_buyer_signup2);
 
-        img = findViewById(R.id.GoBackIcon);//defines the back button image
+//        img = findViewById(R.id.GoBackIcon);//defines the back button image
 
         nameInput = (EditText) findViewById(R.id.FullNameInput);
         addressInput = (EditText) findViewById(R.id.AddressInput);
@@ -35,7 +34,7 @@ public class BuyerSignupContinued extends AppCompatActivity {
         disabilitiesInput = (EditText) findViewById(R.id.DisabilitiesInput);
 
 
-        joinButton = (Button) findViewById(R.id.nextButton);
+        joinButton = (Button) findViewById(R.id.joinButton);
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,9 +52,8 @@ public class BuyerSignupContinued extends AppCompatActivity {
     }
 
     //used to navigate back to the previous screen
-    public void goBack() {
-        Intent intent = new Intent(BuyerSignupContinued.this,BuyerSignup.class);
-        startActivity(intent);
-    }
-
+//    public void goBack() {
+//        Intent intent = new Intent(this, BuyerSignup.class);
+//        startActivity(intent);
+//    }
 }
