@@ -15,24 +15,20 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BuyerSignup extends AppCompatActivity {
 
-    //    Profile Pic Content Start
+//    Profile Pic Content Start
     private CircleImageView ProfileImage;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
 //    Profile Pic Content End
 
-    //    TextField Data Collection Start
-    String name, email, address, birthday, disabilities, password;
-    EditText nameInput;
-    EditText addressInput;
-    EditText birthdayInput;
-    EditText disabilitiesInput;
+//    TextField Data Collection Start
+    String username, email, password;
+    EditText usernameInput;
     EditText emailInput;
     EditText passwordInput;
 
     Button nextButton;
 //    TextField Data Collection End
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +48,7 @@ public class BuyerSignup extends AppCompatActivity {
             }
         });
 
-        nameInput = (EditText) findViewById(R.id.FullNameInput);
-        addressInput = (EditText) findViewById(R.id.AddressInput);
-        birthdayInput = (EditText) findViewById(R.id.BirthdayInput);
-        disabilitiesInput = (EditText) findViewById(R.id.DisabilitiesInput);
+        usernameInput = (EditText) findViewById(R.id.UsernameInput);
         emailInput = (EditText) findViewById(R.id.EmailInput);
         passwordInput = (EditText) findViewById(R.id.PasswordInput);
 
@@ -63,21 +56,17 @@ public class BuyerSignup extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = nameInput.getText().toString();
-                address = addressInput.getText().toString();
-                birthday = birthdayInput.getText().toString();
-                disabilities = disabilitiesInput.getText().toString();
-                email = emailInput.getText().toString();
-                password = passwordInput.getText().toString();
-
-                System.out.println("Full Name: " + name);
-                System.out.println("Address: " + address);
-                System.out.println("Birthday: " + birthday);
-                System.out.println("Disabilities: " + disabilities);
-                System.out.println("Email: " + email);
-                System.out.println("Password: " + password);
+//                username = usernameInput.getText().toString();
+//                email = emailInput.getText().toString();
+//                password = passwordInput.getText().toString();
+                gotoNext();
             }
         });
+    }
+
+    public void gotoNext(){
+        Intent intent = new Intent(this, BuyerSignupContinued.class);
+        startActivity(intent);
     }
 
     @Override
