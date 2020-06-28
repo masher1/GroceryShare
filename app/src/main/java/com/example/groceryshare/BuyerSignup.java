@@ -76,6 +76,7 @@ public class BuyerSignup extends AppCompatActivity {
                 System.out.println("Disabilities: " + disabilities);
                 System.out.println("Email: " + email);
                 System.out.println("Password: " + password);
+                openbuyerhome();
             }
         });
     }
@@ -94,5 +95,10 @@ public class BuyerSignup extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void openbuyerhome(){
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
+        startActivity(intent);
     }
 }
