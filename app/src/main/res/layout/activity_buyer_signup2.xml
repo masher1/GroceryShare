@@ -49,36 +49,38 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/img"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
 
-        <EditText
-            android:id="@+id/FullNameInput"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn"
-            android:elevation="5dp"
-            android:hint=" Your Full Name"
-            android:inputType="text"
-            android:paddingLeft="15dp"
-            android:textColorHint="@color/fullwhite" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/AddressInput"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn"
-            android:elevation="5dp"
-            android:hint=" Full Home Address "
-            android:inputType="text"
-            android:paddingLeft="15dp"
-            android:textColorHint="@color/fullwhite" />
+            <EditText
+                android:id="@+id/FullNameInput"
+                android:layout_width="164dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:elevation="5dp"
+                android:hint=" First Name"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColorHint="@color/fullwhite" />
+
+            <EditText
+                android:id="@+id/AddressInput"
+                android:layout_width="164dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:elevation="5dp"
+                android:hint=" Last Name "
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColorHint="@color/fullwhite" />
+
+        </LinearLayout>
         <EditText
             android:id="@+id/BirthdayInput"
             android:layout_width="280dp"
