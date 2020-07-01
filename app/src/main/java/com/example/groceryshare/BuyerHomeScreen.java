@@ -21,7 +21,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
         setContentView(R.layout.buyerhomescreen);
 
 
-        neworder = (CardView) findViewById(R.id.neworderId);
+        neworder = findViewById(R.id.neworderId);
         neworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,7 +30,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
             }
         });
 
-        pendingorder = (CardView) findViewById(R.id.pendingorderId);
+        pendingorder = findViewById(R.id.pendingorderId);
         pendingorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +39,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
             }
         });
 
-        pastorder = (CardView) findViewById(R.id.pastorderId);
+        pastorder = findViewById(R.id.pastorderId);
         pastorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +48,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
             }
         });
 
-        settings = (CardView) findViewById(R.id.settingsId);
+        settings = findViewById(R.id.settingsId);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
             }
         });
 
-        rate = (CardView) findViewById(R.id.ratingId);
+        rate = findViewById(R.id.ratingId);
         rate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

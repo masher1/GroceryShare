@@ -39,7 +39,7 @@ public class BuyerSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyersignup);
 
-        ProfileImage = (CircleImageView) findViewById(R.id.profile_image);
+        ProfileImage = findViewById(R.id.profile_image);
         ProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,14 +52,14 @@ public class BuyerSignup extends AppCompatActivity {
             }
         });
 
-        nameInput = (EditText) findViewById(R.id.FullNameInput);
-        addressInput = (EditText) findViewById(R.id.AddressInput);
-        birthdayInput = (EditText) findViewById(R.id.BirthdayInput);
-        disabilitiesInput = (EditText) findViewById(R.id.DisabilitiesInput);
-        emailInput = (EditText) findViewById(R.id.EmailInput);
-        passwordInput = (EditText) findViewById(R.id.PasswordInput);
+        nameInput = findViewById(R.id.FullNameInput);
+        addressInput = findViewById(R.id.AddressInput);
+        birthdayInput = findViewById(R.id.BirthdayInput);
+        disabilitiesInput = findViewById(R.id.DisabilitiesInput);
+        emailInput = findViewById(R.id.EmailInput);
+        passwordInput = findViewById(R.id.PasswordInput);
 
-        nextButton = (Button) findViewById(R.id.nextButton);
+        nextButton = findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
