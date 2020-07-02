@@ -1,11 +1,8 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.Switch;
 
-import com.example.shopperapp.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsShopper extends AppCompatActivity {
 
