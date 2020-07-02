@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.groceryshare">
+    package="com.example.shopperapp">
 
     <application
         android:allowBackup="true"
@@ -9,10 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BuyerSignup"></activity>
-        <activity android:name=".ShopperSignup" />
-        <activity android:name=".NewAccountActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".ShopperRatesBuyer" />
+        <activity android:name=".UploadReceipt" />
+        <activity android:name=".ShoppingListShopperView" />
+        <activity android:name=".ViewOrderInfoShopper" />
+        <activity android:name=".OrderFulfillShopper" />
+        <activity android:name=".ComplaintsShopper" />
+        <activity android:name=".ReviewsAndRatingsShopper" />
+        <activity android:name=".SettingsShopper" />
+        <activity android:name=".PastTripsShopper" />
+        <activity android:name=".CurrentTripsShopper" />
+        <activity android:name=".ShoppingTripsAvailable" />
+        <activity android:name=".ShopperHomeScreen" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
