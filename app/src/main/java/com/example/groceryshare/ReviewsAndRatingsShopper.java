@@ -1,10 +1,8 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.shopperapp.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ReviewsAndRatingsShopper extends AppCompatActivity {
 
