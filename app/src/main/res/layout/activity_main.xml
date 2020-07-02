@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/shopperTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/Shopper"
+        app:layout_constraintBottom_toTopOf="@+id/profilePicImg"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036" />
+
+    <EditText
+        android:id="@+id/addressShopperSetUp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="19dp"
+        android:autofillHints=""
+        android:contentDescription="@string/address"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:text="@string/address"
+        app:layout_constraintBottom_toTopOf="@+id/emailShopperSetUp"
+        app:layout_constraintEnd_toEndOf="@+id/emailShopperSetUp"
+        app:layout_constraintStart_toStartOf="@+id/emailShopperSetUp"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameS"
+        tools:text="@string/address" />
+
+    <ImageView
+        android:id="@+id/profilePicImg"
+        android:layout_width="189dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="29dp"
+        android:contentDescription="@string/avatar"
+        app:layout_constraintBottom_toTopOf="@+id/firstNameS"
+        app:layout_constraintStart_toStartOf="@+id/firstNameS"
+        app:layout_constraintTop_toBottomOf="@+id/shopperTxtView"
+        tools:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <EditText
+        android:id="@+id/firstNameS"
+        android:layout_width="152dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="437dp"
+        android:autofillHints=""
+        android:contentDescription="@string/first_name"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/first_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.359"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePicImg" />
+
+    <EditText
+        android:id="@+id/lastNameS"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="321dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="24dp"
+        android:autofillHints=""
+        android:contentDescription="@string/last_name"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/last_name"
+        app:layout_constraintBottom_toTopOf="@+id/addressShopperSetUp"
+        app:layout_constraintEnd_toEndOf="@+id/PasswordShopperSetUp"
+        app:layout_constraintStart_toStartOf="@+id/firstNameS"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailShopperSetUp"
+        android:layout_width="226dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:autofillHints=""
+        android:contentDescription="@string/email"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="@string/email"
+        app:layout_constraintBottom_toTopOf="@+id/PasswordShopperSetUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressShopperSetUp" />
+
+    <EditText
+        android:id="@+id/PasswordShopperSetUp"
+        android:layout_width="223dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="14dp"
+        android:autofillHints=""
+        android:contentDescription="@string/password"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="@string/password"
+        app:layout_constraintBottom_toTopOf="@+id/shopperSetUpDone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailShopperSetUp" />
+
+    <Button
+        android:id="@+id/shopperSetUpDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:text="@string/sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PasswordShopperSetUp" />
+
+    <TextView
+        android:id="@+id/profileInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/click_to_add_profile_picture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shopperTxtView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

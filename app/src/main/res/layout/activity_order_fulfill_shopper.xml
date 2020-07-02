@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderFulfillShopper">
+
+    <Button
+        android:id="@+id/viewListBtnShopper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/view_shopping_list"
+        app:layout_constraintStart_toStartOf="@+id/orderInfoBtn"
+        app:layout_constraintTop_toBottomOf="@+id/orderInfoBtn" />
+
+    <TextView
+        android:id="@+id/orderNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="53dp"
+        android:text="@string/order_name_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/uploadRcptTxtBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="@string/upload_receipt"
+        app:layout_constraintStart_toStartOf="@+id/viewListBtnShopper"
+        app:layout_constraintTop_toBottomOf="@+id/viewListBtnShopper" />
+
+    <Button
+        android:id="@+id/orderDoneBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/confirm_order_complete"
+        app:layout_constraintStart_toStartOf="@+id/uploadRcptTxtBtn"
+        app:layout_constraintTop_toBottomOf="@+id/uploadRcptTxtBtn" />
+
+    <Button
+        android:id="@+id/orderInfoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:text="@string/view_order_info"
+        app:layout_constraintEnd_toEndOf="@+id/orderNameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/orderNameTxt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
