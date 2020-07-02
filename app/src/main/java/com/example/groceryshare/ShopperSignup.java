@@ -27,14 +27,14 @@ public class ShopperSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shoppersignup);
         /* use findViewById() to get the EditTexts */
-        firstNameShop = findViewById(R.id.firstNameS);
-        lastNameShop = findViewById(R.id.lastNameS);
-        addressShop = findViewById(R.id.addressBuyerSetUp);
-        emailShop = findViewById(R.id.emailBuyerSetUp);
-        passwordShop = findViewById(R.id.PasswordBuyerSetUp);
+        firstNameShop = (EditText)findViewById(R.id.firstNameS);
+        lastNameShop = (EditText)findViewById(R.id.lastNameS);
+        addressShop = (EditText)findViewById(R.id.addressBuyerSetUp);
+        emailShop = (EditText)findViewById(R.id.emailBuyerSetUp);
+        passwordShop = (EditText)findViewById(R.id.PasswordBuyerSetUp);
 
         /* use findViewById() to get the next Button */
-        next_activity_button = findViewById(R.id.buyerSetUpDone);
+        next_activity_button = (Button) findViewById(R.id.buyerSetUpDone);
         // Add_button add click listener
         next_activity_button.setOnClickListener(new View.OnClickListener() {
 

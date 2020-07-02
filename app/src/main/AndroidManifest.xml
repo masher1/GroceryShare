@@ -10,13 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BuyerSignup2"></activity>
-        <activity android:name=".PersonalActivity"></activity>
-        <activity android:name=".ListActivity" />
-        <activity android:name=".RatingActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".PastActivity" />
-        <activity android:name=".PendingActivity" />
-        <activity android:name=".OrderActivity" />
         <activity android:name=".BuyerSignup" />
         <activity android:name=".ShopperSignup" />
         <activity android:name=".NewAccountActivity" />
