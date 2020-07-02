@@ -44,9 +44,12 @@ public class BuyerSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyersignup);
 
+
         img = findViewById(R.id.GoBackIcon);//defines the back button image
 
         ProfileImage = (CircleImageView) findViewById(R.id.profile_image);
+
+
         ProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,11 +62,19 @@ public class BuyerSignup extends AppCompatActivity {
             }
         });
 
+
         usernameInput = (EditText) findViewById(R.id.UsernameInput);
         emailInput = (EditText) findViewById(R.id.EmailInput);
         passwordInput = (EditText) findViewById(R.id.PasswordInput);
+        nameInput = findViewById(R.id.FullNameInput);
+        addressInput = findViewById(R.id.AddressInput);
+        birthdayInput = findViewById(R.id.BirthdayInput);
+        disabilitiesInput = findViewById(R.id.DisabilitiesInput);
+        emailInput = findViewById(R.id.EmailInput);
+        passwordInput = findViewById(R.id.PasswordInput);
 
-        nextButton = (Button) findViewById(R.id.nextButton);
+
+        nextButton = findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,10 +82,19 @@ public class BuyerSignup extends AppCompatActivity {
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
 
+
                 System.out.println(username);
                 System.out.println(email);
                 System.out.println(password);
                 gotoNext();
+                System.out.println("Full Name: " + name);
+                System.out.println("Address: " + address);
+                System.out.println("Birthday: " + birthday);
+                System.out.println("Disabilities: " + disabilities);
+                System.out.println("Email: " + email);
+                System.out.println("Password: " + password);
+                openbuyerhome();
+
             }
         });
     }
@@ -114,5 +134,10 @@ public class BuyerSignup extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void openbuyerhome(){
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
+        startActivity(intent);
     }
 }
