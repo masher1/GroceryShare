@@ -16,7 +16,7 @@ public class NewAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newaccountactivity);
 
-        shopperbutton = (Button) findViewById(R.id.shopperbutton);
+        shopperbutton = findViewById(R.id.shopperbutton);
         shopperbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +25,7 @@ public class NewAccountActivity extends AppCompatActivity {
             }
         });
 
-        buyerbutton = (Button) findViewById(R.id.buyerbutton);
+        buyerbutton = findViewById(R.id.buyerbutton);
         buyerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +37,7 @@ public class NewAccountActivity extends AppCompatActivity {
     }
 
     public void openShopper(){
-        Intent intent = new Intent(this, ShopperSignup.class);
+        Intent intent = new Intent(this, ShopperLogin.class);
         startActivity(intent);
     }
 
