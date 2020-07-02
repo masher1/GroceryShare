@@ -8,9 +8,46 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:294128377437:android:04971f3079ab5ea56377b4",
+        "mobilesdk_app_id": "1:294128377437:android:d0aadee517a86c406377b4",
         "android_client_info": {
           "package_name": "com.example.groceryshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294128377437-981noeo06aim66569d0vqgc8aa864sc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.groceryshare",
+            "certificate_hash": "bf1438c4e90f9189433c3ac1f53b88d3e0372eeb"
+          }
+        },
+        {
+          "client_id": "294128377437-l7kfied38ebbndj51g4a5ff96pupidtm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7BNxG9vnXqa1Rb82-pw6VxmmoDj-mVrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294128377437-l7kfied38ebbndj51g4a5ff96pupidtm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294128377437:android:04971f3079ab5ea56377b4",
+        "android_client_info": {
+          "package_name": "com.masher.shoppingfriends"
         }
       },
       "oauth_client": [

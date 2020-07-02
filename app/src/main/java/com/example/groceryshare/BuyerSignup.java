@@ -6,38 +6,45 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BuyerSignup extends AppCompatActivity {
 
-    //    Profile Pic Content Start
+//    Profile Pic Content Start
     private CircleImageView ProfileImage;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
 //    Profile Pic Content End
 
-    //    TextField Data Collection Start
-    String name, email, address, birthday, disabilities, password;
-    EditText nameInput;
-    EditText addressInput;
-    EditText birthdayInput;
-    EditText disabilitiesInput;
+//    TextField Data Collection Start
+    String username, email, password;
+    EditText usernameInput;
     EditText emailInput;
     EditText passwordInput;
 
     Button nextButton;
 //    TextField Data Collection End
 
+    ImageView img; //used for the back button navigation
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyersignup);
+
+        img = findViewById(R.id.GoBackIcon);//defines the back button image
 
         ProfileImage = (CircleImageView) findViewById(R.id.profile_image);
         ProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -52,10 +59,7 @@ public class BuyerSignup extends AppCompatActivity {
             }
         });
 
-        nameInput = (EditText) findViewById(R.id.FullNameInput);
-        addressInput = (EditText) findViewById(R.id.AddressInput);
-        birthdayInput = (EditText) findViewById(R.id.BirthdayInput);
-        disabilitiesInput = (EditText) findViewById(R.id.DisabilitiesInput);
+        usernameInput = (EditText) findViewById(R.id.UsernameInput);
         emailInput = (EditText) findViewById(R.id.EmailInput);
         passwordInput = (EditText) findViewById(R.id.PasswordInput);
 
@@ -63,21 +67,37 @@ public class BuyerSignup extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = nameInput.getText().toString();
-                address = addressInput.getText().toString();
-                birthday = birthdayInput.getText().toString();
-                disabilities = disabilitiesInput.getText().toString();
+                username = usernameInput.getText().toString();
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
 
-                System.out.println("Full Name: " + name);
-                System.out.println("Address: " + address);
-                System.out.println("Birthday: " + birthday);
-                System.out.println("Disabilities: " + disabilities);
-                System.out.println("Email: " + email);
-                System.out.println("Password: " + password);
+                System.out.println(username);
+                System.out.println(email);
+                System.out.println(password);
+                gotoNext();
             }
         });
+    }
+
+    public void gotoNext(){
+        Intent intent = new Intent(this, BuyerSignup2.class);
+        intent.putExtra("USER_NAME", username);
+        intent.putExtra("EMAIL", email);
+        intent.putExtra("PASSWORD", password);
+        startActivity(intent);
+    }
+
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, NewAccountActivity.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the Login Screen
+    public void goLogIn(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override
