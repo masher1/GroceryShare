@@ -7,7 +7,7 @@
     android:background="@color/lightwhite"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".BuyerSignup">
+    tools:context=".BuyerSignup2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,69 +49,90 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/img">
-            tools:context=".ProfileActivity">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="#FFFFFF"
-                android:src="@drawable/ic_baseline_add_a_photo_24" />
-        </RelativeLayout>
+            android:orientation="horizontal">
 
+            <EditText
+                android:id="@+id/FullNameInput"
+                android:layout_width="164dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:elevation="5dp"
+                android:hint=" First Name"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColorHint="@color/fullwhite" />
 
+            <EditText
+                android:id="@+id/LastNameInput"
+                android:layout_width="164dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:elevation="5dp"
+                android:hint=" Last Name "
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColorHint="@color/fullwhite" />
+
+        </LinearLayout>
         <EditText
-            android:id="@+id/UsernameInput"
+            android:id="@+id/AddressInput"
+            android:layout_width="164dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn"
+            android:elevation="5dp"
+            android:hint=" Last Name "
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/fullwhite" />
+        <EditText
+            android:id="@+id/BirthdayInput"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn"
             android:elevation="5dp"
-            android:hint=" Username "
+            android:hint=" Birthday "
             android:inputType="text"
             android:paddingLeft="15dp"
             android:textColorHint="@color/fullwhite" />
 
         <EditText
-            android:id="@+id/EmailInput"
+            android:id="@+id/DisabilitiesInput"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn"
             android:elevation="5dp"
-            android:hint=" Email "
+            android:hint=" Disabilities "
             android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
             android:textColorHint="@color/fullwhite" />
 
-        <EditText
-            android:id="@+id/PasswordInput"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn"
-            android:elevation="5dp"
-            android:hint=" Password "
-            android:inputType="textPassword"
-            android:paddingLeft="15dp"
-            android:textColorHint="@color/fullwhite" />
-
         <Button
-            android:id="@+id/nextButton"
+            android:id="@+id/joinButton"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/joinbtn"
             android:elevation="5dp"
-            android:text="Next"
+            android:text="Join"
             android:textAllCaps="false"
             android:textColor="@color/whitecolor" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="   By Pressing 'Join' You agree\n    to our terms and conditions"
+            android:textColor="@color/fullwhite" />
 
     </LinearLayout>
 
