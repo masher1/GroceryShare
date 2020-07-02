@@ -11,7 +11,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".BuyerSignup2"></activity>
         <activity android:name=".BuyerSignup" />
-        <activity android:name=".ShopperSignup" />
         <activity android:name=".NewAccountActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ShopperRatesBuyer" />
