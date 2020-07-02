@@ -15,6 +15,19 @@
         <activity android:name=".NewAccountActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
+        <activity android:name=".ShopperRatesBuyer" />
+        <activity android:name=".UploadReceipt" />
+        <activity android:name=".ShoppingListShopperView" />
+        <activity android:name=".ViewOrderInfoShopper" />
+        <activity android:name=".OrderFulfillShopper" />
+        <activity android:name=".ComplaintsShopper" />
+        <activity android:name=".ReviewsAndRatingsShopper" />
+        <activity android:name=".SettingsShopper" />
+        <activity android:name=".PastTripsShopper" />
+        <activity android:name=".CurrentTripsShopper" />
+        <activity android:name=".ShoppingTripsAvailable" />
+        <activity android:name=".ShopperHomeScreen" />
+        <activity android:name=".ShopperLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
