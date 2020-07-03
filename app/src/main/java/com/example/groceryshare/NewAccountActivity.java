@@ -37,7 +37,7 @@ public class NewAccountActivity extends AppCompatActivity {
     }
 
     public void openShopper(){
-        Intent intent = new Intent(this, ShopperLogin.class);
+        Intent intent = new Intent(this, ShopperSignup.class);
         startActivity(intent);
     }
 
