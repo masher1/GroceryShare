@@ -53,7 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center"
-
             android:orientation="horizontal">
 
             <EditText
@@ -61,6 +60,7 @@
                 android:layout_width="164dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/btn"
                 android:elevation="5dp"
                 android:hint=" First Name"
@@ -73,6 +73,7 @@
                 android:layout_width="164dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/btn"
                 android:elevation="5dp"
                 android:hint=" Last Name "
@@ -83,12 +84,12 @@
         </LinearLayout>
         <EditText
             android:id="@+id/AddressInput"
-            android:layout_width="164dp"
+            android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn"
             android:elevation="5dp"
-            android:hint=" Last Name "
+            android:hint=" Home Address "
             android:inputType="text"
             android:paddingLeft="15dp"
             android:textColorHint="@color/fullwhite" />

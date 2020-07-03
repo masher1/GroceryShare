@@ -1,4 +1,4 @@
-package com.example.shopperapp;
+package com.example.groceryshare;
 
 import org.junit.Test;
 
