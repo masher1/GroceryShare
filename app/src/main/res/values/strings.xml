@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShopperApp</string>
+    <string name="app_name">GroceryShare</string>
     <string name="address">Address</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
