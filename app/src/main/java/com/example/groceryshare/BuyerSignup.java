@@ -18,13 +18,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BuyerSignup extends AppCompatActivity {
 
-//    Profile Pic Content Start
+    //    Profile Pic Content Start
     private CircleImageView ProfileImage;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
 //    Profile Pic Content End
 
-//    TextField Data Collection Start
+    //    TextField Data Collection Start
     String username, email, password;
     EditText usernameInput;
     EditText emailInput;
