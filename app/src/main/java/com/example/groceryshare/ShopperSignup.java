@@ -16,7 +16,7 @@ import java.io.IOException;
 
 
 
-public class ShopperLogin extends AppCompatActivity {
+public class ShopperSignup extends AppCompatActivity {
     //Write to file initialization
     //profile pic
     private ImageView profilePic;
@@ -40,7 +40,7 @@ public class ShopperLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopper_login);
+        setContentView(R.layout.activity_shopper_signup);
         /* use findViewById() to get the EditTexts */
         firstNameShop = (EditText)findViewById(R.id.firstNameS);
         lastNameShop = (EditText)findViewById(R.id.lastNameS);
@@ -84,7 +84,7 @@ public class ShopperLogin extends AppCompatActivity {
                 System.out.println("Email: " + emailTextShop);
                 System.out.println("Password: " + passwordTextShop);
                 //add way to handle empty or bad input
-                Intent intent = new Intent(ShopperLogin.this, ShopperHomeScreen.class);
+                Intent intent = new Intent(ShopperSignup.this, ShopperHomeScreen.class);
 
                 // start the activity connect to the specified class
                 startActivity(intent);
