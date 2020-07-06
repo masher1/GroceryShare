@@ -1,11 +1,13 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.groceryshare.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginbutton;
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity);
 
-        loginbutton = (Button) findViewById(R.id.button);
+        loginbutton = findViewById(R.id.button);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        signupbutton = (Button) findViewById(R.id.button2);
+        signupbutton = findViewById(R.id.button2);
         signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

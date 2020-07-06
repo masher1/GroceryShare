@@ -1,19 +1,35 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
+
+
 
 public class ShopperSignup extends AppCompatActivity {
     //Write to file initialization
-    EditText firstNameShop;
-    EditText lastNameShop;
-    EditText addressShop;
-    EditText emailShop;
-    EditText passwordShop;
+    //profile pic
+    private ImageView profilePic;
+    private static final int PICK_IMAGE = 1;
+    Uri imageUri;
+
+    private EditText firstNameShop;
+    private EditText lastNameShop;
+    private EditText addressShop;
+    private EditText emailShop;
+    private EditText passwordShop;
+
+
     String firstNameTextShop;
     String lastNameTextShop;
     String addressTextShop;
@@ -21,20 +37,31 @@ public class ShopperSignup extends AppCompatActivity {
     String passwordTextShop;
     //Screen toggle initialization
     Button next_activity_button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shoppersignup);
+        setContentView(R.layout.activity_shopper_signup);
         /* use findViewById() to get the EditTexts */
         firstNameShop = (EditText)findViewById(R.id.firstNameS);
         lastNameShop = (EditText)findViewById(R.id.lastNameS);
-        addressShop = (EditText)findViewById(R.id.addressBuyerSetUp);
-        emailShop = (EditText)findViewById(R.id.emailBuyerSetUp);
-        passwordShop = (EditText)findViewById(R.id.PasswordBuyerSetUp);
+        addressShop = (EditText)findViewById(R.id.addressShopperSetUp);
+        emailShop = (EditText)findViewById(R.id.emailShopperSetUp);
+        passwordShop = (EditText)findViewById(R.id.PasswordShopperSetUp);
 
+        profilePic = findViewById(R.id.profilePicImg);
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent gallery = new Intent();
+                gallery.setType("image/*");
+                gallery.setAction(Intent.ACTION_GET_CONTENT);
+
+                startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE);
+            }
+        });
         /* use findViewById() to get the next Button */
-        next_activity_button = (Button) findViewById(R.id.buyerSetUpDone);
+        next_activity_button = (Button) findViewById(R.id.shopperSetUpDone);
         // Add_button add click listener
         next_activity_button.setOnClickListener(new View.OnClickListener() {
 
@@ -57,12 +84,27 @@ public class ShopperSignup extends AppCompatActivity {
                 System.out.println("Email: " + emailTextShop);
                 System.out.println("Password: " + passwordTextShop);
                 //add way to handle empty or bad input
-                Intent intent = new Intent(ShopperSignup.this, BuyerHomeScreen.class);
+                Intent intent = new Intent(ShopperSignup.this, ShopperHomeScreen.class);
 
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
 
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            imageUri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                profilePic.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

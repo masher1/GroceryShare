@@ -1,29 +1,27 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class BuyerSignup2 extends AppCompatActivity {
     //  TextField Data Collection Start
 
-    String username, email, password, firstName, lastName, addressLine1, addressLine2, city, state, zipCode, phoneNumber, birthday, disabilities;
+    String username, email, password, firstName, lastName, address, phoneNumber, birthday, disabilities;
     EditText firstNameInput;
     EditText lastNameInput;
-    EditText addressLine1Input;
-    EditText addressLine2Input;
-    EditText cityInput;
-    EditText stateInput;
-    EditText zipCodeInput;
+    EditText addressInput;
     EditText phoneNumberInput;
     EditText birthdayInput;
     EditText disabilitiesInput;
@@ -50,9 +48,11 @@ public class BuyerSignup2 extends AppCompatActivity {
 
         img = findViewById(R.id.GoBackIcon);//defines the back button image
 
-        firstNameInput = (EditText) findViewById(R.id.FullNameInput);
-        addressLine1Input = (EditText) findViewById(R.id.AddressInput);
+        firstNameInput = (EditText) findViewById(R.id.FirstNameInput);
+        lastNameInput = (EditText) findViewById(R.id.LastNameInput);
+        addressInput = (EditText) findViewById(R.id.AddressInput);
         birthdayInput = (EditText) findViewById(R.id.BirthdayInput);
+        phoneNumberInput = (EditText) findViewById(R.id.PhoneInput);
         disabilitiesInput = (EditText) findViewById(R.id.DisabilitiesInput);
 
 
@@ -67,13 +67,13 @@ public class BuyerSignup2 extends AppCompatActivity {
 
     private void addBuyerCredentials(){
         firstName = firstNameInput.getText().toString();
-        addressLine1 = addressLine1Input.getText().toString();
+        address = addressInput.getText().toString();
         birthday = birthdayInput.getText().toString();
         disabilities = disabilitiesInput.getText().toString();
 
-        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(addressLine1) && !TextUtils.isEmpty(birthday) ){
+        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday) ){
             String id = databaseBuyers.push().getKey();
-            newBuyerCreds buyer = new newBuyerCreds(id, username, email, password, firstName, lastName, addressLine1, addressLine2, city, state, zipCode, phoneNumber, birthday);
+            newBuyerCreds buyer = new newBuyerCreds(id, username, email, password, firstName, lastName, address, phoneNumber, birthday);
             databaseBuyers.child(id).setValue(buyer);
 
             Toast.makeText( this,  "New Buyer Added! ", Toast.LENGTH_LONG).show();
