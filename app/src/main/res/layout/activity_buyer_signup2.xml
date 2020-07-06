@@ -53,14 +53,13 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center"
-
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/FullNameInput"
-                android:layout_width="164dp"
+                android:id="@+id/FirstNameInput"
+                android:layout_width="130dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/btn"
                 android:elevation="5dp"
                 android:hint=" First Name"
@@ -70,9 +69,9 @@
 
             <EditText
                 android:id="@+id/LastNameInput"
-                android:layout_width="164dp"
+                android:layout_width="130dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/btn"
                 android:elevation="5dp"
                 android:hint=" Last Name "
@@ -83,24 +82,57 @@
         </LinearLayout>
         <EditText
             android:id="@+id/AddressInput"
-            android:layout_width="164dp"
+            android:layout_width="280dp"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
+
             android:background="@drawable/btn"
             android:elevation="5dp"
-            android:hint=" Last Name "
+            android:hint=" Home Address "
             android:inputType="text"
             android:paddingLeft="15dp"
             android:textColorHint="@color/fullwhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/BirthdayInput"
+                android:layout_width="184dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn"
+                android:elevation="5dp"
+                android:layout_marginRight="10dp"
+                android:hint=" Birthday "
+                android:inputType="none"
+                style="@android:style/Widget.TextView"
+                android:cursorVisible="false"
+                android:longClickable="false"
+                android:paddingLeft="15dp"
+                android:textColorHint="@color/fullwhite" />
+
+            <Button
+                android:id="@+id/datePicker"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/datebtn"
+                android:elevation="5dp"
+                android:text="open date picker"
+                android:textAllCaps="false"
+                android:textColor="@color/whitecolor" />
+
+        </LinearLayout>
+
         <EditText
-            android:id="@+id/BirthdayInput"
+            android:id="@+id/PhoneInput"
             android:layout_width="280dp"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
             android:background="@drawable/btn"
             android:elevation="5dp"
-            android:hint=" Birthday "
-            android:inputType="text"
+            android:hint=" Phone Number "
+            android:inputType="phone"
             android:paddingLeft="15dp"
             android:textColorHint="@color/fullwhite" />
 

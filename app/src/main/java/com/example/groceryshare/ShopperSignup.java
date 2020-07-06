@@ -1,68 +1,116 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.groceryshare.ui.login.LoginActivity;
+
+import java.io.IOException;
 
 public class ShopperSignup extends AppCompatActivity {
-    //Write to file initialization
-    EditText firstNameShop;
-    EditText lastNameShop;
-    EditText addressShop;
-    EditText emailShop;
-    EditText passwordShop;
-    String firstNameTextShop;
-    String lastNameTextShop;
-    String addressTextShop;
-    String emailTextShop;
-    String passwordTextShop;
-    //Screen toggle initialization
-    Button next_activity_button;
+
+    //profile pic
+    private ImageView profilePic;
+    private static final int PICK_IMAGE = 1;
+    Uri imageUri;
+    //Profile Pic Content End
+
+    //TextField Data Collection Start
+    String username, email, password;
+    EditText usernameInput;
+    EditText emailInput;
+    EditText passwordInput;
+
+    Button nextButton;
+
+    ImageView img; //used for the back button navigation
+    //    TextField Data Collection End
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shoppersignup);
-        /* use findViewById() to get the EditTexts */
-        firstNameShop = (EditText)findViewById(R.id.firstNameS);
-        lastNameShop = (EditText)findViewById(R.id.lastNameS);
-        addressShop = (EditText)findViewById(R.id.addressBuyerSetUp);
-        emailShop = (EditText)findViewById(R.id.emailBuyerSetUp);
-        passwordShop = (EditText)findViewById(R.id.PasswordBuyerSetUp);
+        setContentView(R.layout.activity_shopper_signup);
 
-        /* use findViewById() to get the next Button */
-        next_activity_button = (Button) findViewById(R.id.buyerSetUpDone);
-        // Add_button add click listener
-        next_activity_button.setOnClickListener(new View.OnClickListener() {
+        img = findViewById(R.id.GoBackIcon);//defines the back button image
 
+        profilePic = findViewById(R.id.profilePicImg);
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
 
-                /*
-                 Intents are objects of the android.content.Intent type. Your code can send them
-                 to the Android system defining the components you are targeting.
-                 Intent to start an activity called SecondActivity with the following code:
-                */
-                firstNameTextShop = firstNameShop.getText().toString();
-                lastNameTextShop = lastNameShop.getText().toString();
-                addressTextShop = addressShop.getText().toString();
-                emailTextShop = emailShop.getText().toString();
-                passwordTextShop= passwordShop.getText().toString();
-                System.out.print("First Name: ");
-                System.out.println(firstNameTextShop);
-                System.out.println("Last Name: " + lastNameTextShop);
-                System.out.println("Address: " + addressTextShop);
-                System.out.println("Email: " + emailTextShop);
-                System.out.println("Password: " + passwordTextShop);
-                //add way to handle empty or bad input
-                Intent intent = new Intent(ShopperSignup.this, BuyerHomeScreen.class);
+                Intent gallery = new Intent();
+                gallery.setType("image/*");
+                gallery.setAction(Intent.ACTION_GET_CONTENT);
 
-                // start the activity connect to the specified class
-                startActivity(intent);
+                startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE);
             }
-
         });
+        usernameInput = (EditText) findViewById(R.id.UsernameInput);
+        emailInput = (EditText) findViewById(R.id.EmailInput);
+        passwordInput = (EditText) findViewById(R.id.PasswordInput);
+
+        nextButton = (Button) findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                username = usernameInput.getText().toString();
+                email = emailInput.getText().toString();
+                password = passwordInput.getText().toString();
+                if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(),  "New Shopper Added! ", Toast.LENGTH_LONG).show();
+                    gotoNext();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Please fill all of the fields!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    public void gotoNext(){
+        Intent intent = new Intent(this, ShopperSignup2.class);
+        intent.putExtra("USER_NAME", username);
+        intent.putExtra("EMAIL", email);
+        intent.putExtra("PASSWORD", password);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, NewAccountActivity.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the Login Screen
+    public void goLogIn(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            imageUri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                profilePic.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

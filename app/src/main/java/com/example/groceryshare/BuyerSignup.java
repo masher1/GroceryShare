@@ -1,11 +1,10 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,28 +12,28 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.groceryshare.ui.login.LoginActivity;
 
 import java.io.IOException;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BuyerSignup extends AppCompatActivity {
 
-//    Profile Pic Content Start
-    private CircleImageView ProfileImage;
+    //Profile Pic Content Start
+    private ImageView ProfileImage;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
-//    Profile Pic Content End
+    //Profile Pic Content End
 
-//    TextField Data Collection Start
+    //TextField Data Collection Start
     String username, email, password;
     EditText usernameInput;
     EditText emailInput;
     EditText passwordInput;
 
     Button nextButton;
-//    TextField Data Collection End
+    //    TextField Data Collection End
 
     ImageView img; //used for the back button navigation
 
@@ -42,11 +41,11 @@ public class BuyerSignup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buyersignup);
+        setContentView(R.layout.activity_buyer_signup);
 
         img = findViewById(R.id.GoBackIcon);//defines the back button image
 
-        ProfileImage = (CircleImageView) findViewById(R.id.profile_image);
+        ProfileImage = findViewById(R.id.profile_image);
         ProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,11 +69,15 @@ public class BuyerSignup extends AppCompatActivity {
                 username = usernameInput.getText().toString();
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
+                if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+                    System.out.println(username);
+                    System.out.println(email);
+                    System.out.println(password);
 
-                System.out.println(username);
-                System.out.println(email);
-                System.out.println(password);
-                gotoNext();
+                    gotoNext();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Please fill all of the fields!", Toast.LENGTH_LONG).show();
             }
         });
     }
