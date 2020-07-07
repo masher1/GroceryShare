@@ -61,6 +61,7 @@ public class BuyerSignup2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addBuyerCredentials();
+                goHomeScreen();
             }
         });
     }
@@ -92,6 +93,11 @@ public class BuyerSignup2 extends AppCompatActivity {
 
     //used to navigate back to the Login Screen
     public void goLogIn(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void goHomeScreen() {
         Intent intent = new Intent(this, BuyerHomeScreen.class);
         startActivity(intent);
     }

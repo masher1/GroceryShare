@@ -20,21 +20,20 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listactivity);
 
-        mShoppingList = findViewById(R.id.shopping_listView);
-        mItemEdit = findViewById(R.id.item_editText);
-        mAddButton = findViewById(R.id.add_button);
-
+        mShoppingList = (ListView) findViewById(R.id.shopping_listView);
+        mItemEdit = (EditText) findViewById(R.id.item_editText);
+        mAddButton = (Button) findViewById(R.id.add_button);
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         mShoppingList.setAdapter(mAdapter);
 
-
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String item = mItemEdit.getText().toString();
                 mAdapter.add(item);
                 mAdapter.notifyDataSetChanged();
                 mItemEdit.setText("");
+
             }
         });
     }
