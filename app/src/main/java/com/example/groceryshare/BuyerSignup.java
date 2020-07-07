@@ -9,29 +9,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
+import com.example.groceryshare.ui.login.LoginActivity;
 
+import java.io.IOException;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BuyerSignup extends AppCompatActivity {
 
-//    Profile Pic Content Start
+    //    Profile Pic Content Start
     private CircleImageView ProfileImage;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
-//    Profile Pic Content End
+    //    Profile Pic Content End
 
-//    TextField Data Collection Start
+    //    TextField Data Collection Start
     String username, email, password;
     EditText usernameInput;
     EditText emailInput;
     EditText passwordInput;
 
     Button nextButton;
-//    TextField Data Collection End
+    //    TextField Data Collection End
 
     ImageView img; //used for the back button navigation
 

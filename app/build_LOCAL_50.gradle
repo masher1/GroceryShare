@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.example.shopperapp"
+        applicationId "com.example.groceryshare"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
