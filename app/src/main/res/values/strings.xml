@@ -17,6 +17,7 @@
     <string name="problems">Problems?</string>
 
     <string-array name="frequency">
+        <item>Select Frequency</item>
         <item>Daily</item>
         <item>Twice a week</item>
         <item>Once a week</item>

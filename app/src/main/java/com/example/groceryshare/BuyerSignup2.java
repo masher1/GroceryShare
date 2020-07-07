@@ -71,7 +71,6 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         phoneNumberInput = (EditText) findViewById(R.id.PhoneInput);
         disabilitiesInput = (EditText) findViewById(R.id.DisabilitiesInput);
 
-
         joinButton = (Button) findViewById(R.id.joinButton);
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +92,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
             String id = databaseBuyers.push().getKey();
             newBuyerCreds buyer = new newBuyerCreds(id, username, email, password, firstName, lastName, address, phoneNumber, birthday);
             databaseBuyers.child(id).setValue(buyer);
+
             Toast.makeText(getApplicationContext(),  "New Buyer Added! ", Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(this, BuyerHomeScreen.class);
