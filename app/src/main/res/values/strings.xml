@@ -16,6 +16,15 @@
     <string name="ratings_and_reviews">Ratings and Reviews</string>
     <string name="problems">Problems?</string>
 
+    <string-array name="frequency">
+        <item>Select Frequency</item>
+        <item>Daily</item>
+        <item>Twice a week</item>
+        <item>Once a week</item>
+        <item>Every Other Week</item>
+        <item>Once in a While</item>
+    </string-array>
+
     <!-- Preference Titles -->
 
     <!-- Messages Preferences -->

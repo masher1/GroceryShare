@@ -11,10 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-        <activity
-            android:name=".ui.login.LoginActivity2"
-            android:label="@string/title_activity_login2" />
+            android:label="@string/title_activity_login" />
         <activity android:name=".BuyerSignup2" />
         <activity android:name=".BuyerSignup" />
         <activity android:name=".NewAccountActivity" />
@@ -22,11 +19,13 @@
         <activity android:name=".UploadReceipt" />
         <activity android:name=".ShoppingListShopperView" />
         <activity android:name=".ShopperSignup" />
+        <activity android:name=".ShopperSignup2" />
         <activity android:name=".ViewOrderInfoShopper" />
         <activity android:name=".OrderFulfillShopper" />
         <activity android:name=".ComplaintsShopper" />
         <activity android:name=".ReviewsAndRatingsShopper" />
         <activity android:name=".SettingsShopper" />
+        <activity android:name=".BuyerHomeScreen" />
         <activity android:name=".PastTripsShopper" />
         <activity android:name=".CurrentTripsShopper" />
         <activity android:name=".ShoppingTripsAvailable" />
