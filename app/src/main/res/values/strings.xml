@@ -25,6 +25,36 @@
         <item>Once in a While</item>
     </string-array>
 
+    <string-array name="names">
+        <item>Malkiel Asher</item>
+        <item>Joe Wasser</item>
+        <item>Rebecca Rossman</item>
+        <item>Pepper</item>
+        <item>Jimmy Oman</item>
+        <item>Alex Sanberdo</item>
+        <item>Charlie Ensamble</item>
+    </string-array>
+
+    <string-array name="store">
+        <item>Aldi</item>
+        <item>Walmart</item>
+        <item>Wegmans</item>
+        <item>Food Bazaar</item>
+        <item>Target</item>
+        <item>Tesco</item>
+        <item>Wegmans</item>
+    </string-array>
+
+    <string-array name="distance">
+        <item>0.3 Miles</item>
+        <item>0.4 Miles</item>
+        <item>0.8 Miles</item>
+        <item>1.2 Miles</item>
+        <item>1.7 Miles</item>
+        <item>2.5 Miles</item>
+        <item>2.7 Miles</item>
+    </string-array>
+
     <!-- Preference Titles -->
 
     <!-- Messages Preferences -->

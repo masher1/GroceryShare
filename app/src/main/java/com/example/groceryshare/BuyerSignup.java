@@ -90,7 +90,7 @@ public class BuyerSignup extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, NewAccountActivity.class);
+        Intent intent = new Intent(this, ShoppingTripsAvailable.class);
         startActivity(intent);
     }
 
