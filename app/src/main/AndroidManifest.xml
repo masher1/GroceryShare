@@ -31,7 +31,6 @@
         <activity android:name=".CurrentTripsShopper" />
         <activity android:name=".ShoppingTripsAvailable" />
         <activity android:name=".ShopperHomeScreen" />
-        <activity android:name=".BuyerHomeScreen" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".PastActivity" />
         <activity android:name=".PendingActivity" />
