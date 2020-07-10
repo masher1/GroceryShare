@@ -23,7 +23,6 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_trips_available);
 
-
         recyclerView = findViewById(R.id.recyclerView);
 
         s1 = getResources().getStringArray(R.array.names);

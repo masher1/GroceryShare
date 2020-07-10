@@ -2,24 +2,29 @@ package com.example.groceryshare;
 // Java program to calculate Distance Between Two Points on Earth
 import org.json.JSONException;
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-class DistanceCalculator {
+public class DistanceCalculator {
 
-    private Object Tuple;
-
-    public class Tuple<X, Y> {
-        public final X x;
-        public final Y y;
-        public Tuple(X x, Y y) {
-            this.x = x;
-            this.y = y;
-        }
+    String address1, address2;
+    public DistanceCalculator(String address1, String address2) {
+        this.address1 = address1;
+        this.address2 = address2;
     }
+
+    public String getAddress1() {
+        return address1;
+    }
+    public String getAddress2() {
+        return address2;
+    }
+
 
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -98,10 +103,10 @@ class DistanceCalculator {
     }
 
     // driver code
-    public static void main(String[] args) throws IOException, JSONException {
+    public String main(String[] args) throws IOException, JSONException {
 
-        String address1 = "98-30 57 Ave Corona NY 11368";
-        String address2 = "Aldi Rego Park";
+        String address1 = getAddress1();
+        String address2 = getAddress2();
 
         double[] ans1 = addressToLonLat(address1);
         double[] ans2 =  addressToLonLat(address2);
@@ -114,7 +119,10 @@ class DistanceCalculator {
         double lat2 = ans2[0];
         double lon2 = ans2[1];
 
-        System.out.println(distance(lat1, lat2,
-                lon1, lon2) + " Miles");
+        String result = distance(lat1, lat2,
+                lon1, lon2) + " Miles";
+        System.out.println(result);
+
+        return result;
     }
 }

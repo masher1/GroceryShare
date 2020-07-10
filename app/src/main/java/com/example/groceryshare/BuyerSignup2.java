@@ -90,7 +90,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
 
         if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday) && !TextUtils.isEmpty(phoneNumber)){
             String id = databaseBuyers.push().getKey();
-            newBuyerCreds buyer = new newBuyerCreds(id, username, email, password, firstName, lastName, address, phoneNumber, birthday);
+            newBuyerCreds buyer = new newBuyerCreds(id, username, email, firstName, lastName, address, phoneNumber, birthday, disabilities);
             databaseBuyers.child(id).setValue(buyer);
 
             Toast.makeText(getApplicationContext(),  "New Buyer Added! ", Toast.LENGTH_LONG).show();
