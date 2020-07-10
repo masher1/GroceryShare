@@ -5,48 +5,44 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.groceryshare.ui.login.LoginActivity;
+
 import java.io.IOException;
 
-
-
 public class ShopperSignup extends AppCompatActivity {
-    //Write to file initialization
+
     //profile pic
     private ImageView profilePic;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
+    //Profile Pic Content End
 
-    private EditText firstNameShop;
-    private EditText lastNameShop;
-    private EditText addressShop;
-    private EditText emailShop;
-    private EditText passwordShop;
+    //TextField Data Collection Start
+    String username, email, password;
+    EditText usernameInput;
+    EditText emailInput;
+    EditText passwordInput;
 
+    Button nextButton;
 
-    String firstNameTextShop;
-    String lastNameTextShop;
-    String addressTextShop;
-    String emailTextShop;
-    String passwordTextShop;
-    //Screen toggle initialization
-    Button next_activity_button;
+    ImageView img; //used for the back button navigation
+    //    TextField Data Collection End
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopper_signup);
-        /* use findViewById() to get the EditTexts */
-        firstNameShop = (EditText)findViewById(R.id.firstNameS);
-        lastNameShop = (EditText)findViewById(R.id.lastNameS);
-        addressShop = (EditText)findViewById(R.id.addressShopperSetUp);
-        emailShop = (EditText)findViewById(R.id.emailShopperSetUp);
-        passwordShop = (EditText)findViewById(R.id.PasswordShopperSetUp);
+
+        img = findViewById(R.id.GoBackIcon);//defines the back button image
 
         profilePic = findViewById(R.id.profilePicImg);
         profilePic.setOnClickListener(new View.OnClickListener() {
@@ -60,38 +56,48 @@ public class ShopperSignup extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE);
             }
         });
-        /* use findViewById() to get the next Button */
-        next_activity_button = (Button) findViewById(R.id.shopperSetUpDone);
-        // Add_button add click listener
-        next_activity_button.setOnClickListener(new View.OnClickListener() {
+        usernameInput = (EditText) findViewById(R.id.UsernameInput);
+        emailInput = (EditText) findViewById(R.id.EmailInput);
+        passwordInput = (EditText) findViewById(R.id.PasswordInput);
 
+        nextButton = (Button) findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-
-                /*
-                 Intents are objects of the android.content.Intent type. Your code can send them
-                 to the Android system defining the components you are targeting.
-                 Intent to start an activity called SecondActivity with the following code:
-                */
-                firstNameTextShop = firstNameShop.getText().toString();
-                lastNameTextShop = lastNameShop.getText().toString();
-                addressTextShop = addressShop.getText().toString();
-                emailTextShop = emailShop.getText().toString();
-                passwordTextShop= passwordShop.getText().toString();
-                System.out.print("First Name: ");
-                System.out.println(firstNameTextShop);
-                System.out.println("Last Name: " + lastNameTextShop);
-                System.out.println("Address: " + addressTextShop);
-                System.out.println("Email: " + emailTextShop);
-                System.out.println("Password: " + passwordTextShop);
-                //add way to handle empty or bad input
-                Intent intent = new Intent(ShopperSignup.this, ShopperHomeScreen.class);
-
-                // start the activity connect to the specified class
-                startActivity(intent);
+                username = usernameInput.getText().toString();
+                email = emailInput.getText().toString();
+                password = passwordInput.getText().toString();
+                if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(),  "New Shopper Added! ", Toast.LENGTH_LONG).show();
+                    gotoNext();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Please fill all of the fields!", Toast.LENGTH_LONG).show();
+                }
             }
-
         });
     }
+
+    public void gotoNext(){
+        Intent intent = new Intent(this, ShopperSignup2.class);
+        intent.putExtra("USER_NAME", username);
+        intent.putExtra("EMAIL", email);
+        intent.putExtra("PASSWORD", password);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, NewAccountActivity.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the Login Screen
+    public void goLogIn(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
