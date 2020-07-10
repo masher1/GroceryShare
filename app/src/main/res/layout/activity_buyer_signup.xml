@@ -55,16 +55,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:background="@drawable/img">
             tools:context=".ProfileActivity">
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/profile_image"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:background="#FFFFFF"
                 android:src="@drawable/ic_baseline_add_a_photo_24" />
-        </RelativeLayout>
 
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/UsernameInput"
@@ -102,11 +100,24 @@
             android:paddingLeft="15dp"
             android:textColorHint="@color/fullwhite" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:layout_marginTop="25dp"
+            android:maxHeight="10dip"
+            android:minHeight="10dip"
+            android:progress="0"
+            android:progressDrawable="@drawable/greenprogress"
+            />
+
         <Button
             android:id="@+id/nextButton"
             android:layout_width="280dp"
             android:layout_height="45dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/joinbtn"
             android:elevation="5dp"
             android:text="Next"
@@ -114,6 +125,5 @@
             android:textColor="@color/whitecolor" />
 
     </LinearLayout>
-
 
 </LinearLayout>

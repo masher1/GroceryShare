@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.appcompat.app.AppCompatActivity;
 public class PersonalActivity extends AppCompatActivity {
     String store, payment, rewards, others, userId;
     EditText storeInput;
@@ -31,6 +32,7 @@ public class PersonalActivity extends AppCompatActivity {
 
     ImageView img; //used for the back button navigation
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +44,12 @@ public class PersonalActivity extends AppCompatActivity {
 
         img = findViewById(R.id.GoBackIcon);//defines the back button image
 
+
         storeInput = (EditText) findViewById(R.id.storeprefId);
         paymentInput = (EditText) findViewById(R.id.paymentId);
         rewardsInput = (EditText) findViewById(R.id.rewardsId);
         othersInput = (EditText) findViewById(R.id.othersid);
+
 
 
         submitButton = (Button) findViewById(R.id.joinButton);
@@ -55,6 +59,7 @@ public class PersonalActivity extends AppCompatActivity {
                 addBuyerPreferences();
             }
         });
+
 
         address = (TextView) findViewById(R.id.addressid);
         address.setOnClickListener(new View.OnClickListener() {
@@ -67,8 +72,8 @@ public class PersonalActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
 
     private void addBuyerPreferences() {
         store = storeInput.getText().toString();

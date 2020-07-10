@@ -16,7 +16,7 @@ public class buyerPref {
         this.others = others;
     }
 
-    public String getBuyerID() {
+  public String getBuyerID() {
         return buyerID;
     }
 
