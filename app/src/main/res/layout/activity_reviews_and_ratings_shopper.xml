@@ -4,46 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReviewsAndRatings">
+    android:background="@color/lightwhite"
 
-    <TextView
-        android:id="@+id/currentRatingTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="317dp"
-        android:layout_marginRight="317dp"
-        android:text="Rating: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingAndReviewTxt" />
+    tools:context=".ReviewsAndRatingsShopper">
 
-    <TextView
-        android:id="@+id/ratingAndReviewTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
-        android:text="@string/ratings_and_reviews"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="357dp"
+        android:layout_height="622dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/reviewTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="309dp"
-        android:layout_marginRight="309dp"
-        android:text="Reviews:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentRatingTxt" />
+        <TextView
+            android:id="@+id/ratingAndReviewTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/ratings_and_reviews"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
-    <RatingBar
-        android:id="@+id/shopperRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="104dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/currentRatingTxt"
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="8sp"
+                android:text="@string/overall_rating"
+                android:textSize="25sp" />
+
+            <RatingBar
+                android:id="@+id/shopperRating"
+                android:layout_width="247dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/reviewTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Reviews:"
+            android:textSize="25sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

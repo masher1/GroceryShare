@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.groceryshare.ui.login.LoginActivity;
+
 public class BuyerHomeScreen extends AppCompatActivity {
     private CardView neworder;
     private CardView pendingorder;
     private CardView pastorder;
     private CardView settings;
     private CardView rate;
+    private Button   logOutBuyer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,15 @@ public class BuyerHomeScreen extends AppCompatActivity {
 
             }
         });
+
+        logOutBuyer = findViewById(R.id.logOutBtnBuyer);
+        logOutBuyer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLoginActivity();
+
+            }
+        });
     }
 
 
@@ -90,6 +102,10 @@ public class BuyerHomeScreen extends AppCompatActivity {
 
     public void openrating(){
         Intent intent = new Intent(this, RatingActivity.class);
+        startActivity(intent);
+    }
+    public void openLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

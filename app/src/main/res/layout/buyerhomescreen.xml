@@ -11,6 +11,26 @@
     android:background="#fcfcfc"
     android:gravity="center"
     android:id="@+id/ll">
+
+    <LinearLayout
+        android:layout_width="377dp"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/logOutBtnBuyer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250sp"
+            android:background="@drawable/joinbtn"
+            android:elevation="5dp"
+            android:text="Log Out"
+            android:textAllCaps="false"
+            android:textColor="@color/whitecolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <LinearLayout
         android:clipToPadding="false"
         android:gravity="center"

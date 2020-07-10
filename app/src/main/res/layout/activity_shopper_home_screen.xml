@@ -12,6 +12,25 @@
     tools:context=".ShopperHomeScreen">
 
     <LinearLayout
+        android:layout_width="389dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/logOutShopperBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250sp"
+            android:background="@drawable/joinbtn"
+            android:elevation="5dp"
+            android:text="Log Out"
+            android:textAllCaps="false"
+            android:textColor="@color/whitecolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
@@ -39,10 +58,10 @@
                     android:id="@+id/availableBtn"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/abc_seekbar_tick_mark_material"
+                    android:background="@drawable/cercleshape2"
+                    android:src="@drawable/search_shopper_vector"
                     android:contentDescription="@string/search_image"
-                    android:padding="10dp"
-                    android:src="@drawable/abc_ic_search_api_material" />
+                    android:padding="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,10 +107,10 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/abc_seekbar_tick_mark_material"
+                    android:src="@drawable/clipboard_shopper"
+                    android:background="@drawable/lightgray_circle"
                     android:contentDescription="@string/clipboard_image"
-                    android:padding="10dp"
-                    android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha" />
+                    android:padding="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -146,10 +165,11 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/abc_seekbar_tick_mark_material"
+                    android:src="@drawable/checkbox_shopper_vector"
+                    android:background="@drawable/lightgray_circle"
                     android:contentDescription="@string/checkbox_image"
                     android:padding="10dp"
-                    android:src="@drawable/abc_btn_check_to_on_mtrl_015" />
+                     />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -195,11 +215,10 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/abc_seekbar_tick_mark_material"
+                    android:background="@drawable/cercleshape2"
                     android:contentDescription="@string/tool_image"
                     android:padding="10dp"
-                    android:src="@drawable/abc_seekbar_track_material"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:src="@drawable/ic_baseline_settings_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -254,10 +273,10 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/abc_seekbar_tick_mark_material"
+                    android:src="@drawable/star_shopper_vector"
+                    android:background="@drawable/cercleshape2"
                     android:contentDescription="@string/star_image"
-                    android:padding="10dp"
-                    android:src="@drawable/abc_ic_star_black_16dp" />
+                    android:padding="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -303,12 +322,10 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/abc_seekbar_tick_mark_material"
+                    android:background="@drawable/lightgray_circle"
+                    android:src="@drawable/problem_shopper"
                     android:contentDescription="@string/problem_image"
-                    android:padding="10dp"
-                    android:src="@drawable/abc_seekbar_track_material"
-                    app:srcCompat="@android:drawable/stat_notify_error"
-                    tools:srcCompat="@android:drawable/stat_notify_error" />
+                    android:padding="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -46,7 +46,7 @@
             android:layout_gravity="center"
             android:fontFamily="sans-serif-medium"
             android:text="  Create Your\nBuyer Account"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <RelativeLayout
@@ -111,6 +111,8 @@
             android:elevation="5dp"
             android:text="Next"
             android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:textColor="@color/whitecolor" />
 
     </LinearLayout>
