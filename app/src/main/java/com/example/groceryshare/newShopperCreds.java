@@ -1,14 +1,11 @@
 package com.example.groceryshare;
 
-public class newBuyerCreds {
-    String buyerID;
-    String username;
-    String email;
-    String password;
-    String firstName, lastName, address, phoneNumber, birthday;
+public class newShopperCreds {
+    String shopperID;
+    String username, email, password, firstName, lastName, address, phoneNumber, birthday, frequency;
 
-    public newBuyerCreds(String buyerID, String username, String email, String password, String firstName, String lastName, String address, String phoneNumber, String birthday) {
-        this.buyerID = buyerID;
+    public newShopperCreds(String shopperID, String username, String email, String password, String firstName, String lastName, String address, String phoneNumber, String birthday, String frequency) {
+        this.shopperID = shopperID;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -17,10 +14,11 @@ public class newBuyerCreds {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
+        this.frequency = frequency;
     }
 
-    public String getBuyerID() {
-        return buyerID;
+    public String getShopperID() {
+        return shopperID;
     }
     public String getUsername() {
         return username;
@@ -46,7 +44,10 @@ public class newBuyerCreds {
     public String getBirthday() {
         return birthday;
     }
-    public newBuyerCreds(){
+    public String getFrequency() {
+        return frequency;
+    }
+    public newShopperCreds(){
 
     }
 }
