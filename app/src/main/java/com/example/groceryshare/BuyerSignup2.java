@@ -76,6 +76,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onClick(View v) {
                 addBuyerCredentials();
+                goHomeScreen();
             }
         });
     }
@@ -126,6 +127,11 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
     //used to navigate back to the Login Screen
     public void goLogIn(View v) {
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void goHomeScreen() {
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
         startActivity(intent);
     }
 }
