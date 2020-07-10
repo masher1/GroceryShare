@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".PersonalActivity">
 
-    <RelativeLayout
+  <RelativeLayout
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="260dp"
         android:paddingBottom="20dp">
+
+
 
         <ImageView
             android:id="@+id/GoBackIcon"
@@ -18,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_back_black_24dp" />
+
 
         <RelativeLayout
             android:id="@+id/imgUser"
@@ -35,22 +38,44 @@
                 android:padding="3dp"
                 android:scaleType="centerInside" />
 
+
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/nameid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
             android:text="Name"
             android:textColor="@color/greencolor"
             android:textSize="32sp" />
 
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@+id/addressid"
+            android:layout_above="@id/addressid"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_edit_24" />
+
+        <TextView
+            android:id="@+id/addressid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameid"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
+            android:text="10 Watson Lane Middletown DE 19709"
+            android:textColor="@color/greencolor"
+            android:textSize="20sp" />
+
 
     </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/linlay1"
@@ -59,13 +84,13 @@
         android:layout_below="@id/rellay1"
         android:orientation="horizontal"/>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/linlay1"
-        android:layout_marginTop="-44dp">
+        android:layout_below="@+id/rellay1"
+        android:layout_alignParentLeft="true">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,14 +98,16 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/joinButton"
             android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
+              
                 <EditText
                     android:id="@+id/storeprefId"
                     android:layout_width="wrap_content"
@@ -97,9 +124,11 @@
                     android:layout_height="wrap_content"
                     android:text="Grocery Store Preference"
                     android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
                     android:textSize="13sp" />
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,9 +152,11 @@
                     android:layout_height="wrap_content"
                     android:text="Payment method"
                     android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
                     android:textSize="13sp" />
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,8 +179,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rewards Member Information"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="13sp" />
+
 
             </LinearLayout>
 
@@ -174,25 +207,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Other Information"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="13sp" />
 
             </LinearLayout>
 
-
-
         </LinearLayout>
 
         <Button
             android:id="@+id/joinButton"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="58dp"
-            android:layout_marginStart="58dp"
-            android:layout_marginTop="460dp"
+            android:layout_width="287dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/joinbtn"
+            android:layout_centerHorizontal="true"
             android:elevation="5dp"
             android:text="Submit"
             android:textAllCaps="false"

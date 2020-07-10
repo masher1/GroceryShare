@@ -4,19 +4,18 @@ public class newBuyerCreds {
     String buyerID;
     String username;
     String email;
-    String password;
-    String firstName, lastName, address, phoneNumber, birthday;
+    String firstName, lastName, address, phoneNumber, birthday, disabilities;
 
-    public newBuyerCreds(String buyerID, String username, String email, String password, String firstName, String lastName, String address, String phoneNumber, String birthday) {
+    public newBuyerCreds(String buyerID, String username, String email, String firstName, String lastName, String address, String phoneNumber, String birthday, String disabilities) {
         this.buyerID = buyerID;
         this.username = username;
         this.email = email;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
+        this.disabilities = disabilities;
     }
 
     public String getBuyerID() {
@@ -27,9 +26,6 @@ public class newBuyerCreds {
     }
     public String getEmail() {
         return email;
-    }
-    public String getPassword() {
-        return password;
     }
     public String getFirstName() {
         return firstName;
@@ -46,7 +42,9 @@ public class newBuyerCreds {
     public String getBirthday() {
         return birthday;
     }
+    public String getDisabilities() {
+        return disabilities;
+    }
     public newBuyerCreds(){
-
     }
 }
