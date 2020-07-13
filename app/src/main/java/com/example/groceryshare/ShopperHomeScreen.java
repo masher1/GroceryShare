@@ -22,7 +22,7 @@ public class ShopperHomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopper_home_screen);
+        setContentView(R.layout.shopper_home_screen);
 
         availableTrips = findViewById(R.id.availableIDShop);
         currentTrips = findViewById(R.id.currentOrderIDShop);
@@ -110,4 +110,5 @@ public class ShopperHomeScreen extends AppCompatActivity {
 
         });
     }
-            }
+
+}

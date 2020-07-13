@@ -18,7 +18,7 @@ public class ShopperRatesBuyer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopper_rates_buyer);
+        setContentView(R.layout.shopper_rates_buyer);
         doneBtnRatingByShopper = (Button)findViewById(R.id.doneRatingByShopperBtn);
         ratingBarShopper = (RatingBar)findViewById(R.id.ratingBarByShopper);
         userReviewByShopperEditText = (EditText)findViewById(R.id.tellUsByShopperInput);
@@ -35,5 +35,11 @@ public class ShopperRatesBuyer extends AppCompatActivity {
             }
 
         });
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, OrderFulfillShopper.class);
+        startActivity(intent);
     }
 }

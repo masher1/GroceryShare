@@ -1,12 +1,11 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class BuyerHomeScreen extends AppCompatActivity {
     private CardView newOrder;
@@ -18,7 +17,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buyerhomescreen);
+        setContentView(R.layout.buyer_homescreen);
 
         newOrder = findViewById(R.id.neworderId);
         pendingOrder = findViewById(R.id.pendingorderId);

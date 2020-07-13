@@ -27,15 +27,16 @@ import java.util.Calendar;
 public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnItemClickListener, DatePickerDialog.OnDateSetListener {
     //Write to file initialization
 
-    String username, email, password, firstName, lastName, address, birthday, phoneNumber, frequency;
+    String profilePhoto, username, email, password, firstName, lastName, address, birthday, phoneNumber, frequency;
     private EditText firstNameInput;
     private EditText lastNameInput;
     private EditText addressInput;
     private EditText birthdayInput;
     private EditText phoneNumberInput;
-    private Spinner spinner;
+    private Spinner frequencyspinner;
 
     Button joinButton;
+    Button logInButton;
 
     DatabaseReference databaseShoppers;
     //Screen toggle initialization
@@ -45,10 +46,11 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopper_signup2);
+        setContentView(R.layout.shopper_signup2);
 
         Intent intent = getIntent();
 
+        profilePhoto = intent.getStringExtra("PROFILE_PHOTO");
         username = intent.getStringExtra("USER_NAME");
         email = intent.getStringExtra("EMAIL");
         password = intent.getStringExtra("PASSWORD");
@@ -62,7 +64,7 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
-        databaseShoppers = FirebaseDatabase.getInstance().getReference("shoppers");
+        databaseShoppers = FirebaseDatabase.getInstance().getReference("Shoppers");
 
         img = findViewById(R.id.GoBackIcon);//defines the back button image
 
@@ -99,11 +101,20 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
 //                //TODO: add way to handle empty or bad input
 //        });
 //    }
+        logInButton = (Button) findViewById(R.id.LogInbtn);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goLogIn();
+            }
+        });
+
         joinButton = (Button) findViewById(R.id.joinButton);
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addShopperCredentials();
+                goHomeScreen();
             }
         });
     }
@@ -114,14 +125,17 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
         address = addressInput.getText().toString();
         birthday = birthdayInput.getText().toString();
         phoneNumber = phoneNumberInput.getText().toString();
-        frequency = String.valueOf(spinner.getSelectedItem());
+        frequency = String.valueOf(frequencyspinner.getSelectedItem());
 
         if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday) && !TextUtils.isEmpty(phoneNumber)){
             String id = databaseShoppers.push().getKey();
-            newShopperCreds buyer = new newShopperCreds(id, username, email, password, firstName, lastName, address, phoneNumber, birthday, frequency);
-            databaseShoppers.child(id).setValue(buyer);
+            newShopperCreds shopper = new newShopperCreds(id, profilePhoto, username, email, password, firstName, lastName, address, phoneNumber, birthday, frequency);
+            databaseShoppers.child(id).setValue(shopper);
 
             Toast.makeText( this,  "New Shopper Added! ", Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(this, ShopperHomeScreen.class);
+            startActivity(intent);
         }
         else{
             Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
@@ -139,7 +153,6 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
         birthdayInput.setText(currentDateString);
         birthdayInput.setGravity(Gravity.CENTER_HORIZONTAL);
         birthdayInput.setGravity(Gravity.CENTER_VERTICAL);
-
     }
 
     //used to navigate back to the previous screen
@@ -149,8 +162,13 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
     }
 
     //used to navigate back to the Login Screen
-    public void goLogIn(View v) {
+    public void goLogIn() {
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void goHomeScreen() {
+        Intent intent = new Intent(this, ShopperHomeScreen.class);
         startActivity(intent);
     }
 
@@ -161,13 +179,13 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void addListenerOnSpinnerItemSelection() {
-        spinner = (Spinner) findViewById(R.id.FrequencyInput);
-        spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
+        frequencyspinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 
     // get the selected dropdown list value
     public void addListenerOnButton() {
-        spinner = (Spinner) findViewById(R.id.FrequencyInput);
+        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
         joinButton = (Button) findViewById(R.id.joinButton);
 
         joinButton.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +193,7 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View v) {
                 Toast.makeText(ShopperSignup2.this,
                         "OnClickListener : " +
-                                "\nSpinner: "+ String.valueOf(spinner.getSelectedItem()),
+                                "\nSpinner: "+ String.valueOf(frequencyspinner.getSelectedItem()),
                         Toast.LENGTH_SHORT).show();
             }
         });

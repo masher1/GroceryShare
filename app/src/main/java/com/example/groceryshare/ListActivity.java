@@ -1,24 +1,13 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.groceryshare.databinding.AdditemBinding;
-import com.example.groceryshare.databinding.ListactivityBinding;
-
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -28,7 +17,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listactivity);
+        setContentView(R.layout.list_activity);
         addItembtn = findViewById(R.id.tv_add_item);
         addItembtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +35,12 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
+        startActivity(intent);
     }
 
 }

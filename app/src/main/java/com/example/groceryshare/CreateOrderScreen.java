@@ -8,6 +8,12 @@ public class CreateOrderScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.createorderscreen);
+        setContentView(R.layout.create_order_screen);
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, ShopperHomeScreen.class);
+        startActivity(intent);
     }
 }

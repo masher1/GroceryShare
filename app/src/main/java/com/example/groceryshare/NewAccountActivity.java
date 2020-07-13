@@ -14,7 +14,7 @@ public class NewAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.newaccountactivity);
+        setContentView(R.layout.new_account_activity);
 
         shopperbutton = findViewById(R.id.shopperbutton);
         shopperbutton.setOnClickListener(new View.OnClickListener() {

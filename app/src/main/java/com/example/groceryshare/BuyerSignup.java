@@ -22,8 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -42,17 +40,17 @@ public class BuyerSignup extends AppCompatActivity {
     private Button ButtonUpload;
     private ProgressBar ProgressBar;
     private StorageReference StorageRef;
-    private DatabaseReference DatabaseRef;
     private StorageTask UploadTask;
     //Profile Pic Content End
 
     //TextField Data Collection Start
-    String username, email, password;
+    String profileImage, username, email, password;
     EditText usernameInput;
     EditText emailInput;
     EditText passwordInput;
 
     Button nextButton;
+    Button logInButton;
     //    TextField Data Collection End
 
     ImageView img; //used for the back button navigation
@@ -61,14 +59,11 @@ public class BuyerSignup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_signup);
+        setContentView(R.layout.buyer_signup);
 
         img = findViewById(R.id.GoBackIcon);//defines the back button image
 
         StorageRef = FirebaseStorage.getInstance().getReference("profilePicUploads");
-        DatabaseRef = FirebaseDatabase.getInstance().getReference("profilePicUploads");
-
-        ProgressBar = findViewById(R.id.progress_bar);
 
         ProfileImage = findViewById(R.id.profile_image);
         ProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +81,29 @@ public class BuyerSignup extends AppCompatActivity {
         emailInput = (EditText) findViewById(R.id.EmailInput);
         passwordInput = (EditText) findViewById(R.id.PasswordInput);
 
+        ProgressBar = findViewById(R.id.progress_bar);
+        ButtonUpload = findViewById(R.id.button_upload);
         nextButton = (Button) findViewById(R.id.nextButton);
+
+        ButtonUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UploadTask != null && UploadTask.isInProgress()) {
+                    Toast.makeText(BuyerSignup.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadFile();
+                }
+                nextButton.setEnabled(true);
+            }
+        });
+
+        logInButton = (Button) findViewById(R.id.LogInbtn);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goLogIn();
+            }
+        });
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,11 +112,6 @@ public class BuyerSignup extends AppCompatActivity {
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
                 if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-                    if (UploadTask != null && UploadTask.isInProgress()) {
-                        Toast.makeText(BuyerSignup.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-                    } else {
-                        uploadFile();
-                    }
                     gotoNext();
                 }
                 else
@@ -110,13 +122,12 @@ public class BuyerSignup extends AppCompatActivity {
 
     public void gotoNext(){
         Intent intent = new Intent(this, BuyerSignup2.class);
-//        intent.putExtra("PROFILE_IMAGE", profileImage);
+        intent.putExtra("PROFILE_PHOTO", profileImage);
         intent.putExtra("USER_NAME", username);
         intent.putExtra("EMAIL", email);
         intent.putExtra("PASSWORD", password);
         startActivity(intent);
     }
-
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
@@ -125,7 +136,7 @@ public class BuyerSignup extends AppCompatActivity {
     }
 
     //used to navigate back to the Login Screen
-    public void goLogIn(View v) {
+    public void goLogIn() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -166,11 +177,9 @@ public class BuyerSignup extends AppCompatActivity {
                                 public void run() {
                                     ProgressBar.setProgress(0);
                                 }
-                            }, 500);
+                            }, 50);
                             Toast.makeText(BuyerSignup.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            UploadProfilePic upload = new UploadProfilePic(username, taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                            String uploadId = DatabaseRef.push().getKey();
-                            DatabaseRef.child(uploadId).setValue(upload);
+                            profileImage = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -178,13 +187,14 @@ public class BuyerSignup extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(BuyerSignup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            ProgressBar.setProgress((int) progress);
-                        }
-                    });
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        ProgressBar.setProgress((int) progress);
+                    }
+            });
         }
     }
 }

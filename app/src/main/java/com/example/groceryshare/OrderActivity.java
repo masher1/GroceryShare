@@ -1,11 +1,11 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class OrderActivity extends AppCompatActivity {
     private CardView addlist;
@@ -14,7 +14,7 @@ public class OrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.orderactivity);
+        setContentView(R.layout.order_activity);
 
 
         addlist = findViewById(R.id.addlistId);
@@ -43,6 +43,12 @@ public class OrderActivity extends AppCompatActivity {
 
     public void openpersonal(){
         Intent intent = new Intent(this, PersonalActivity.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
         startActivity(intent);
     }
 }
