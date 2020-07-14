@@ -21,12 +21,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="426dp"
-        android:layout_height="644dp"
+        android:layout_width="398dp"
+        android:layout_height="624dp"
         android:baselineAligned="false"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="85dp">
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="105dp">
 
         <TextView
             android:id="@+id/complaintTxt"
@@ -90,8 +90,8 @@
             android:layout_marginLeft="50sp"
             android:ems="10"
             android:fontFamily="sans-serif-medium"
-            android:inputType="textPersonName"
-            android:hint="@string/other" />
+            android:hint="@string/other"
+            android:inputType="textPersonName" />
 
 
         <CheckBox
@@ -123,11 +123,11 @@
             android:layout_marginLeft="180sp"
             android:background="@drawable/joinbtn"
             android:elevation="5dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/submit_complaint"
             android:textAllCaps="false"
             android:textColor="@color/whitecolor"
             android:textSize="20sp"
-            android:fontFamily="sans-serif-medium"
             android:textStyle="bold" />
 
     </LinearLayout>

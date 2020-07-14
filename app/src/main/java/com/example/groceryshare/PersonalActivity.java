@@ -19,7 +19,6 @@ public class PersonalActivity extends AppCompatActivity {
     EditText rewardsInput;
     EditText othersInput;
     TextView address;
-
     Button submitButton;
 
     //DatabaseReference databaseBuyers;
