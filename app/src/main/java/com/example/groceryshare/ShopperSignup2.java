@@ -80,30 +80,6 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
         addListenerOnButton();
         addListenerOnSpinnerItemSelection();
 
-//        /* use findViewById() to get the next Button */
-//        joinButton = (Button) findViewById(R.id.joinButton);
-//        // Add_button add click listener
-//        joinButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                /*
-//                 Intents are objects of the android.content.Intent type. Your code can send them
-//                 to the Android system defining the components you are targeting.
-//                 Intent to start an activity called SecondActivity with the following code:
-//                */
-//                firstName = firstNameInput.getText().toString();
-//                lastName = lastNameInput.getText().toString();
-//                address = addressInput.getText().toString();
-//                birthday = birthdayInput.getText().toString();
-//                phoneNumber = phoneNumberInput.getText().toString();
-//
-//                System.out.print("First Name: " + firstName);
-//                System.out.println("Last Name: " + lastName);
-//                System.out.println("Address: " + address);
-//                System.out.println("Birthday: " + birthday);
-//                System.out.println("Phone Number: " + phoneNumber);
-//                //TODO: add way to handle empty or bad input
-//        });
-//    }
         logInButton = (Button) findViewById(R.id.LogInbtn);
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +122,7 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
 
         if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday) && !TextUtils.isEmpty(phoneNumber)){
             String id = databaseShoppers.push().getKey();
-            newShopperCreds shopper = new newShopperCreds(id, profilePhoto, username, email, password, firstName, lastName, address, phoneNumber, birthday, frequency);
+            newShopperCreds shopper = new newShopperCreds(id, profilePhoto, username, email, firstName, lastName, address, phoneNumber, birthday, frequency);
             databaseShoppers.child(id).setValue(shopper);
 
             Toast.makeText( this,  "New Shopper Added! ", Toast.LENGTH_LONG).show();

@@ -111,6 +111,18 @@
         android:paddingLeft="15dp"
         android:textColorHint="@color/fullwhite" />
 
+    <EditText
+        android:id="@+id/PasswordInput2"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn"
+        android:elevation="5dp"
+        android:hint=" Re-enter password "
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColorHint="@color/fullwhite" />
+
     <Button
         android:id="@+id/button_upload"
         android:layout_width="280dp"

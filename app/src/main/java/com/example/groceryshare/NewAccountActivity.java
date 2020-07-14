@@ -7,9 +7,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.groceryshare.ui.login.LoginActivity;
+
 public class NewAccountActivity extends AppCompatActivity {
     private Button shopperbutton;
     private Button buyerbutton;
+    private Button logInButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,13 @@ public class NewAccountActivity extends AppCompatActivity {
             }
         });
 
+        logInButton = (Button) findViewById(R.id.LogInbtn);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goLogIn();
+            }
+        });
     }
 
     public void openShopper(){
@@ -43,6 +54,18 @@ public class NewAccountActivity extends AppCompatActivity {
 
     public void openBuyer(){
         Intent intent = new Intent(this, BuyerSignup.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    //used to navigate back to the Login Screen
+    public void goLogIn() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
