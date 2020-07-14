@@ -162,7 +162,7 @@
                     android:layout_height="64dp"
                     android:background="@drawable/circleshape"
                     android:padding="10dp"
-                    android:src="@drawable/ic_baseline_settings_24" />
+                    android:src="@drawable/gear_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -21,6 +21,9 @@ import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -113,19 +116,33 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addShopperCredentials();
-                goHomeScreen();
+                try {
+                    addShopperCredentials();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    private void addShopperCredentials(){
+    private void addShopperCredentials() throws IOException, JSONException {
         firstName = firstNameInput.getText().toString();
         lastName = lastNameInput.getText().toString();
         address = addressInput.getText().toString();
         birthday = birthdayInput.getText().toString();
         phoneNumber = phoneNumberInput.getText().toString();
         frequency = String.valueOf(frequencyspinner.getSelectedItem());
+
+        double [] verification = DistanceCalculator.addressToLonLat(address);
+//        new DistanceCalculator(address).execute();
+        if (verification == null){
+            addressInput.setError("Please Enter A Real Address!");
+            address = "";
+        }else{
+            addressInput.setError(null);
+        }
 
         if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday) && !TextUtils.isEmpty(phoneNumber)){
             String id = databaseShoppers.push().getKey();
@@ -134,7 +151,7 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
 
             Toast.makeText( this,  "New Shopper Added! ", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(this, ShopperHomeScreen.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
         else{
@@ -148,7 +165,7 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+        String currentDateString = new SimpleDateFormat("MM/dd/yyyy").format(c.getTime());
         birthdayInput = findViewById(R.id.BirthdayInput);
         birthdayInput.setText(currentDateString);
         birthdayInput.setGravity(Gravity.CENTER_HORIZONTAL);

@@ -89,8 +89,9 @@ public class BuyerSignup extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (UploadTask != null && UploadTask.isInProgress()) {
-                    Toast.makeText(BuyerSignup.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-                } else {
+                    Toast.makeText(BuyerSignup.this, "Upload in progress!", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     uploadFile();
                 }
                 nextButton.setEnabled(true);
@@ -195,6 +196,9 @@ public class BuyerSignup extends AppCompatActivity {
                         ProgressBar.setProgress((int) progress);
                     }
             });
+        }
+        else {
+            Toast.makeText(this, "Please Select a Profile Photo!", Toast.LENGTH_SHORT).show();
         }
     }
 }

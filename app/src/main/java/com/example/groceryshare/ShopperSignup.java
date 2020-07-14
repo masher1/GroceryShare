@@ -190,5 +190,8 @@ public class ShopperSignup extends AppCompatActivity {
                         }
                     });
         }
+        else {
+            Toast.makeText(this, "Please Select a Profile Photo!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
