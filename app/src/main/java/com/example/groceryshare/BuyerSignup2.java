@@ -13,10 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.groceryshare.ui.login.LoginActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,6 +39,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
     private EditText phoneNumberInput;
     private TextView birthdayInput;
     private EditText disabilitiesInput;
+    private FirebaseAuth mAuth;
 
     Button joinButton;
 
@@ -47,6 +54,8 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_buyer_signup2);
 
         Intent intent = getIntent();
+
+        mAuth = FirebaseAuth.getInstance();
 
         username = intent.getStringExtra("USER_NAME");
         email = intent.getStringExtra("EMAIL");
@@ -81,6 +90,13 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+    }
+
     private void addBuyerCredentials(){
         firstName = firstNameInput.getText().toString();
         lastName = lastNameInput.getText().toString();
@@ -89,19 +105,39 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         phoneNumber = phoneNumberInput.getText().toString();
         disabilities = disabilitiesInput.getText().toString();
 
-        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday) && !TextUtils.isEmpty(phoneNumber)){
-            String id = databaseBuyers.push().getKey();
-            newBuyerCreds buyer = new newBuyerCreds(id, username, email, firstName, lastName, address, phoneNumber, birthday, disabilities);
-            databaseBuyers.child(id).setValue(buyer);
+        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday) ){
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                //Log.d(TAG, "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(BuyerSignup2.this,  "Account Created", Toast.LENGTH_LONG).show();
+                                String id = user.getUid();
+                                newBuyerCreds buyer = new newBuyerCreds(id, username, email, password, firstName, lastName, address, phoneNumber, birthday);
+                                databaseBuyers.child(id).setValue(buyer);
+                                Toast.makeText(BuyerSignup2.this,  "New Buyer Added! ", Toast.LENGTH_LONG).show();
+                                //updateUI(user);
+                            } else {
+                                Toast.makeText(BuyerSignup2.this,  "account not created", Toast.LENGTH_LONG).show();
+                                // If sign in fails, display a message to the user.
+                                //Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                //Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                                //Toast.LENGTH_SHORT).show();
+                                //updateUI(null);
+                            }
 
-            Toast.makeText(getApplicationContext(),  "New Buyer Added! ", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(this, BuyerHomeScreen.class);
-            startActivity(intent);
+                        }
+                    });
+
         }
         else{
             Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
         }
+
     }
 
     @Override
