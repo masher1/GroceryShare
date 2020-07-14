@@ -9,6 +9,6 @@ public class CurrentTripsShopper extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_current_trips_shopper);
+        setContentView(R.layout.current_trips_shopper);
     }
 }

@@ -33,7 +33,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listactivity);
+        setContentView(R.layout.list_activity);
 
         namef = (EditText) findViewById(R.id.et_name);
         quantityf = (EditText) findViewById(R.id.et_quantity);
@@ -67,6 +67,13 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
+        startActivity(intent);
+    }
+
+}
     private ArrayList<GroceryItem> populateList(){
 
         ArrayList<GroceryItem> list = new ArrayList<>();

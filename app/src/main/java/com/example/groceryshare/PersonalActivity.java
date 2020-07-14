@@ -1,11 +1,8 @@
 package com.example.groceryshare;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import androidx.appcompat.app.AppCompatActivity;
+
 public class PersonalActivity extends AppCompatActivity {
     String store, payment, rewards, others, userId;
     EditText storeInput;
@@ -35,7 +30,7 @@ public class PersonalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personalactivity);
+        setContentView(R.layout.personal_activity);
 
         Intent intent = getIntent();
 

@@ -13,6 +13,7 @@
     <string name="settings">Settings</string>
     <string name="shopping_trips_available">Shopping Trips Available</string>
     <string name="past_fulfillments">Past Fulfillments</string>
+    <string name="overall_rating">Overall Rating</string>
     <string name="ratings_and_reviews">Ratings and Reviews</string>
     <string name="problems">Problems?</string>
     <string name="add_button_text">Add</string>
@@ -56,7 +57,7 @@
     <string name="update_any_profile_information">Update any profile information</string>
     <string name="let_us_know_about_any_problems_with_the_app">Let us know about any problems with the app</string>
     <string name="look_at_your_reviews_and_ratings">Look at your reviews and ratings</string>
-    <string name="look_at_previous_trips">Look at previous trips</string>
+    <string name="look_at_previous_trips">Look at previous trips \n</string>
     <string name="access_shopping_list_and_trip_information">Access shopping list and trip information</string>
     <string name="search_for_a_shopping_trip_to_complete">Search for a shopping trip to complete</string>
     <string name="click_to_add_profile_picture">Click to add profile picture</string>

@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RatingActivity">
+    tools:context=".PendingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:id="@+id/GoBackIcon"
+            android:layout_width="56dp"
+            android:layout_height="45dp"
+            android:onClick="goBack"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -13,7 +29,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="110dp"
-        android:text="Rating Screen"
+        android:text="Pending Order Screen"
         android:textSize="45dp"
         android:textColor="@color/colorPrimaryDark"
         tools:layout_editor_absoluteX="74dp"
