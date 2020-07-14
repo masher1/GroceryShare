@@ -14,12 +14,21 @@
 
 
 
-        <ImageView
-            android:id="@+id/GoBackIcon"
-            android:onClick="goBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_black_24dp" />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:orientation="horizontal"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:layout_editor_absoluteX="16dp">
+
+          <ImageView
+              android:id="@+id/GoBackIcon"
+              android:layout_width="56dp"
+              android:layout_height="45dp"
+              android:onClick="goBack"
+              android:src="@drawable/ic_arrow_back_black_24dp" />
+      </LinearLayout>
 
 
         <RelativeLayout
@@ -34,7 +43,7 @@
                 android:layout_height="120dp"
                 android:layout_margin="9dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/cercleshape"
+                android:background="@drawable/circleshape"
                 android:padding="3dp"
                 android:scaleType="centerInside" />
 

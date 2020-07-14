@@ -85,7 +85,6 @@
             android:id="@+id/AddressInput"
             android:layout_width="280dp"
             android:layout_height="45dp"
-
             android:background="@drawable/btn"
             android:elevation="5dp"
             android:hint=" Home Address "
@@ -98,7 +97,6 @@
             android:layout_height="70dp"
             android:gravity="center"
             android:orientation="horizontal">
-
             <EditText
                 android:id="@+id/BirthdayInput"
                 android:layout_width="184dp"
@@ -123,7 +121,6 @@
                 android:text="Open Date Picker"
                 android:textAllCaps="false"
                 android:textColor="@color/whitecolor" />
-
         </LinearLayout>
 
         <EditText

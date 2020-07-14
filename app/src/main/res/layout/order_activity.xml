@@ -9,14 +9,31 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:background="#fcfcfc"
-    android:gravity="center"
     android:id="@+id/ll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:id="@+id/GoBackIcon"
+            android:layout_width="56dp"
+            android:layout_height="45dp"
+            android:onClick="goBack"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
+        android:layout_marginTop="230dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
@@ -36,7 +53,7 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cercleshape"
+                    android:background="@drawable/circleshape"
                     android:padding="10dp"
                     android:src="@drawable/ic_baseline_add_shopping_cart_24" />
 
@@ -52,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Add to your shopping list"
+                    android:text="Add to your shopping list\n"
                     android:textColor="@android:color/darker_gray" />
 
                 <View
@@ -81,7 +98,7 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cercleshape2"
+                    android:background="@drawable/circleshape2"
                     android:padding="10dp"
                     android:src="@drawable/ic_baseline_person_24" />
 

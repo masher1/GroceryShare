@@ -26,13 +26,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     //  TextField Data Collection Start
 
-    String username, email, password, firstName, lastName, address, phoneNumber, birthday, disabilities;
+    String profilePhoto, username, email, password, firstName, lastName, address, phoneNumber, birthday, disabilities;
     private EditText firstNameInput;
     private EditText lastNameInput;
     private EditText addressInput;
@@ -42,20 +45,22 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
     private FirebaseAuth mAuth;
 
     Button joinButton;
+    Button logInButton;
 
     DatabaseReference databaseBuyers;
-//    TextField Data Collection End
+    //TextField Data Collection End
 
     ImageView img; //used for the back button navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_signup2);
+        setContentView(R.layout.buyer_signup2);
 
         Intent intent = getIntent();
 
         mAuth = FirebaseAuth.getInstance();
+        profilePhoto = intent.getStringExtra("PROFILE_PHOTO");
 
         username = intent.getStringExtra("USER_NAME");
         email = intent.getStringExtra("EMAIL");
@@ -70,7 +75,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-        databaseBuyers = FirebaseDatabase.getInstance().getReference("buyers");
+        databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
 
         img = findViewById(R.id.GoBackIcon);//defines the back button image
 
@@ -80,15 +85,29 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         phoneNumberInput = (EditText) findViewById(R.id.PhoneInput);
         disabilitiesInput = (EditText) findViewById(R.id.DisabilitiesInput);
 
+        logInButton = (Button) findViewById(R.id.LogInbtn);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goLogIn();
+            }
+        });
+
         joinButton = (Button) findViewById(R.id.joinButton);
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addBuyerCredentials();
-                goHomeScreen();
+                try {
+                    addBuyerCredentials();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
+
 
     @Override
     public void onStart() {
@@ -97,7 +116,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-    private void addBuyerCredentials(){
+    private void addBuyerCredentials() throws IOException, JSONException {
         firstName = firstNameInput.getText().toString();
         lastName = lastNameInput.getText().toString();
         address = addressInput.getText().toString();
@@ -133,6 +152,14 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
                         }
                     });
 
+        double [] verification = DistanceCalculator.addressToLonLat(address);
+//        new DistanceCalculator(address).execute();
+        if (verification == null){
+            addressInput.setError("Please Enter A Real Address!");
+            address = "";
+        }else{
+            addressInput.setError(null);
+        }
         }
         else{
             Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
@@ -146,12 +173,11 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+        String currentDateString = new SimpleDateFormat("MM/dd/yyyy").format(c.getTime());
         birthdayInput = findViewById(R.id.BirthdayInput);
         birthdayInput.setText(currentDateString);
         birthdayInput.setGravity(Gravity.CENTER_HORIZONTAL);
         birthdayInput.setGravity(Gravity.CENTER_VERTICAL);
-
     }
 
     //used to navigate back to the previous screen
@@ -161,13 +187,9 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
     }
 
     //used to navigate back to the Login Screen
-    public void goLogIn(View v) {
+    public void goLogIn() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
-    public void goHomeScreen() {
-        Intent intent = new Intent(this, BuyerHomeScreen.class);
-        startActivity(intent);
-    }
 }

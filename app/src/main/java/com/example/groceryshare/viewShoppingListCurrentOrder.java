@@ -1,18 +1,14 @@
 package com.example.groceryshare;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SettingsShopper extends AppCompatActivity {
+import android.os.Bundle;
 
-
+public class viewShoppingListCurrentOrder extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_shopper);
-
-
+        setContentView(R.layout.activity_view_shopping_list_current_order);
     }
 }

@@ -30,7 +30,7 @@ public class ComplaintsShopper extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complaints_shopper);
+        setContentView(R.layout.complaints_shopper);
 
         problemDescrip = (EditText) findViewById(R.id.problemInput);
         orderIssue = (CheckBox) findViewById(R.id.checkBoxComplaintGeneral);
@@ -62,4 +62,11 @@ public class ComplaintsShopper extends AppCompatActivity {
             }
          });
     }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, ShopperHomeScreen.class);
+        startActivity(intent);
+    }
+
 }

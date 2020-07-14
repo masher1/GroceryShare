@@ -1,5 +1,8 @@
 package com.example.groceryshare;
 // Java program to calculate Distance Between Two Points on Earth
+
+import android.os.StrictMode;
+
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -10,8 +13,9 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-public class DistanceCalculator {
+public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
 
+//    private static String url;
     String address1, address2;
     public DistanceCalculator(String address1, String address2) {
         this.address1 = address1;
@@ -25,7 +29,6 @@ public class DistanceCalculator {
         return address2;
     }
 
-
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -36,7 +39,9 @@ public class DistanceCalculator {
     }
 
     public static String readJsonFromUrl(String url) throws IOException, JSONException {
+
         InputStream is = new URL(url).openStream();
+
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
@@ -46,9 +51,7 @@ public class DistanceCalculator {
         }
     }
 
-    public static double distance(double lat1,
-                                  double lat2, double lon1,
-                                  double lon2)
+    public static double distance(double lat1, double lat2, double lon1, double lon2)
     {
         // The math module contains a function
         // named toRadians which converts from
@@ -76,6 +79,9 @@ public class DistanceCalculator {
     }
 
     public static double[] addressToLonLat(String address) throws IOException, JSONException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         double[] ans = new double[2];
 
         String query = "";
@@ -87,8 +93,13 @@ public class DistanceCalculator {
                 query += "+";
             }
         }
-        String json = readJsonFromUrl("https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&addressdetails=1");
 
+//        url = "https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&addressdetails=1";
+//        String json  =  new DistanceCalculator(address).onPostExecute();
+        String json = readJsonFromUrl("https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&addressdetails=1");
+        if(json.equals("[]")){
+            return null;
+        }
         int firstIndexLat = json.indexOf("\"lat\":");
         int firstIndexLon = json.indexOf("\"lon\":");
         int firstIndexEnd = json.indexOf("\",\"display_name\"");
@@ -101,6 +112,35 @@ public class DistanceCalculator {
 
         return ans;
     }
+
+
+//    String jsonText = "";
+//    @Override
+//    protected Void doInBackground(Void... voids) {
+//        InputStream is = null;
+//        try {
+//            is = new URL(url).openStream();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+//            jsonText = readAll(rd);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                is.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return null;
+//    }
+//    protected String onPostExecute() {
+//        String output = jsonText;
+//        return output;
+//    }
 
     // driver code
     public String main(String[] args) throws IOException, JSONException {

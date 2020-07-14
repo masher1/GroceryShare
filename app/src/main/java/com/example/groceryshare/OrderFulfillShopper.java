@@ -15,7 +15,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_fulfill_shopper);
+        setContentView(R.layout.order_fulfill_shopper);
 
         /* use findViewById() to get the next Button */
         viewOrderBtnShopper = (Button) findViewById(R.id.orderInfoBtn);
@@ -56,5 +56,11 @@ public class OrderFulfillShopper extends AppCompatActivity {
             }
 
         });
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, CurrentTripsShopper.class);
+        startActivity(intent);
     }
 }
