@@ -18,54 +18,19 @@
     <string name="add_button_text">Add</string>
     <string name="item_editText_hint">Write a new item (include quantity)</string>
 
-    <string-array name="frequency">
-        <item>Select Frequency</item>
-        <item>Daily</item>
-        <item>Twice a week</item>
-        <item>Once a week</item>
-        <item>Every Other Week</item>
-        <item>Once in a While</item>
-    </string-array>
+    <string name="on_off">On/Off</string>
 
-    <string-array name="names">
-        <item>Malkiel Asher</item>
-        <item>Joe Wasser</item>
-        <item>Rebecca Rossman</item>
-        <item>Pepper</item>
-        <item>Jimmy Oman</item>
-        <item>Alex Sanberdo</item>
-        <item>Charlie Ensamble</item>
-    </string-array>
+    <string name="notifications">Notifications</string>
 
-    <string-array name="store">
-        <item>Aldi</item>
-        <item>Walmart</item>
-        <item>Wegmans</item>
-        <item>Food Bazaar</item>
-        <item>Target</item>
-        <item>Tesco</item>
-        <item>Wegmans</item>
-    </string-array>
+    <string name="complaint_form">Complaint Form</string>
 
-    <string-array name="distance">
-        <item>0.3 Miles</item>
-        <item>0.4 Miles</item>
-        <item>0.8 Miles</item>
-        <item>1.2 Miles</item>
-        <item>1.7 Miles</item>
-        <item>2.5 Miles</item>
-        <item>2.7 Miles</item>
-    </string-array>
+    <string name="describe_your_problem">Describe your problem</string>
 
     <!-- Preference Titles -->
 
     <!-- Messages Preferences -->
 
     <!-- Sync Preferences -->
-    <string name="on_off">On/Off</string>
-    <string name="notifications">Notifications</string>
-    <string name="complaint_form">Complaint Form</string>
-    <string name="describe_your_problem">Describe your problem</string>
     <string name="check_if_related_to_an_order">Check if related to an order</string>
     <string name="wrong_address">Wrong address</string>
     <string name="other">Other</string>
@@ -80,11 +45,11 @@
     <string name="order_info">Order Info</string>
     <string name="shopping_list">Shopping List</string>
     <string name="rate">Rate</string>
-
     <string name="tell_us_about_your_experience_with_this_customer">Tell us about your experience with this customer...</string>
     <string name="problem_image">problem image</string>
     <string name="star_image">star image</string>
     <string name="tool_image">tool image</string>
+
     <string name="checkbox_image">checkbox image</string>
     <string name="clipboard_image">clipboard image</string>
     <string name="search_image">search image</string>
@@ -106,13 +71,48 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_list">ListActivity</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <!-- Strings used for fragments for navigation -->
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string-array name="frequency">
+        <item>Select Frequency</item>
+        <item>Daily</item>
+        <item>Twice a week</item>
+        <item>Once a week</item>
+        <item>Every Other Week</item>
+        <item>Once in a While</item>
+    </string-array>
+    <string-array name="names">
+        <item>Malkiel Asher</item>
+        <item>Joe Wasser</item>
+        <item>Rebecca Rossman</item>
+        <item>Pepper</item>
+        <item>Jimmy Oman</item>
+        <item>Alex Sanberdo</item>
+        <item>Charlie Ensamble</item>
+    </string-array>
+
+    <string-array name="store">
+        <item>Aldi</item>
+        <item>Walmart</item>
+        <item>Wegmans</item>
+        <item>Food Bazaar</item>
+        <item>Target</item>
+        <item>Tesco</item>
+        <item>Wegmans</item>
+    </string-array>
+    <string-array name="distance">
+        <item>0.3 Miles</item>
+        <item>0.4 Miles</item>
+        <item>0.8 Miles</item>
+        <item>1.2 Miles</item>
+        <item>1.7 Miles</item>
+        <item>2.5 Miles</item>
+        <item>2.7 Miles</item>
+    </string-array>
     <string name="overall_rating">Overall Rating</string>
 </resources>
