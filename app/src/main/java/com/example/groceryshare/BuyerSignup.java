@@ -89,6 +89,8 @@ public class BuyerSignup extends AppCompatActivity {
         ButtonUpload = findViewById(R.id.button_upload);
         nextButton = (Button) findViewById(R.id.nextButton);
 
+       // nextButton.setEnabled(true);
+
         ButtonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

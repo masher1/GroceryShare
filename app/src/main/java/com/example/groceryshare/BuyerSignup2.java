@@ -152,8 +152,9 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
                         }
                     });
 
-        double [] verification = DistanceCalculator.addressToLonLat(address);
+            double [] verification = DistanceCalculator.addressToLonLat(address);
 //        new DistanceCalculator(address).execute();
+
         if (verification == null){
             addressInput.setError("Please Enter A Real Address!");
             address = "";
@@ -164,6 +165,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
       else{
           Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
       }
+
 
     }
 
