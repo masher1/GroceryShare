@@ -106,6 +106,7 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BuyerHomeScreen.class);
         startActivity(intent);
     }
+
     private ArrayList<GroceryItem> populateList(){
         ArrayList<GroceryItem> list = new ArrayList<>();
         for(int i = 0; i < list.size(); i++){

@@ -120,7 +120,7 @@
             android:id="@+id/submitComplaintBtn"
             android:layout_width="209dp"
             android:layout_height="66dp"
-            android:layout_marginLeft="180sp"
+            android:layout_marginLeft="160dp"
             android:background="@drawable/joinbtn"
             android:elevation="5dp"
             android:fontFamily="sans-serif-medium"

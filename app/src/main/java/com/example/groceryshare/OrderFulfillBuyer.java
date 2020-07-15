@@ -16,7 +16,7 @@ public class OrderFulfillBuyer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_fulfill_buyer);
+        setContentView(R.layout.order_fulfill_buyer);
 
         viewShopInfo = findViewById(R.id.viewShopperInfoBtn);
         viewShopList = findViewById(R.id.viewShoppingListBtn);
@@ -56,5 +56,9 @@ public class OrderFulfillBuyer extends AppCompatActivity {
             }
 
         });
+    }
+    public void goBack(View v) {
+        Intent intent = new Intent(this, PendingActivity.class);
+        startActivity(intent);
     }
 }

@@ -5,27 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightwhite"
+
     tools:context=".ReviewsAndRatingsShopper">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
-
-        <ImageView
-            android:id="@+id/GoBackIcon"
-            android:layout_width="56dp"
-            android:layout_height="45dp"
-            android:onClick="goBack"
-            android:src="@drawable/ic_arrow_back_black_24dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="357dp"
-        android:layout_height="622dp"
+        android:layout_width="343dp"
+        android:layout_height="524dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="16dp"
@@ -58,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-medium"
                 android:paddingTop="8sp"
-                android:text="Overall Rating"
+                android:text="@string/overall_rating"
                 android:textSize="25sp" />
 
             <RatingBar
@@ -82,7 +67,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="357dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

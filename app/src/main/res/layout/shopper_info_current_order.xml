@@ -5,15 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".shopperInfoCurrentOrder">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:id="@+id/GoBackIcon"
+            android:layout_width="56dp"
+            android:layout_height="45dp"
+            android:onClick="goBack"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/order_name_placeholder"
         android:textSize="25sp"
@@ -22,11 +37,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="387dp"
-        android:layout_height="614dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_width="404dp"
+        android:layout_height="510dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
