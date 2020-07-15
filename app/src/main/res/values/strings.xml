@@ -13,11 +13,75 @@
     <string name="settings">Settings</string>
     <string name="shopping_trips_available">Shopping Trips Available</string>
     <string name="past_fulfillments">Past Fulfillments</string>
+    <string name="overall_rating">Overall Rating</string>
     <string name="ratings_and_reviews">Ratings and Reviews</string>
     <string name="problems">Problems?</string>
     <string name="add_button_text">Add</string>
     <string name="item_editText_hint">Write a new item (include quantity)</string>
 
+    <string name="on_off">On/Off</string>
+
+    <string name="notifications">Notifications</string>
+
+    <string name="complaint_form">Complaint Form</string>
+
+    <string name="describe_your_problem">Describe your problem</string>
+
+    <!-- Preference Titles -->
+
+    <!-- Messages Preferences -->
+
+    <!-- Sync Preferences -->
+    <string name="check_if_related_to_an_order">Check if related to an order</string>
+    <string name="wrong_address">Wrong address</string>
+    <string name="other">Other</string>
+    <string name="check_if_related_to_app">Check if related to app</string>
+    <string name="payment_issue">Payment Issue</string>
+    <string name="submit_complaint">Submit Complaint</string>
+    <string name="order_name_placeholder">Order Name Placeholder</string>
+    <string name="upload_receipt">Upload Receipt</string>
+    <string name="confirm_order_complete">Confirm Order Complete</string>
+    <string name="view_order_info">View Order Info</string>
+    <string name="view_shopping_list">View Shopping List</string>
+    <string name="order_info">Order Info</string>
+    <string name="shopping_list">Shopping List</string>
+    <string name="rate">Rate</string>
+    <string name="tell_us_about_your_experience_with_this_customer">Tell us about your experience with this customer...</string>
+    <string name="problem_image">problem image</string>
+    <string name="star_image">star image</string>
+    <string name="tool_image">tool image</string>
+
+    <string name="checkbox_image">checkbox image</string>
+    <string name="clipboard_image">clipboard image</string>
+    <string name="search_image">search image</string>
+    <string name="update_any_profile_information">Update any profile information</string>
+    <string name="let_us_know_about_any_problems_with_the_app">Let us know about any problems with the app</string>
+    <string name="look_at_your_reviews_and_ratings">Look at your reviews and ratings</string>
+    <string name="look_at_previous_trips">Look at previous trips \n</string>
+    <string name="access_shopping_list_and_trip_information">Access shopping list and trip information</string>
+    <string name="search_for_a_shopping_trip_to_complete">Search for a shopping trip to complete</string>
+    <string name="click_to_add_profile_picture">Click to add profile picture</string>
+    <string name="title_activity_login2">LoginActivity2</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="upload">Upload</string>
+    <string name="next">Next</string>
+    <string name="can_upload_multiple_photos">*Can upload multiple photos</string>
+    <string name="log_out">Log Out</string>
     <string-array name="frequency">
         <item>Select Frequency</item>
         <item>Daily</item>
@@ -26,7 +90,6 @@
         <item>Every Other Week</item>
         <item>Once in a While</item>
     </string-array>
-
     <string-array name="names">
         <item>Malkiel Asher</item>
         <item>Joe Wasser</item>
@@ -46,7 +109,6 @@
         <item>Tesco</item>
         <item>Wegmans</item>
     </string-array>
-
     <string-array name="distance">
         <item>0.3 Miles</item>
         <item>0.4 Miles</item>
@@ -57,62 +119,4 @@
         <item>2.7 Miles</item>
     </string-array>
 
-    <!-- Preference Titles -->
-
-    <!-- Messages Preferences -->
-
-    <!-- Sync Preferences -->
-    <string name="on_off">On/Off</string>
-    <string name="notifications">Notifications</string>
-    <string name="complaint_form">Complaint Form</string>
-    <string name="describe_your_problem">Describe your problem</string>
-    <string name="check_if_related_to_an_order">Check if related to an order</string>
-    <string name="wrong_address">Wrong address</string>
-    <string name="other">Other</string>
-    <string name="check_if_related_to_app">Check if related to app</string>
-    <string name="payment_issue">Payment Issue</string>
-    <string name="submit_complaint">Submit Complaint</string>
-    <string name="order_name_placeholder">Order Name Placeholder</string>
-    <string name="upload_receipt">Upload Receipt</string>
-    <string name="confirm_order_complete">Confirm Order Complete</string>
-    <string name="view_order_info">View Order Info</string>
-    <string name="view_shopping_list">View Shopping List</string>
-    <string name="order_info">Order Info</string>
-    <string name="shopping_list">Shopping List</string>
-    <string name="rate">Rate</string>
-
-    <string name="tell_us_about_your_experience_with_this_customer">Tell us about your experience with this customer...</string>
-    <string name="problem_image">problem image</string>
-    <string name="star_image">star image</string>
-    <string name="tool_image">tool image</string>
-    <string name="checkbox_image">checkbox image</string>
-    <string name="clipboard_image">clipboard image</string>
-    <string name="search_image">search image</string>
-    <string name="update_any_profile_information">Update any profile information</string>
-    <string name="let_us_know_about_any_problems_with_the_app">Let us know about any problems with the app</string>
-    <string name="look_at_your_reviews_and_ratings">Look at your reviews and ratings</string>
-    <string name="look_at_previous_trips">Look at previous trips</string>
-    <string name="access_shopping_list_and_trip_information">Access shopping list and trip information</string>
-    <string name="search_for_a_shopping_trip_to_complete">Search for a shopping trip to complete</string>
-    <string name="click_to_add_profile_picture">Click to add profile picture</string>
-    <string name="title_activity_login2">LoginActivity2</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_list">ListActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="overall_rating">Overall Rating</string>
 </resources>

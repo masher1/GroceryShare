@@ -1,14 +1,19 @@
 package com.example.groceryshare;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.groceryshare.databinding.AdditemBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -16,43 +21,106 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    String data1[], data2[], data3[];
-    Context context;
-    public ItemAdapter(Context ct, String s1[], String s2[], String s3[]){
-        context = ct;
-        data1= s1;
-        data2 = s2;
-        data3 = s3;
-    }
-    @NonNull
-    @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.additem, parent, false);
-        return new ItemViewHolder(view);
+    public static ArrayList<GroceryItem> shopList;
+    private LayoutInflater layoutInflater;
+
+    public ItemAdapter(Context context, ArrayList<GroceryItem> shopList) {
+        layoutInflater = LayoutInflater.from(context);
+        this.shopList = shopList;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.name.setText(data1[position]);
-        holder.quantity.setText(data2[position]);
-        holder.brand.setText(data3[position]);
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = layoutInflater.inflate(R.layout.add_item, parent, false);
+        ItemViewHolder holder = new ItemViewHolder(view);
+
+        return holder;
     }
+
+    @Override
+    public void onBindViewHolder(final ItemViewHolder holder, int position) {
+        holder.itemName.setText(shopList.get(position).getItemName());
+        holder.quantity.setText(shopList.get(position).getQuantity());
+        holder.brand.setText(shopList.get(position).getBrand());
+        Log.d("print","yes");
+
+    }
+
     @Override
     public int getItemCount() {
-        return data1.length;
+        return shopList.size();
     }
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
-        //find the content here
-        EditText name, quantity, brand;
 
-        public ItemViewHolder(@NonNull View itemView) {
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+        protected EditText itemName, quantity, brand;
+
+        public ItemViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.et_name);
-            quantity = itemView.findViewById(R.id.et_quantity);
-            brand = itemView.findViewById(R.id.et_brand);
+            itemName = (EditText) itemView.findViewById(R.id.et_name);
+            quantity = (EditText) itemView.findViewById(R.id.et_quantity);
+            brand = (EditText) itemView.findViewById(R.id.et_brand);
+
+            itemName.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    shopList.get(getAdapterPosition()).setItemName(itemName.getText().toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+
+            quantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    shopList.get(getAdapterPosition()).setQuantity(quantity.getText().toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+
+            brand.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    shopList.get(getAdapterPosition()).setBrand(brand.getText().toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
         }
     }
 
+    public void addItem(GroceryItem item) {
+        if (shopList == null) shopList = new ArrayList();
+        shopList.add(item);
+        //notifyDataSetChanged();
+        notifyItemInserted(shopList.size()-1);
+    }
 }
 
