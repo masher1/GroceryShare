@@ -1,4 +1,4 @@
-package com.example.groceryshare;
+ /*package com.example.groceryshare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,4 +30,4 @@ public class FinalListActivity extends AppCompatActivity {
 
 
     }
-}
+} */
