@@ -13,12 +13,15 @@ public class BuyerHomeScreen extends AppCompatActivity {
     private CardView pastOrder;
     private CardView settings;
     private CardView rate;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_homescreen);
 
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("USER_ID");
         newOrder = findViewById(R.id.neworderId);
         pendingOrder = findViewById(R.id.pendingorderId);
         pastOrder = findViewById(R.id.pastorderId);
@@ -29,6 +32,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BuyerHomeScreen.this, OrderActivity.class);
+                intent.putExtra("USER_ID", userID);
                 startActivity(intent);
 
             }
