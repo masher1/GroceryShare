@@ -21,7 +21,7 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping_trips_available);
+        setContentView(R.layout.shopping_trips_available);
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -37,7 +37,7 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, ShopperHomeScreen.class);
         startActivity(intent);
     }
 }

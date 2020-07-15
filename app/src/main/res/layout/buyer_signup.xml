@@ -62,8 +62,19 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_baseline_add_a_photo_24" />
-
         </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:layout_marginTop="10dp"
+            android:maxHeight="10dip"
+            android:minHeight="10dip"
+            android:progress="0"
+            android:progressDrawable="@drawable/greenprogress" />
 
         <EditText
             android:id="@+id/UsernameInput"
@@ -97,22 +108,34 @@
             android:background="@drawable/btn"
             android:elevation="5dp"
             android:hint=" Password "
+
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/fullwhite" />
+        <EditText
+            android:id="@+id/PasswordInput2"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn"
+            android:elevation="5dp"
+            android:hint=" Re-enter password "
             android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:textColorHint="@color/fullwhite" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        <Button
+            android:id="@+id/button_upload"
             android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:indeterminate="false"
-            android:layout_marginTop="25dp"
-            android:maxHeight="10dip"
-            android:minHeight="10dip"
-            android:progress="0"
-            android:progressDrawable="@drawable/greenprogress"
-            />
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/joinbtn"
+            android:elevation="5dp"
+            android:text="Upload Image"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/whitecolor" />
 
         <Button
             android:id="@+id/nextButton"
@@ -122,11 +145,11 @@
             android:background="@drawable/joinbtn"
             android:elevation="5dp"
             android:text="Next"
+            android:enabled="false"
             android:textAllCaps="false"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/whitecolor" />
 
     </LinearLayout>
-
 </LinearLayout>

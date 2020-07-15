@@ -6,28 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".PersonalActivity">
 
-    <RelativeLayout
+  <RelativeLayout
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
-        android:layout_height="219dp"
+        android:layout_height="260dp"
         android:paddingBottom="20dp">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="16dp">
 
-            <ImageView
-                android:id="@+id/GoBackIcon"
-                android:layout_width="56dp"
-                android:layout_height="45dp"
-                android:onClick="goBack"
-                android:src="@drawable/ic_arrow_back_black_24dp" />
-        </LinearLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:orientation="horizontal"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:layout_editor_absoluteX="16dp">
+
+          <ImageView
+              android:id="@+id/GoBackIcon"
+              android:layout_width="56dp"
+              android:layout_height="45dp"
+              android:onClick="goBack"
+              android:src="@drawable/ic_arrow_back_black_24dp" />
+      </LinearLayout>
 
 
         <RelativeLayout
@@ -38,8 +39,9 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:layout_width="108dp"
-                android:layout_height="92dp"
+                android:id="@+id/imageid"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginStart="9dp"
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="9dp"
@@ -47,7 +49,7 @@
                 android:layout_marginRight="9dp"
                 android:layout_marginBottom="9dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/cercleshape"
+                android:background="@drawable/circleshape"
                 android:padding="3dp"
                 android:scaleType="centerInside" />
 
@@ -61,17 +63,17 @@
             android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
             android:text="Name"
             android:textColor="@color/greencolor"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="32sp" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_toRightOf="@+id/addressid"
             android:layout_above="@id/addressid"
             android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/addressid"
             android:src="@drawable/ic_baseline_edit_24" />
 
         <TextView
@@ -81,10 +83,10 @@
             android:layout_below="@+id/nameid"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
             android:text="10 Watson Lane Middletown DE 19709"
             android:textColor="@color/greencolor"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
 
     </RelativeLayout>
@@ -230,13 +232,13 @@
 
         <Button
             android:id="@+id/joinButton"
-            android:layout_width="295dp"
-            android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="84dp"
+            android:layout_width="287dp"
+            android:layout_height="20dp"
             android:layout_marginLeft="84dp"
+            android:layout_marginStart="84dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/joinbtn"
+            android:layout_centerHorizontal="true"
             android:elevation="5dp"
             android:text="Submit"
             android:textAllCaps="false"

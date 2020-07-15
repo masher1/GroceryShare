@@ -1,5 +1,10 @@
 package com.example.groceryshare;
 
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -44,6 +49,15 @@ public class UploadReceipt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_receipt);
+    }
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, OrderFulfillShopper.class);
+        startActivity(intent);
+    }
+
+}
         StorageRef = FirebaseStorage.getInstance().getReference("receiptUploads");
         ProgressBar = findViewById(R.id.progress_bar_receipt);
         next = findViewById(R.id.nextButton);
