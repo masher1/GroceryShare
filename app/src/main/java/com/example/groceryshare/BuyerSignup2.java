@@ -154,16 +154,18 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
 
             double [] verification = DistanceCalculator.addressToLonLat(address);
 //        new DistanceCalculator(address).execute();
-            if (verification == null){
-                addressInput.setError("Please Enter A Real Address!");
-                address = "";
-            }else{
-                addressInput.setError(null);
-            }
+
+        if (verification == null){
+            addressInput.setError("Please Enter A Real Address!");
+            address = "";
+        }else{
+            addressInput.setError(null);
         }
-        else{
-            Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
-        }
+      }
+      else{
+          Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
+      }
+
 
     }
 
