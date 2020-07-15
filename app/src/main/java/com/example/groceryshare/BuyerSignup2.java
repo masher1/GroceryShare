@@ -135,10 +135,10 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(BuyerSignup2.this,  "Account Created", Toast.LENGTH_LONG).show();
                                 String id = user.getUid();
-                                newBuyerCreds buyer = new newBuyerCreds(id, username, email, password, firstName, lastName, address, phoneNumber, birthday);
+                                newBuyerCreds buyer = new newBuyerCreds(id, profilePhoto, username, email, firstName, lastName, address, phoneNumber, birthday, disabilities);
                                 databaseBuyers.child(id).setValue(buyer);
                                 Toast.makeText(BuyerSignup2.this,  "New Buyer Added! ", Toast.LENGTH_LONG).show();
-                                //updateUI(user);
+                                updateUI(id);
                             } else {
                                 Toast.makeText(BuyerSignup2.this,  "account not created", Toast.LENGTH_LONG).show();
                                 // If sign in fails, display a message to the user.
@@ -186,6 +186,11 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         startActivity(intent);
     }
 
+    private void updateUI(String id){
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
+        intent.putExtra("USER_ID", id);
+        startActivity(intent);
+    }
     //used to navigate back to the Login Screen
     public void goLogIn() {
         Intent intent = new Intent(this, LoginActivity.class);

@@ -39,9 +39,15 @@
             android:layout_marginTop="20dp">
 
             <ImageView
+                android:id="@+id/imageid"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_margin="9dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginBottom="9dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/circleshape"
                 android:padding="3dp"
