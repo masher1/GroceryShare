@@ -123,7 +123,7 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
 
             Toast.makeText(getApplicationContext(),  "New Buyer Added! ", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, BuyerHomeScreen.class);
             startActivity(intent);
         }
         else{

@@ -127,7 +127,7 @@ public class ShopperSignup2 extends AppCompatActivity implements AdapterView.OnI
 
             Toast.makeText( this,  "New Shopper Added! ", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, ShopperHomeScreen.class);
             startActivity(intent);
         }
         else{

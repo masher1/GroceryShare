@@ -102,6 +102,8 @@ public class BuyerSignup extends AppCompatActivity {
             }
         });
 
+
+
         logInButton = (Button) findViewById(R.id.LogInbtn);
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
