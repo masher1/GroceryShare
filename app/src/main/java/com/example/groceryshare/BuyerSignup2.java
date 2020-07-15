@@ -160,10 +160,10 @@ public class BuyerSignup2 extends AppCompatActivity implements DatePickerDialog.
         }else{
             addressInput.setError(null);
         }
-        }
-        else{
-            Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
-        }
+      }
+      else{
+          Toast.makeText( this,  "Please fill all of the fields!", Toast.LENGTH_LONG).show();
+      }
 
     }
 
