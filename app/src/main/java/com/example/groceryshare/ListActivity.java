@@ -73,7 +73,7 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-}
+
     private ArrayList<GroceryItem> populateList(){
 
         ArrayList<GroceryItem> list = new ArrayList<>();

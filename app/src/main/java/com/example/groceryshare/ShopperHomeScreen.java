@@ -19,10 +19,14 @@ public class ShopperHomeScreen extends AppCompatActivity {
     private CardView ratings;
     private CardView problems;
     private Button logoutBtn;
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopper_home_screen);
+
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("USER_ID");
 
         availableTrips = findViewById(R.id.availableIDShop);
         currentTrips = findViewById(R.id.currentOrderIDShop);
