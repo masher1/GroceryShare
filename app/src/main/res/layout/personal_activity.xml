@@ -9,9 +9,8 @@
   <RelativeLayout
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="290dp"
         android:paddingBottom="20dp">
-
 
 
       <LinearLayout
@@ -49,14 +48,13 @@
                 android:layout_marginRight="9dp"
                 android:layout_marginBottom="9dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/circleshape"
-                android:padding="3dp"
-                android:scaleType="centerInside" />
+                android:onClick="handleImageClick"
+                android:src="@drawable/ic_face_black_24dp" />
 
 
         </RelativeLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/nameid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,25 +66,17 @@
             android:textColor="@color/greencolor"
             android:textSize="32sp" />
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_toRightOf="@+id/addressid"
-            android:layout_above="@id/addressid"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_baseline_edit_24" />
-
-        <TextView
-            android:id="@+id/addressid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nameid"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-light"
-            android:textStyle="bold"
-            android:text="10 Watson Lane Middletown DE 19709"
-            android:textColor="@color/greencolor"
-            android:textSize="20sp" />
+      <EditText
+          android:id="@+id/addressid"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/nameid"
+          android:layout_centerHorizontal="true"
+          android:fontFamily="sans-serif-light"
+          android:text="Testsdfsdfkfsdf"
+          android:textColor="@color/greencolor"
+          android:textSize="20sp"
+          android:textStyle="bold" />
 
 
     </RelativeLayout>
