@@ -37,7 +37,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.quantity.setText(shopList.get(position).getQuantity());
         holder.brand.setText(shopList.get(position).getBrand());
         Log.d("print","yes");
-
     }
 
     @Override

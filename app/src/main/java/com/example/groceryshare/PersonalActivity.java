@@ -68,7 +68,7 @@ public class PersonalActivity extends AppCompatActivity {
         setContentView(R.layout.personal_activity);
 
         Intent intent = getIntent();
-      
+
         userID = intent.getStringExtra("USER_ID");
         //databaseBuyers = FirebaseDatabase.getInstance().getReference("buyers");
 
@@ -94,6 +94,7 @@ public class PersonalActivity extends AppCompatActivity {
             }
         }
 
+        //TODO: There is an error message that shows up when you access this activity twice from the main screen
         FirebaseDatabase.getInstance().getReference().child("Buyers").child(userID)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -102,6 +103,7 @@ public class PersonalActivity extends AppCompatActivity {
                         addressInput.setText(buyer.getAddress());
                         nameInput.setText(buyer.getFirstName() + " " + buyer.getLastName());
                     }
+
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
@@ -131,9 +133,9 @@ public class PersonalActivity extends AppCompatActivity {
         rewards = rewardsInput.getText().toString();
         others = othersInput.getText().toString();
 
-       // String id = databaseBuyers.push().getKey();
+        // String id = databaseBuyers.push().getKey();
         //buyerPref buyer = new buyerPref(userId, store, payment, rewards, others);
-      //  databaseBuyers.child(id).setValue(buyer);
+        //  databaseBuyers.child(id).setValue(buyer);
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
     }
@@ -209,7 +211,7 @@ public class PersonalActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: ",e.getCause() );
+                        Log.e(TAG, "onFailure: ", e.getCause());
                     }
                 });
     }

@@ -20,7 +20,6 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".BuyerSignup2" />
         <activity android:name=".BuyerSignup" />
         <activity android:name=".NewAccountActivity" />
         <activity android:name=".ShopperRatesBuyer" />
