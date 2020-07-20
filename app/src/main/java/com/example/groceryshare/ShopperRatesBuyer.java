@@ -9,7 +9,11 @@ import android.widget.RatingBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ShopperRatesBuyer extends AppCompatActivity {
+    private DatabaseReference databaseOrdersShopper;
     private Button doneBtnRatingByShopper;
     private RatingBar ratingBarShopper;
     private EditText userReviewByShopperEditText;
@@ -19,6 +23,7 @@ public class ShopperRatesBuyer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopper_rates_buyer);
+        databaseOrdersShopper = FirebaseDatabase.getInstance().getReference("Orders");
         doneBtnRatingByShopper = (Button)findViewById(R.id.doneRatingByShopperBtn);
         ratingBarShopper = (RatingBar)findViewById(R.id.ratingBarByShopper);
         userReviewByShopperEditText = (EditText)findViewById(R.id.tellUsByShopperInput);
@@ -26,11 +31,12 @@ public class ShopperRatesBuyer extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShopperRatesBuyer.this, ShopperHomeScreen.class);
                 // start the activity connect to the specified class
+                String idReviewShopper = databaseOrdersShopper.push().getKey();
+                String idRatingShopper = databaseOrdersShopper.push().getKey();
                 ratingByShopperValue = ratingBarShopper.getRating();
                 userReviewByShopperString=userReviewByShopperEditText.getText().toString();
-                System.out.println(ratingByShopperValue);
-                System.out.println(userReviewByShopperString);
-
+                databaseOrdersShopper.child(idReviewShopper).setValue(userReviewByShopperString);
+                databaseOrdersShopper.child(idRatingShopper).setValue(ratingByShopperValue);
                 startActivity(intent);
             }
 
