@@ -73,7 +73,7 @@
             android:layout_below="@+id/nameid"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-light"
-            android:text="Testsdfsdfkfsdf"
+            android:text="123 Main Street"
             android:textColor="@color/greencolor"
             android:textSize="20sp"
             android:textStyle="bold" />

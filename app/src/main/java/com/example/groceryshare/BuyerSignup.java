@@ -79,8 +79,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
     //Profile Pic Content End
 
     //TextField Data Collection Start
-    String profileImage, username, email, password, password2, firstName, lastName, address, phoneNumber, birthday, disabilities;
-    private EditText usernameInput;
+    String profileImage, email, password, password2, firstName, lastName, address, phoneNumber, birthday, disabilities;
     private EditText emailInput;
     private EditText passwordInput;
     private EditText passwordInput2;
@@ -100,7 +99,6 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
 
     ImageView img; //used for the back button navigation
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,8 +115,6 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
         StorageRef = FirebaseStorage.getInstance().getReference();
         ProfileImage = findViewById(R.id.profile_image);
 
-        //TODO: Remove the username collection since we can't use it to login to accounts
-        usernameInput = (EditText) findViewById(R.id.UsernameInput);
         emailInput = (EditText) findViewById(R.id.EmailInput);
         passwordInput = (EditText) findViewById(R.id.PasswordInput);
         passwordInput2 = (EditText) findViewById(R.id.PasswordInput2);
@@ -152,7 +148,6 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = usernameInput.getText().toString();
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
                 password2 = passwordInput2.getText().toString();
@@ -199,7 +194,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
                 } else {
                     addressInput.setError(null);
                 }
-                if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday))) {
+                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(birthday))) {
                     addBuyerCredentials();
                 } else {
                     Toast.makeText(getApplicationContext(), "Please fill all of the fields!", Toast.LENGTH_LONG).show();
@@ -221,7 +216,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
                             //upload the image
                             handleUpload(imageBitmap, user);
 
-                            Toast.makeText(BuyerSignup.this, "New Buyer Added! ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(BuyerSignup.this, "New Buyer Added!", Toast.LENGTH_LONG).show();
                             updateUI(id);
                         } else {
                             Toast.makeText(BuyerSignup.this, "Account not created!", Toast.LENGTH_LONG).show();
@@ -233,9 +228,16 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
     class UploadData implements BuyerSignupEventListener {
         @Override
         public void uploadData(String id) {
-            newBuyerCreds buyer = new newBuyerCreds(id, profileImage, username, email, firstName, lastName, address, phoneNumber, birthday, disabilities);
+            newBuyerCreds buyer = new newBuyerCreds(id, email, firstName, lastName, address, phoneNumber, birthday, disabilities);
             databaseBuyers.child(id).setValue(buyer);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     @Override

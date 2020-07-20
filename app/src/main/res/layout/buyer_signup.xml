@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-medium"
-                android:text="  Create Your\nBuyer Account"
+                android:text="   Create Your\nBuyer Account"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -68,18 +68,6 @@
                     android:onClick="handleImageClick"
                     android:src="@drawable/ic_baseline_add_a_photo_24" />
             </RelativeLayout>
-
-            <EditText
-                android:id="@+id/UsernameInput"
-                android:layout_width="280dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn"
-                android:elevation="5dp"
-                android:hint=" Username "
-                android:inputType="text"
-                android:paddingLeft="15dp"
-                android:textColorHint="@color/fullwhite" />
 
             <EditText
                 android:id="@+id/EmailInput"
