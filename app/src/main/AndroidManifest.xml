@@ -19,8 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".buyerComplaints"></activity>
         <activity android:name=".FinalListActivity" />
+        <activity android:name=".PersonalActivityShopper"></activity>
+        <activity android:name=".SettingsBuyer" />
         <activity android:name=".BuyerRatesShopper" />
         <activity android:name=".viewReceipt" />
         <activity android:name=".viewShoppingListCurrentOrder" />
@@ -51,7 +54,6 @@
         <activity android:name=".PendingActivity" />
         <activity android:name=".PersonalActivity" />
         <activity android:name=".RatingActivity" />
-        <activity android:name=".SettingsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,5 +62,13 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
 
 </manifest>

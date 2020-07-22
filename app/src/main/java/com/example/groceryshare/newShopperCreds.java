@@ -1,7 +1,8 @@
 package com.example.groceryshare;
 
 public class newShopperCreds {
-    String shopperID, email, password, firstName, lastName, address, phoneNumber, birthday, frequency;
+    String shopperID, email, firstName, lastName, address, phoneNumber, birthday, frequency;
+
     public newShopperCreds(String shopperID, String email, String firstName, String lastName, String address, String phoneNumber, String birthday, String frequency) {
         this.shopperID = shopperID;
         this.email = email;
@@ -12,6 +13,16 @@ public class newShopperCreds {
         this.birthday = birthday;
         this.frequency = frequency;
     }
+
+    public newShopperCreds(String shopperID, String firstName, String lastName, String address, String phoneNumber, String frequency) {
+        this.shopperID = shopperID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.frequency = frequency;
+    }
+
     public String getShopperID() {
         return shopperID;
     }
