@@ -58,7 +58,6 @@ tools:context=".PersonalActivity">
     android:layout_below="@+id/imgUser"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,6 +118,7 @@ tools:context=".PersonalActivity">
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:orientation="vertical">
+
 
         <EditText
             android:id="@+id/storeprefId"

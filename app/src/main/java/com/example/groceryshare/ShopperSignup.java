@@ -82,6 +82,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
 
     //TextField Data Collection Start
     String profileImage, email, password, password2, firstName, lastName, address, phoneNumber, birthday, frequency;
+
     private EditText emailInput;
     private EditText passwordInput;
     private EditText passwordInput2;
@@ -127,8 +128,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                showDatePickerDialog();
             }
         });
 
@@ -164,7 +164,6 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
                 }
                 phoneNumber = phoneNumberInput.getText().toString();
                 frequency = frequencyspinner.getSelectedItem().toString();
-
 
 
                 //email verification
@@ -207,6 +206,25 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         });
+    }
+
+    public void showDatePickerDialog(){
+        final Calendar min = Calendar.getInstance();
+        final Calendar max = Calendar.getInstance();
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+
+        min.add(Calendar.DATE, -36500);
+        datePickerDialog.getDatePicker().setMinDate(min.getTimeInMillis());
+        max.add(Calendar.DATE, -4745);
+        datePickerDialog.getDatePicker().setMaxDate(max.getTimeInMillis());
+        datePickerDialog.show();
     }
 
     private void addShopperCredentials(){
@@ -303,7 +321,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    private void onCaptureImageResult(Intent data) {
+  private void onCaptureImageResult(Intent data) {
         Bitmap bm = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);

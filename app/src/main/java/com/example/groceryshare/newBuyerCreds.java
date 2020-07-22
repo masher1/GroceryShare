@@ -3,6 +3,7 @@ package com.example.groceryshare;
 public class newBuyerCreds {
     String buyerID, email, firstName, lastName, address, phoneNumber, birthday, disabilities, store, payment, others;
 
+
     public newBuyerCreds(String buyerID, String email, String firstName, String lastName, String address, String phoneNumber, String birthday, String disabilities) {
         this.buyerID = buyerID;
         this.email = email;

@@ -1,28 +1,17 @@
 package com.example.groceryshare.ui.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.example.groceryshare.BuyerHomeScreen;
 import com.example.groceryshare.MainActivity;
 import com.example.groceryshare.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     DatabaseReference databaseBuyers;
-    String username,password;
+    String username, password;
     Button logInButton;
     Boolean buyer;
 
@@ -80,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         mAuth = FirebaseAuth.getInstance();
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -87,37 +77,39 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
     }
-        private void tryLogIn() throws IOException, JSONException {
-            username = usernameInput.getText().toString();
-            password = passwordInput.getText().toString();
-            if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)){
-                mAuth.signInWithEmailAndPassword(username, password)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(LoginActivity.this, "Authentication succesful.",
-                                            Toast.LENGTH_SHORT).show();
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    String id = user.getUid();
-                                    updateUI(id);
 
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    //Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                    //updateUI(null);
-                                    // ...
-                                }
+    private void tryLogIn() throws IOException, JSONException {
+        username = usernameInput.getText().toString();
+        password = passwordInput.getText().toString();
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+            mAuth.signInWithEmailAndPassword(username, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(LoginActivity.this, "Authentication succesful.",
+                                        Toast.LENGTH_SHORT).show();
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                String id = user.getUid();
+                                updateUI(id);
 
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                //Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                //updateUI(null);
                                 // ...
                             }
-                        });
-            }
+
+                            // ...
+                        }
+                    });
         }
-    private void updateUI(final String id){
+    }
+
+    private void updateUI(final String id) {
         buyer = false;
         System.out.println(id + " THis is the id");
         FirebaseDatabase.getInstance().getReference().child("Buyers")
@@ -128,16 +120,15 @@ public class LoginActivity extends AppCompatActivity {
                             String buyerID = snapshot.child("buyerID").getValue(String.class);
                             System.out.println(buyerID + " THis is a buyerID");
                             System.out.println(buyerID.equals(id));
-                            if(buyerID.equals(id)){
+                            if (buyerID.equals(id)) {
                                 buyer = true;
                             }
                         }
-                        if(buyer){
+                        if (buyer) {
                             Intent intent = new Intent(com.example.groceryshare.ui.login.LoginActivity.this, com.example.groceryshare.BuyerHomeScreen.class);
                             intent.putExtra("USER_ID", id);
                             startActivity(intent);
-                        }
-                        else{
+                        } else {
                             Intent intent = new Intent(com.example.groceryshare.ui.login.LoginActivity.this, com.example.groceryshare.ShopperHomeScreen.class);
                             intent.putExtra("USER_ID", id);
                             startActivity(intent);
@@ -145,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                     }
+
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
@@ -239,14 +231,11 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+*/
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
- */
-
-
-
+    }
 }
