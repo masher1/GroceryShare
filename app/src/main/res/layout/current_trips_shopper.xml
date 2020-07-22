@@ -28,4 +28,20 @@
         android:text="Temp button to upload receipt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentTripsScrnTxt" />
+
+    <Button
+        android:id="@+id/tempButtonRates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temp Buyer Review Button"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="314dp" />
+
+    <Button
+        android:id="@+id/tempButtonReviewShopper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temp Shopper Review"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="393dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
