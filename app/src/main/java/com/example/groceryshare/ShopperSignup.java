@@ -27,7 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -127,8 +126,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                showDatePickerDialog();
             }
         });
 
@@ -205,6 +203,25 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         });
+    }
+
+    public void showDatePickerDialog(){
+        final Calendar min = Calendar.getInstance();
+        final Calendar max = Calendar.getInstance();
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+
+        min.add(Calendar.DATE, -36500);
+        datePickerDialog.getDatePicker().setMinDate(min.getTimeInMillis());
+        max.add(Calendar.DATE, -4745);
+        datePickerDialog.getDatePicker().setMaxDate(max.getTimeInMillis());
+        datePickerDialog.show();
     }
 
     private void addShopperCredentials(){
