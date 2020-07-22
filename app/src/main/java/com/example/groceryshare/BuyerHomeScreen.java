@@ -13,6 +13,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
     private CardView pastOrder;
     private CardView settings;
     private CardView rate;
+    private CardView complaint;
     String userID;
 
     @Override
@@ -26,7 +27,8 @@ public class BuyerHomeScreen extends AppCompatActivity {
         pendingOrder = findViewById(R.id.pendingorderId);
         pastOrder = findViewById(R.id.pastorderId);
         settings = findViewById(R.id.settingsId);
-        rate = findViewById(R.id.ratingId);
+        rate = findViewById(R.id.ratingIDBuyer);
+        complaint = findViewById(R.id.problemIDBuyer);
 
         newOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +73,15 @@ public class BuyerHomeScreen extends AppCompatActivity {
         rate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BuyerHomeScreen.this, RatingActivity.class);
+                Intent intent = new Intent(BuyerHomeScreen.this, BuyerRatesShopper.class);
+                startActivity(intent);
+
+            }
+        });
+        complaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BuyerHomeScreen.this, buyerComplaints.class);
                 startActivity(intent);
 
             }

@@ -1,5 +1,7 @@
 package com.example.groceryshare;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,12 +10,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ComplaintsShopper extends AppCompatActivity {
+public class buyerComplaints extends AppCompatActivity {
+    private Button submit;
+    private Button submitComplaint;
     private EditText problemDescrip;
     private CheckBox orderIssue;
     private CheckBox wrongAddress;
@@ -29,32 +31,25 @@ public class ComplaintsShopper extends AppCompatActivity {
     private Boolean paymentIssueValue;
     private Boolean appIssueValue;
     private Boolean otherIssueValue;
-
-    private Button submitComplaint;
     ImageView back;
     DatabaseReference databaseComplaints;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.complaints_shopper);
-
-        problemDescrip = (EditText) findViewById(R.id.problemInput);
-        orderIssue = (CheckBox) findViewById(R.id.checkBoxComplaintGeneral);
-        wrongAddress = (CheckBox) findViewById(R.id.wAddressCheck);
-        paymentIssue = (CheckBox) findViewById(R.id.payIssue);
-        orderOtherIssue = (EditText) findViewById(R.id.otherOrderCheck);
-        appIssue = (CheckBox) findViewById(R.id.appIssueCheck);
-        otherIssue = (CheckBox) findViewById(R.id.otherIssueCheck);
-
+        setContentView(R.layout.buyer_complaints);
+        problemDescrip = (EditText) findViewById(R.id.problemInputBuyer);
+        orderIssue = (CheckBox) findViewById(R.id.checkBoxComplaintGeneralBuyer);
+        wrongAddress = (CheckBox) findViewById(R.id.wAddressCheckBuyer);
+        paymentIssue = (CheckBox) findViewById(R.id.payIssueBuyer);
+        orderOtherIssue = (EditText) findViewById(R.id.otherOrderCheckBuyer);
+        appIssue = (CheckBox) findViewById(R.id.appIssueCheckBuyer);
+        otherIssue = (CheckBox) findViewById(R.id.otherIssueCheckBuyer);
+        submitComplaint = (Button)findViewById(R.id.submitComplaintBtnBuyer);
         databaseComplaints = FirebaseDatabase.getInstance().getReference("Complaints");
-        submitComplaint = (Button) findViewById(R.id.submitComplaintBtn);
-        back = findViewById(R.id.GoBackIcon);
 
         submitComplaint.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
+                Intent intent = new Intent(buyerComplaints.this, BuyerHomeScreen.class);
                 problemDescripString = problemDescrip.getText().toString();
                 orderOtherIssueString = orderOtherIssue.getText().toString();
                 orderIssueValue = orderIssue.isChecked();
@@ -69,19 +64,17 @@ public class ComplaintsShopper extends AppCompatActivity {
                 databaseComplaints.child("Payment issue checkbox").setValue(paymentIssueValue);
                 databaseComplaints.child("App issue checkbox").setValue(appIssueValue);
                 databaseComplaints.child("Other issue checkbox").setValue(otherIssueValue);
-
-                Intent intent = new Intent(ComplaintsShopper.this, ShopperHomeScreen.class);
-
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
-         });
-    }
 
-    //used to navigate back to the previous screen
+        });
+
+
+
+    }
     public void goBack(View v) {
         Intent intent = new Intent(this, ShopperHomeScreen.class);
         startActivity(intent);
     }
-
 }

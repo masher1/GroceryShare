@@ -31,12 +31,11 @@ public class ShopperRatesBuyer extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShopperRatesBuyer.this, ShopperHomeScreen.class);
                 // start the activity connect to the specified class
-                String idReviewShopper = databaseOrdersShopper.push().getKey();
-                String idRatingShopper = databaseOrdersShopper.push().getKey();
+
                 ratingByShopperValue = ratingBarShopper.getRating();
                 userReviewByShopperString=userReviewByShopperEditText.getText().toString();
-                databaseOrdersShopper.child(idReviewShopper).setValue(userReviewByShopperString);
-                databaseOrdersShopper.child(idRatingShopper).setValue(ratingByShopperValue);
+                databaseOrdersShopper.child("Review").setValue(userReviewByShopperString);
+                databaseOrdersShopper.child("Rating").setValue(ratingByShopperValue);
                 startActivity(intent);
             }
 
