@@ -14,8 +14,10 @@ public class NewOrder {
     private String receiptCopy; //??
     private ArrayList<GroceryItem> shoppingList;
     private String address;
+    private String paymentType;
+    private String otherInfo;
 
-    public NewOrder(String orderId, Date datePlaced, Date dateFulfilled, Date dateBy, String storeName, String buyerId, String shopperId, String receiptCopy, ArrayList<GroceryItem> shoppingList, String address){
+    public NewOrder(String orderId, Date datePlaced, Date dateFulfilled, Date dateBy, String storeName, String buyerId, String shopperId, String receiptCopy, ArrayList<GroceryItem> shoppingList, String address, String paymentType, String otherInfo){
         this.orderId = orderId;
         this.datePlaced = datePlaced;
         this.dateFulfilled = dateFulfilled;
@@ -26,6 +28,15 @@ public class NewOrder {
         this.receiptCopy = receiptCopy;
         this.shoppingList = shoppingList;
         this.address = address;
+        this.paymentType = paymentType;
+        this.otherInfo = otherInfo;
+    }
+
+    public NewOrder(String storeName, String address, String paymentType, String otherInfo){
+        this.storeName = storeName;
+        this.address = address;
+        this.paymentType = paymentType;
+        this.otherInfo = otherInfo;
     }
 
     public String getOrderId(){
@@ -67,6 +78,13 @@ public class NewOrder {
     public String getAddress(){
         return address;
     }
+    public String getPaymentType(){
+        return paymentType;
+    }
+    public String getOtherInfo(){
+        return otherInfo;
+    }
+    public NewOrder(){}
 
 
 

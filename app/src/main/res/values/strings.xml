@@ -10,7 +10,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="Shopper">Shopper</string>
     <string name="current_trips_fulfilling">Current Trips Fulfilling</string>
-    <string name="settings">Settings</string>
     <string name="shopping_trips_available">Shopping Trips Available</string>
     <string name="past_fulfillments">Past Fulfillments</string>
     <string name="overall_rating">Overall Rating</string>
@@ -21,7 +20,6 @@
 
     <string name="on_off">On/Off</string>
 
-    <string name="notifications">Notifications</string>
 
     <string name="complaint_form">Complaint Form</string>
 
@@ -83,6 +81,29 @@
     <string name="next">Next</string>
     <string name="can_upload_multiple_photos">*Can upload multiple photos</string>
     <string name="log_out">Log Out</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="messages_header">Messages</string>
+
+    <string name="sync_header">Sync</string>
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Preference Titles -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+
+    <!-- Messages Preferences -->
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="settings">Settings</string>
+    <string name="notifications">Notifications</string>
+    <string name="change_personal_information">Change Personal Information</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="logout">Logout</string>
+    <string name="back_button">Back Button</string>
+
+    <!-- Sync Preferences -->
     <string-array name="frequency">
         <item>Select Frequency</item>
         <item>Daily</item>
@@ -100,7 +121,6 @@
         <item>Alex Sanberdo</item>
         <item>Charlie Ensamble</item>
     </string-array>
-
     <string-array name="store">
         <item>Aldi</item>
         <item>Walmart</item>

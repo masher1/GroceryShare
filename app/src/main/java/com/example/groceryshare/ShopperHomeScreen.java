@@ -5,10 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.groceryshare.ui.login.LoginActivity;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ShopperHomeScreen extends AppCompatActivity {
 
@@ -102,17 +107,24 @@ public class ShopperHomeScreen extends AppCompatActivity {
             }
 
         });
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
+        logoutBtn.setOnClickListener(
+                new View.OnClickListener() {
 
-            public void onClick(View v) {
-                //add way to handle empty or bad input
-                Intent intent = new Intent(ShopperHomeScreen.this, LoginActivity.class);
+                    public void onClick(View v) {
+                        AuthUI.getInstance()
+                                .signOut(ShopperHomeScreen.this)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        // user is now signed out
+                                        startActivity(new Intent(ShopperHomeScreen.this, LoginActivity.class));
+                                        finish();
+                                    }
+                                });
+                    }
 
-                // start the activity connect to the specified class
-                startActivity(intent);
-            }
 
-        });
+                }
+        );
     }
 
 }

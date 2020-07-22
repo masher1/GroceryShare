@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsShopper">
+    tools:context=".SettingsBuyer">
 
     <LinearLayout
         android:id="@+id/layout1"
@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteX="16dp">
 
         <ImageView
-            android:id="@+id/GoBackBtn"
+            android:id="@+id/GoBackIcon"
             android:layout_width="56dp"
             android:layout_height="45dp"
             android:onClick="goBack"
@@ -28,7 +28,7 @@
             android:layout_height="50dp"
             app:layout_constraintLeft_toLeftOf="@+id/GoBackIcon"
             android:text="@string/settings"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
             android:fontFamily="sans-serif-light"
             android:textSize="20sp" />
 
@@ -36,7 +36,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/notifswitch2"
+        android:id="@+id/notifswitch"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
@@ -44,13 +44,13 @@
         android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/notifications"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout1" />
 
     <Button
-        android:id="@+id/personalinfoshopper"
+        android:id="@+id/personalinfo"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="52dp"
@@ -58,13 +58,13 @@
         android:fontFamily="sans-serif-light"
         android:text="@string/change_personal_information"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notifswitch2" />
+        app:layout_constraintTop_toBottomOf="@+id/notifswitch" />
 
     <Button
-        android:id="@+id/privacypolicyshopper"
+        android:id="@+id/privacypolicy"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="52dp"
@@ -72,13 +72,13 @@
         android:fontFamily="sans-serif-light"
         android:text="@string/privacy_policy"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personalinfoshopper" />
+        app:layout_constraintTop_toBottomOf="@+id/personalinfo" />
 
     <Button
-        android:id="@+id/logoutshopperbtn"
+        android:id="@+id/logoutbtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="4dp"
@@ -88,10 +88,10 @@
         android:fontFamily="sans-serif-light"
         android:text="@string/logout"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/privacypolicyshopper" />
+        app:layout_constraintTop_toBottomOf="@+id/privacypolicy" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
