@@ -30,12 +30,10 @@ public class BuyerRatesShopper extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BuyerRatesShopper.this, BuyerHomeScreen.class);
-                String idReview = databaseOrders.push().getKey();
-                String idRating = databaseOrders.push().getKey();
                 String review = reviewEditText.getText().toString();
                 Float rating = ratingBarValue.getRating();
-                databaseOrders.child(idReview).setValue(review);
-                databaseOrders.child(idRating).setValue(rating);
+                databaseOrders.child("Review").setValue(review);
+                databaseOrders.child("Rating").setValue(rating);
                 startActivity(intent);
 
             }
