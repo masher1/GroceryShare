@@ -11,6 +11,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,9 +37,12 @@ public class ListActivity extends AppCompatActivity {
     Date datePlaced;
     Date dateBy;
     String storeName;
+    String payment;
     String receiptcopy;
+    String otherInfo;
     String shopperId;
     String buyerId;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,28 +55,34 @@ public class ListActivity extends AppCompatActivity {
         itemAdapter = new ItemAdapter(this,itemList);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-        databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
-        DatabaseReference buyerAddress = databaseBuyers.child("-MCDy7cXDPYgWvLh7SVV").child("address");
-        buyerAddress.addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Buyers").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                address = dataSnapshot.getValue().toString();
+                newBuyerCreds buyer = dataSnapshot.getValue(newBuyerCreds.class);
+                address = buyer.getAddress();
+                payment = buyer.getPayment();
+                storeName = buyer.getStore();
+                otherInfo = buyer.getOthers();
+
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
         builder = new AlertDialog.Builder(this);
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Uncomment the below code to Set the message and title from the strings.xml file
-                builder.setMessage("Confirm ") .setTitle("Confirm your personal information");
+                builder.setMessage("Confirm") .setTitle("Confirm your personal information");
                 //Setting message manually and performing action on button click
-                builder.setMessage("Address: " + address + "\nPayment Type: " + "\nShopping List: ")
+                builder.setMessage("Address: " + address + "\nPayment Type: " + payment + "\nShopping List: " + itemList.toString())
                         .setCancelable(false)
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int id) {
+                                addShoppingList();
                                 finish();
                                 Toast.makeText(getApplicationContext(),"you choose confirm action for alertbox",
                                         Toast.LENGTH_SHORT).show();
@@ -90,7 +102,6 @@ public class ListActivity extends AppCompatActivity {
                 alert.setTitle("Confirm Personal Information");
                 alert.show();
 
-                addShoppingList();
             }
         });
         addbtn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +114,7 @@ public class ListActivity extends AppCompatActivity {
     }
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, BuyerHomeScreen.class);
+        Intent intent = new Intent(this, OrderActivity.class);
         startActivity(intent);
     }
 
@@ -122,7 +133,7 @@ public class ListActivity extends AppCompatActivity {
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         if(ItemAdapter.shopList.size() != 0){
             String id = databaseOrders.push().getKey();
-            NewOrder order = new NewOrder(id, datePlaced, dateFulfilled, dateBy, storeName, buyerId, shopperId, receiptcopy, ItemAdapter.shopList, address);
+            NewOrder order = new NewOrder(id, datePlaced, dateFulfilled, dateBy, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo);
             databaseOrders.child(id).setValue(order);
             Toast.makeText(getApplicationContext(),  "New Shopping List Added!", Toast.LENGTH_LONG).show();
         }

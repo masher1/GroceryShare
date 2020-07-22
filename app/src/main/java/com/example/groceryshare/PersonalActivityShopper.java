@@ -43,24 +43,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class PersonalActivity extends AppCompatActivity {
+
+public class PersonalActivityShopper extends AppCompatActivity {
 
     String[] name;
-    String firstName;
-    String lastName;
     String address;
-    String store;
-    String payment;
-    String others;
+    String phoneNumber;
+    String frequency;
     String userID;
-
-    EditText storeInput;
-    EditText paymentInput;
-    EditText othersInput;
-    EditText nameInput;
-    EditText addressInput;
-    Button submitButton;
-
 
     //Profile Pic Content Start
     String profileImage;
@@ -70,32 +60,38 @@ public class PersonalActivity extends AppCompatActivity {
     private String userChoosenTask;
     Bitmap imageBitmap;
     private StorageReference StorageRef;
-    private static final String TAG = "PersonalActivity";
+    private static final String TAG = "PersonalActivityShopper";
     //Profile Pic Content End
 
-    DatabaseReference databaseBuyers;
+
+    DatabaseReference databaseShoppers;
     DatabaseReference databaseOrders;
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    EditText nameInput;
+    EditText addressInput;
+    EditText phoneInput;
+    EditText frequencyInput;
+    Button submitButton;
+
 //    TextField Data Collection End
 
     ImageView img; //used for the back button navigation
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal_activity);
+        setContentView(R.layout.personal_activity_shopper);
 
-        databaseOrders = FirebaseDatabase.getInstance().getReference("Personal Info");
-        databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
+        databaseShoppers = FirebaseDatabase.getInstance().getReference("Shoppers");
 
-        img = findViewById(R.id.GoBackIcon);//defines the back button image
-        addressInput = (EditText) findViewById(R.id.addressid);
-        nameInput = (EditText) findViewById(R.id.nameid);
-        ProfileImage = (ImageView) findViewById(R.id.imageid);
-
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        img = findViewById(R.id.GoBackIcon2);//defines the back button image
+        addressInput = (EditText) findViewById(R.id.addressId);
+        nameInput = (EditText) findViewById(R.id.nameid2);
+        phoneInput = (EditText) findViewById(R.id.numberId2);
+        frequencyInput = (EditText) findViewById(R.id.frequencyid);
+        ProfileImage = (ImageView) findViewById(R.id.imageid2);
 
         if (user != null) {
             Log.d(TAG, "onCreate: " + user.getDisplayName());
@@ -111,17 +107,15 @@ public class PersonalActivity extends AppCompatActivity {
             }
         }
 
-        //TODO: There is an error message that shows up when you access this activity twice from the main screen
-        FirebaseDatabase.getInstance().getReference().child("Buyers").child(user.getUid())
+        FirebaseDatabase.getInstance().getReference().child("Shoppers").child(user.getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        newBuyerCreds buyer = dataSnapshot.getValue(newBuyerCreds.class);
-                        addressInput.setText(buyer.getAddress());
-                        nameInput.setText(buyer.getFirstName() + " " + buyer.getLastName());
-                        storeInput.setText(buyer.getStore());
-                        paymentInput.setText(buyer.getPayment());
-                        othersInput.setText(buyer.getOthers());
+                        newShopperCreds shopper = dataSnapshot.getValue(newShopperCreds.class);
+                        addressInput.setText(shopper.getAddress());
+                        nameInput.setText(shopper.getFirstName() + " " + shopper.getLastName());
+                        phoneInput.setText(shopper.getPhoneNumber());
+                        frequencyInput.setText(shopper.getFrequency());
                     }
 
                     @Override
@@ -129,30 +123,27 @@ public class PersonalActivity extends AppCompatActivity {
                     }
                 });
 
-        img = findViewById(R.id.GoBackIcon);//defines the back button image
+        img = findViewById(R.id.GoBackIcon2);//defines the back button image
 
-        addressInput = (EditText) findViewById(R.id.addressid);
-        storeInput = (EditText) findViewById(R.id.storeprefId);
-        paymentInput = (EditText) findViewById(R.id.paymentId);
-        othersInput = (EditText) findViewById(R.id.othersid);
+        addressInput = (EditText) findViewById(R.id.addressId);
 
-        submitButton = (Button) findViewById(R.id.joinButton);
+        submitButton = (Button) findViewById(R.id.joinButton2);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addBuyerPreferences();
+                addPreferences();
             }
         });
     }
 
-    private void addBuyerPreferences() {
-        name = nameInput.getText().toString().split(" ", 2);
-        firstName = name[0];
-        lastName = name[1];
+
+    private void addPreferences() {
+        name = nameInput.getText().toString().split(" ");
+        String firstName = name[0];
+        String lastName = name[1];
         address = addressInput.getText().toString();
-        store = storeInput.getText().toString();
-        payment = paymentInput.getText().toString();
-        others = othersInput.getText().toString();
+        phoneNumber = phoneInput.getText().toString();
+        frequency = frequencyInput.getText().toString();
 
         try{
             handleUpload(imageBitmap, user);
@@ -161,11 +152,12 @@ public class PersonalActivity extends AppCompatActivity {
             Log.e(TAG, "Error: ", e.getCause());
         }
 
-        newBuyerCreds buyer = new newBuyerCreds(user.getUid(), firstName, lastName, address, store, payment, others);
-        databaseBuyers.child(user.getUid()).setValue(buyer);
+        newShopperCreds buyer = new newShopperCreds(user.getUid(), firstName, lastName, address, phoneNumber, frequency);
+        databaseShoppers.child(user.getUid()).setValue(buyer);
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
     }
+
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
@@ -253,12 +245,12 @@ public class PersonalActivity extends AppCompatActivity {
         final CharSequence[] items = {"Take Photo", "Choose from Library",
                 "Cancel"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(PersonalActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(PersonalActivityShopper.this);
         builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result = Utils.checkPermission(PersonalActivity.this);
+                boolean result = Utils.checkPermission(PersonalActivityShopper.this);
 
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
@@ -327,13 +319,13 @@ public class PersonalActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(PersonalActivity.this, "Updated successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PersonalActivityShopper.this, "Updated successfully", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PersonalActivity.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PersonalActivityShopper.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

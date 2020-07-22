@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".FinalListActivity"></activity>
-        <activity android:name=".BuyerRatesShopper"></activity>
+        <activity android:name=".PersonalActivityShopper"></activity>
+        <activity android:name=".SettingsBuyer" />
+        <activity android:name=".BuyerRatesShopper" />
         <activity android:name=".viewReceipt" />
         <activity android:name=".viewShoppingListCurrentOrder" />
         <activity android:name=".shopperInfoCurrentOrder" />
@@ -20,14 +20,12 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".BuyerSignup2" />
         <activity android:name=".BuyerSignup" />
         <activity android:name=".NewAccountActivity" />
         <activity android:name=".ShopperRatesBuyer" />
         <activity android:name=".UploadReceipt" />
         <activity android:name=".ShoppingListShopperView" />
         <activity android:name=".ShopperSignup" />
-        <activity android:name=".ShopperSignup2" />
         <activity android:name=".ViewOrderInfoShopper" />
         <activity android:name=".OrderFulfillShopper" />
         <activity android:name=".ComplaintsShopper" />
@@ -43,7 +41,6 @@
         <activity android:name=".PendingActivity" />
         <activity android:name=".PersonalActivity" />
         <activity android:name=".RatingActivity" />
-        <activity android:name=".SettingsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,5 +51,11 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
 
 </manifest>

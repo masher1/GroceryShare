@@ -1,249 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".PersonalActivity">
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PersonalActivity">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:orientation="horizontal"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:layout_editor_absoluteX="16dp">
 
-  <RelativeLayout
-        android:id="@+id/rellay1"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:paddingBottom="20dp">
-
-
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="16dp"
-          android:orientation="horizontal"
-          app:layout_constraintTop_toTopOf="parent"
-          tools:layout_editor_absoluteX="16dp">
-
-          <ImageView
-              android:id="@+id/GoBackIcon"
-              android:layout_width="56dp"
-              android:layout_height="45dp"
-              android:onClick="goBack"
-              android:src="@drawable/ic_arrow_back_black_24dp" />
-      </LinearLayout>
+    <ImageView
+        android:id="@+id/GoBackIcon"
+        android:layout_width="56dp"
+        android:layout_height="45dp"
+        android:onClick="goBack"
+        android:src="@drawable/ic_arrow_back_black_24dp" />
+</LinearLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/imgUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:id="@+id/imageid"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="9dp"
-                android:layout_marginRight="9dp"
-                android:layout_marginBottom="9dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/circleshape"
-                android:padding="3dp"
-                android:scaleType="centerInside" />
-
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/nameid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgUser"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-light"
-            android:textStyle="bold"
-            android:text="Name"
-            android:textColor="@color/greencolor"
-            android:textSize="32sp" />
+    <RelativeLayout
+        android:id="@+id/imgUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_toRightOf="@+id/addressid"
-            android:layout_above="@id/addressid"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_baseline_edit_24" />
-
-        <TextView
-            android:id="@+id/addressid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nameid"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-light"
-            android:textStyle="bold"
-            android:text="10 Watson Lane Middletown DE 19709"
-            android:textColor="@color/greencolor"
-            android:textSize="20sp" />
+            android:id="@+id/imageid"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginBottom="9dp"
+            android:adjustViewBounds="true"
+            android:onClick="handleImageClick"
+            android:src="@drawable/ic_face_black_24dp" />
 
 
     </RelativeLayout>
+
+<LinearLayout
+    android:id="@+id/linlay2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginBottom="20dp"
+    android:layout_below="@+id/imgUser"
+    android:orientation="vertical">
 
 
     <LinearLayout
-        android:id="@+id/linlay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rellay1"
-        android:orientation="horizontal"/>
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/rellay1"
-        android:layout_alignParentLeft="true">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/nameid"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="20dp"
-            android:layout_below="@+id/joinButton"
-            android:orientation="vertical">
+            android:hint="Name"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/fullwhite"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full Name"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="13sp" />
+
+    </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-              
-                <EditText
-                    android:id="@+id/storeprefId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Acme, Food Lion, etc.."
-                    android:inputType="text"
-                    android:paddingLeft="15dp"
-                    android:textColor="#000000"
-                    android:textColorHint="@color/fullwhite"
-                    android:textSize="18sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Grocery Store Preference"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:textSize="13sp" />
+        <EditText
+            android:id="@+id/addressid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/fullwhite"
+            android:textSize="18sp" />
 
-            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="13sp" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/paymentId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Paypal, Venmo, Cash, etc.."
-                    android:inputType="text"
-                    android:paddingLeft="15dp"
-                    android:textColor="#000000"
-                    android:textColorHint="@color/fullwhite"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Payment method"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:textSize="13sp" />
-
-            </LinearLayout>
+    </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/rewardsId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Store Rewards Number (if applicable)"
-                    android:inputType="text"
-                    android:paddingLeft="15dp"
-                    android:textColor="#000000"
-                    android:textColorHint="@color/fullwhite"
-                    android:textSize="18sp" />
+        <EditText
+            android:id="@+id/storeprefId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Acme, Food Lion, etc.."
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/fullwhite"
+            android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rewards Member Information"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grocery Store Preference"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
 
-            </LinearLayout>
+    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/othersid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Allergies, Disabilites, etc.."
-                    android:inputType="text"
-                    android:paddingLeft="15dp"
-                    android:textColor="#000000"
-                    android:textColorHint="@color/fullwhite"
-                    android:textSize="18sp" />
+        <EditText
+            android:id="@+id/paymentId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Paypal, Venmo, Cash, etc.."
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/fullwhite"
+            android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Other Information"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment method"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
-            </LinearLayout>
+    </LinearLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/joinButton"
-            android:layout_width="287dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="84dp"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/joinbtn"
-            android:layout_centerHorizontal="true"
-            android:elevation="5dp"
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:textColor="@color/whitecolor" />
+        <EditText
+            android:id="@+id/othersid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Allergies, Disabilites, etc.."
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="@color/fullwhite"
+            android:textSize="18sp" />
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other Information"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
+    </LinearLayout>
+
+</LinearLayout>
+
+<Button
+    android:id="@+id/joinButton"
+    android:layout_width="287dp"
+    android:layout_height="20dp"
+    android:layout_marginLeft="84dp"
+    android:layout_marginStart="84dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/joinbtn"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@id/linlay2"
+    android:elevation="5dp"
+    android:text="Submit"
+    android:textAllCaps="false"
+    android:textColor="@color/whitecolor" />
 </RelativeLayout>
