@@ -44,7 +44,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        final Shopping_trips_available_adapter myAdapter = new Shopping_trips_available_adapter(this, s1, s2, s3, s4, userID);
+        final Current_trips_shopper_adapter myAdapter = new Current_trips_shopper_adapter(this, s1, s2, s3, s4, userID);
 
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -54,12 +54,14 @@ public class CurrentTripsShopper extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("shopperId").getValue(String.class) == userID){
-                                String buyerID = snapshot.child("buyerId").getValue(String.class);
-                                String storeName = snapshot.child("storeName").getValue(String.class);
-                                String address = snapshot.child("address").getValue(String.class);
-                                String orderID = snapshot.child("orderId").getValue(String.class);
-                                myAdapter.addOrder(buyerID, storeName, address, orderID);
+                            if(snapshot.child("shopperId").getValue(String.class) != null) {
+                                if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
+                                    String buyerID = snapshot.child("buyerId").getValue(String.class);
+                                    String storeName = snapshot.child("storeName").getValue(String.class);
+                                    String address = snapshot.child("address").getValue(String.class);
+                                    String orderID = snapshot.child("orderId").getValue(String.class);
+                                    myAdapter.addOrder(buyerID, storeName, address, orderID);
+                                }
                             }
                         }
                     }
@@ -71,5 +73,12 @@ public class CurrentTripsShopper extends AppCompatActivity {
 
 
 
+    }
+    public void goBack(View v) {
+        Intent intent = new Intent(this, ShopperHomeScreen.class);
+        startActivity(intent);
+    }
+    public void deleteShopper(String orderID) {
+        databaseOrders.child(orderID).child("shopperId").setValue(null);
     }
 }

@@ -54,6 +54,7 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((CurrentTripsShopper)context).deleteShopper(orderID.get(position));
             }
         });
 
