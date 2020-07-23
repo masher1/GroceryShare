@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
     private Button loginbutton;
     private Button signupbutton;
+    private Button testBtn;
     private FirebaseAuth mAuth;
     Boolean buyer;
 

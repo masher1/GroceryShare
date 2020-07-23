@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -80,7 +81,8 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
     //Profile Pic Content End
 
     //TextField Data Collection Start
-    String profileImage, email, password, password2, firstName, lastName, address, phoneNumber, birthday, disabilities;
+    String profileImage, email, password, password2, firstName, lastName, address, phoneNumber, birthday, frequency;
+
     private EditText emailInput;
     private EditText passwordInput;
     private EditText passwordInput2;
@@ -134,8 +136,8 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
         lastNameInput = (EditText) findViewById(R.id.LastNameInput);
         addressInput = (EditText) findViewById(R.id.AddressInput);
         phoneNumberInput = (EditText) findViewById(R.id.PhoneInput);
+        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
 
-        addListenerOnButton();
         addListenerOnSpinnerItemSelection();
 
         logInButton = (Button) findViewById(R.id.LogInbtn);
@@ -161,6 +163,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
                     birthday = birthdayInput.getText().toString();
                 }
                 phoneNumber = phoneNumberInput.getText().toString();
+                frequency = frequencyspinner.getSelectedItem().toString();
 
 
                 //email verification
@@ -249,7 +252,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
     class UploadData implements ShopperSignupEventListener {
         @Override
         public void uploadData(String id) {
-            newShopperCreds shopper = new newShopperCreds(id, email, firstName, lastName, address, phoneNumber, birthday, disabilities);
+            newShopperCreds shopper = new newShopperCreds(id, email, firstName, lastName, address, phoneNumber, birthday, frequency);
             databaseShoppers.child(id).setValue(shopper);
         }
     }
@@ -318,7 +321,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    private void onCaptureImageResult(Intent data) {
+  private void onCaptureImageResult(Intent data) {
         Bitmap bm = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
@@ -469,21 +472,5 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
     public void addListenerOnSpinnerItemSelection() {
         frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
         frequencyspinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-    }
-
-    // get the selected dropdown list value
-    public void addListenerOnButton() {
-        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
-        joinButton = (Button) findViewById(R.id.joinButton);
-
-        joinButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ShopperSignup.this,
-                        "OnClickListener : " +
-                                "\nSpinner: "+ String.valueOf(frequencyspinner.getSelectedItem()),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

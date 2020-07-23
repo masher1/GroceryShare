@@ -38,4 +38,12 @@ public class GroceryItem {
     public void setBrand(String brand){
         this.brand = brand;
     }
+
+
+    @Override
+    public String toString() {
+        return ("Item Name:"+this.getItemName()+
+                " Quantity: "+ this.getQuantity() +
+                " Brand: "+ this.getBrand());
+    }
 }
