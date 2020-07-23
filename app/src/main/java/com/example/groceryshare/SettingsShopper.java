@@ -18,13 +18,14 @@ public class SettingsShopper extends AppCompatActivity {
     private Button personalBtn;
     private Button privacyBtn;
     private Button logoutBtn;
-
+    private FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_shopper);
+        mAuth = FirebaseAuth.getInstance();
 
         personalBtn = findViewById(R.id.personalinfoshopper);
         personalBtn.setOnClickListener(new View.OnClickListener() {
@@ -41,15 +42,13 @@ public class SettingsShopper extends AppCompatActivity {
                 new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        AuthUI.getInstance()
-                                .signOut(SettingsShopper.this)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        // user is now signed out
-                                        startActivity(new Intent(SettingsShopper.this, LoginActivity.class));
-                                        finish();
-                                    }
-                                });
+                        mAuth.signOut();
+                        //add way to handle empty or bad input
+                        Intent intent = new Intent(SettingsShopper.this, MainActivity.class);
+
+                        // start the activity connect to the specified class
+                        startActivity(intent);
+
                     }
 
 

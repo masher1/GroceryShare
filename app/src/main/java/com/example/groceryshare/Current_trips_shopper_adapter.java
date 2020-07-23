@@ -55,6 +55,12 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
             @Override
             public void onClick(View view) {
                 ((CurrentTripsShopper)context).deleteShopper(orderID.get(position));
+                data1.remove(position);
+                data2.remove(position);
+                data3.remove(position);
+                orderID.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, data1.size());
             }
         });
 
@@ -85,5 +91,9 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
         orderID.add(s4);
         //notifyDataSetChanged();
         notifyItemInserted(data1.size()-1);
+    }
+    public void goDetails(View v){
+        System.out.println("iiii");
+        ((CurrentTripsShopper)context).goDetails(v);
     }
 }

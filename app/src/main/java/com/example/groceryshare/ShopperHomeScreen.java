@@ -114,15 +114,13 @@ public class ShopperHomeScreen extends AppCompatActivity {
                 new View.OnClickListener() {
 
                     public void onClick(View v) {
-                        AuthUI.getInstance()
-                                .signOut(ShopperHomeScreen.this)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        // user is now signed out
-                                        startActivity(new Intent(ShopperHomeScreen.this, LoginActivity.class));
-                                        finish();
-                                    }
-                                });
+                        mAuth.signOut();
+                        //add way to handle empty or bad input
+                        Intent intent = new Intent(ShopperHomeScreen.this, MainActivity.class);
+
+                        // start the activity connect to the specified class
+                        startActivity(intent);
+
                     }
 
 
