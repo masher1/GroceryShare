@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Shopping_trips_available_adapter extends RecyclerView.Adapter<Shopping_trips_available_adapter.MyViewHolder>{
+public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_trips_shopper_adapter.MyViewHolder>{
 
     ArrayList<String> data1 = new ArrayList<String>();
     ArrayList<String> data2 = new ArrayList<String>();
@@ -29,7 +29,7 @@ public class Shopping_trips_available_adapter extends RecyclerView.Adapter<Shopp
 
     Context context;
 
-    public Shopping_trips_available_adapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, String id){
+    public Current_trips_shopper_adapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, String id){
         context = ct;
         data1= s1;
         data2 = s2;
@@ -42,7 +42,7 @@ public class Shopping_trips_available_adapter extends RecyclerView.Adapter<Shopp
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.shopping_trips_available_row, parent, false);
+        View view = inflater.inflate(R.layout.current_trips_shopper_row, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -54,9 +54,6 @@ public class Shopping_trips_available_adapter extends RecyclerView.Adapter<Shopp
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Here");
-                ((ShoppingTripsAvailable)context).addShopper(orderID.get(position));
-
             }
         });
 
@@ -68,7 +65,7 @@ public class Shopping_trips_available_adapter extends RecyclerView.Adapter<Shopp
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-//find the content here
+        //find the content here
         TextView fullName_text, storeName_text, howFar_text;
         Button button;
 
