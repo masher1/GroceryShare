@@ -81,6 +81,7 @@
     <string name="next">Next</string>
     <string name="can_upload_multiple_photos">*Can upload multiple photos</string>
     <string name="log_out">Log Out</string>
+
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="messages_header">Messages</string>
 

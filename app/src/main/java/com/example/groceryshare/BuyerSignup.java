@@ -34,6 +34,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
@@ -125,8 +127,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
         datePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                showDatePickerDialog();
             }
         });
 
@@ -218,11 +219,33 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
 
                             Toast.makeText(BuyerSignup.this, "New Buyer Added!", Toast.LENGTH_LONG).show();
                             updateUI(id);
-                        } else {
-                            Toast.makeText(BuyerSignup.this, "Account not created!", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            FirebaseAuthException e = (FirebaseAuthException )task.getException();
+                            Toast.makeText(BuyerSignup.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            return;
                         }
                     }
                 });
+    }
+
+    public void showDatePickerDialog(){
+        final Calendar min = Calendar.getInstance();
+        final Calendar max = Calendar.getInstance();
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+
+        min.add(Calendar.DATE, -36500);
+        datePickerDialog.getDatePicker().setMinDate(min.getTimeInMillis());
+        max.add(Calendar.DATE, -4745);
+        datePickerDialog.getDatePicker().setMaxDate(max.getTimeInMillis());
+        datePickerDialog.show();
     }
 
     class UploadData implements BuyerSignupEventListener {
@@ -246,6 +269,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
         String currentDateString = new SimpleDateFormat("MM/dd/yyyy").format(c.getTime());
         birthdayInput = findViewById(R.id.BirthdayInput);
         birthdayInput.setText(currentDateString);
@@ -438,107 +462,4 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
                     }
                 });
     }
-
-//    private void handleUpload(Bitmap bitmap) {
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//
-//        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        final StorageReference reference = FirebaseStorage.getInstance().getReference()
-//                .child("profileImages")
-//                .child(uid + ".jpeg");
-//
-//        reference.putBytes(baos.toByteArray())
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        getDownloadUrl(reference);
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.e(TAG, "onFailure: ",e.getCause() );
-//                    }
-//                });
-//    }
-//    private void getDownloadUrl(StorageReference reference) {
-//        reference.getDownloadUrl()
-//                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-//                        Log.d(TAG, "onSuccess: " + uri);
-//                        setUserProfileUrl(uri);
-//                    }
-//                });
-//    }
-//    private void setUserProfileUrl(Uri uri) {
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
-//                .setPhotoUri(uri)
-//                .build();
-//
-//        user.updateProfile(request)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-////                        profileImage = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-//                        Toast.makeText(BuyerSignup.this, "Updated successfully", Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(BuyerSignup.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//    }
-
-
-//    private String getFileExtension(Uri uri) {
-//        ContentResolver cR = getContentResolver();
-//        MimeTypeMap mime = MimeTypeMap.getSingleton();
-//        return mime.getExtensionFromMimeType(cR.getType(uri));
-//    }
-//
-//    String Storage_Path = "profilePicUploads/";
-//
-//    private void uploadFile() {
-//        if (imageUri != null) {
-////            StorageReference fileReference = StorageRef.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
-//            StorageReference fileReference = StorageRef.child(Storage_Path + System.currentTimeMillis() + "." + getFileExtension(imageUri));
-//
-//            UploadTask = fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<com.google.firebase.storage.UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(com.google.firebase.storage.UploadTask.TaskSnapshot taskSnapshot) {
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            ProgressBar.setProgress(0);
-//                        }
-//                    }, 50);
-//                    Toast.makeText(BuyerSignup.this, "Upload successful", Toast.LENGTH_LONG).show();
-//
-//                    profileImage = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-//                }
-//            })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(BuyerSignup.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    })
-//                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-//                            ProgressBar.setProgress((int) progress);
-//                        }
-//                    });
-//        } else {
-//            Toast.makeText(this, "Please Select a Profile Photo!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 }

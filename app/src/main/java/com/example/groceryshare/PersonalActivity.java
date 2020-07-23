@@ -18,10 +18,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.bumptech.glide.Glide;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -58,6 +59,7 @@ public class PersonalActivity extends AppCompatActivity {
     EditText paymentInput;
     EditText othersInput;
     EditText nameInput;
+
     EditText addressInput;
     Button submitButton;
 
@@ -89,11 +91,11 @@ public class PersonalActivity extends AppCompatActivity {
         databaseOrders = FirebaseDatabase.getInstance().getReference("Personal Info");
         databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
 
+
         img = findViewById(R.id.GoBackIcon);//defines the back button image
         addressInput = (EditText) findViewById(R.id.addressid);
         nameInput = (EditText) findViewById(R.id.nameid);
         ProfileImage = (ImageView) findViewById(R.id.imageid);
-
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -113,7 +115,7 @@ public class PersonalActivity extends AppCompatActivity {
 
         //TODO: There is an error message that shows up when you access this activity twice from the main screen
         FirebaseDatabase.getInstance().getReference().child("Buyers").child(user.getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+          .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         newBuyerCreds buyer = dataSnapshot.getValue(newBuyerCreds.class);
@@ -163,6 +165,7 @@ public class PersonalActivity extends AppCompatActivity {
 
         newBuyerCreds buyer = new newBuyerCreds(user.getUid(), firstName, lastName, address, store, payment, others);
         databaseBuyers.child(user.getUid()).setValue(buyer);
+
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
     }
@@ -285,7 +288,6 @@ public class PersonalActivity extends AppCompatActivity {
         final StorageReference reference = FirebaseStorage.getInstance().getReference()
                 .child("profileImages")
                 .child(user.getUid() + ".jpeg");
-
         reference.putBytes(baos.toByteArray())
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -293,7 +295,6 @@ public class PersonalActivity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             public void run() {
                                 getDownloadUrl(reference, user);
-
                             }
                         }).start();
                     }

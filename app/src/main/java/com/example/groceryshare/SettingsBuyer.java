@@ -19,6 +19,7 @@ public class SettingsBuyer extends AppCompatActivity {
     private Button personalBtn;
     private Button privacyBtn;
     private Button logoutBtn;
+    private FirebaseAuth mAuth;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -27,22 +28,21 @@ public class SettingsBuyer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_buyer);
+        mAuth = FirebaseAuth.getInstance();
 
         logoutBtn = findViewById(R.id.logoutbtn);
         logoutBtn.setOnClickListener(
                 new View.OnClickListener() {
 
                     public void onClick(View v) {
-                            AuthUI.getInstance()
-                                    .signOut(SettingsBuyer.this)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            // user is now signed out
-                                            startActivity(new Intent(SettingsBuyer.this, LoginActivity.class));
-                                            finish();
-                                        }
-                                    });
-                        }
+                        mAuth.signOut();
+                        //add way to handle empty or bad input
+                        Intent intent = new Intent(SettingsBuyer.this, MainActivity.class);
+
+                        // start the activity connect to the specified class
+                        startActivity(intent);
+
+                    }
 
 
                 }
