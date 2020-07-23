@@ -242,7 +242,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
-        min.add(Calendar.DATE, -36500);
+        min.add(Calendar.DATE, -43800);
         datePickerDialog.getDatePicker().setMinDate(min.getTimeInMillis());
         max.add(Calendar.DATE, -4745);
         datePickerDialog.getDatePicker().setMaxDate(max.getTimeInMillis());
