@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.groceryshare.ui.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ShopperHomeScreen extends AppCompatActivity {
 
@@ -19,14 +21,14 @@ public class ShopperHomeScreen extends AppCompatActivity {
     private CardView ratings;
     private CardView problems;
     private Button logoutBtn;
+    private FirebaseAuth mAuth;
     String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopper_home_screen);
 
-        Intent intent = getIntent();
-        userID = intent.getStringExtra("USER_ID");
+        mAuth = FirebaseAuth.getInstance();
 
         availableTrips = findViewById(R.id.availableIDShop);
         currentTrips = findViewById(R.id.currentOrderIDShop);
@@ -54,6 +56,7 @@ public class ShopperHomeScreen extends AppCompatActivity {
                 //add way to handle empty or bad input
                 Intent intent = new Intent(ShopperHomeScreen.this, CurrentTripsShopper.class);
 
+                intent.putExtra("USER_ID", userID);
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
@@ -114,6 +117,13 @@ public class ShopperHomeScreen extends AppCompatActivity {
             }
 
         });
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        userID = currentUser.getUid();
     }
 
 }
