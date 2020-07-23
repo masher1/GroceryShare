@@ -79,6 +79,13 @@ public class CurrentTripsShopper extends AppCompatActivity {
         startActivity(intent);
     }
     public void deleteShopper(String orderID) {
-        databaseOrders.child(orderID).child("shopperId").setValue(null);
+        //databaseOrders.child(orderID).child("shopperId").setValue(null);
+        Intent intent = new Intent(this, OrderFulfillShopper.class);
+        startActivity(intent);
+    }
+    public void goDetails(View v){
+        System.out.println("jjjjj");
+        Intent intent = new Intent(this, OrderFulfillShopper.class);
+        startActivity(intent);
     }
 }

@@ -156,12 +156,14 @@ public class PersonalActivityShopper extends AppCompatActivity {
         databaseShoppers.child(user.getUid()).setValue(buyer);
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, SettingsShopper.class);
+        startActivity(intent);
     }
 
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, OrderActivity.class);
+        Intent intent = new Intent(this, SettingsShopper.class);
         startActivity(intent);
     }
 

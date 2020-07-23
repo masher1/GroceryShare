@@ -56,6 +56,12 @@ public class Shopping_trips_available_adapter extends RecyclerView.Adapter<Shopp
             public void onClick(View view) {
                 System.out.println("Here");
                 ((ShoppingTripsAvailable)context).addShopper(orderID.get(position));
+                data1.remove(position);
+                data2.remove(position);
+                data3.remove(position);
+                orderID.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, data1.size());
 
             }
         });

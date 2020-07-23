@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             String id = currentUser.getUid();
-            //updateUI(id);
+            updateUI(id);
         }
     }
 
@@ -69,14 +69,12 @@ public class MainActivity extends AppCompatActivity {
     }
     private void updateUI(final String id){
         buyer = false;
-        System.out.println(id + " THis is the id");
         FirebaseDatabase.getInstance().getReference().child("Buyers")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             String buyerID = snapshot.child("buyerID").getValue(String.class);
-                            System.out.println(buyerID + " THis is a buyerID");
                             System.out.println(buyerID.equals(id));
                             if(buyerID.equals(id)){
                                 buyer = true;
