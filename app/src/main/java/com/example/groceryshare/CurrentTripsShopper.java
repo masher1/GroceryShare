@@ -3,6 +3,8 @@ package com.example.groceryshare;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class CurrentTripsShopper extends AppCompatActivity {
+
 
     RecyclerView recyclerView;
     DatabaseReference databaseOrders;
@@ -37,6 +40,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.current_trips_shopper);
+
 
         recyclerView = findViewById(R.id.recyclerView);
 
