@@ -34,5 +34,32 @@
 	    "Frequency": "weekly"
       }
 	  ]
-  }	
+  },
+
+	"Orders":[
+		{
+			"Date Placed": "06/26/2020",
+			"Date Fulfilled": "06/30/2020",
+			"Date By": "07/01/2020",
+			"Store Name": "Walmart",
+			"Buyer ID": 1,
+			"Shopper ID" : 1,
+			"Reciept Copy" : "https://www.researchgate.net/profile/Suleyman_Ozarslan/publication/262991757/figure/fig1/AS:296463486734342@1447693811502/A-sample-receipt-captured-by-mobile-phone-camera.png",
+			"List of Items": [
+				"Bananas",
+				"Tomatoes"
+			],
+			"Address line 1": "572 White River Way",
+			"Address line 2": "",
+			"City": "Salt Lake City",
+			"State": "UT",
+			"Zip Code": "84106",
+			"Delivery Instructions" : "Leave on the sidewalk",
+			"Order Status": [
+				"Pending",
+				"In Progress",
+				"Delivered"
+			]
+		}
+	]
 }

@@ -13,6 +13,30 @@
     android:id="@+id/ll"
     >
     <LinearLayout
+        android:layout_width="387dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10sp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <Button
+            android:id="@+id/logOutBuyerBtn"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/joinbtn"
+            android:elevation="5dp"
+            android:text="@string/log_out"
+            android:textAllCaps="false"
+            android:textColor="@color/whitecolor"
+            android:textSize="20sp"
+            android:layout_marginStart="270dp" />
+
+    </LinearLayout>
+    <LinearLayout
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
