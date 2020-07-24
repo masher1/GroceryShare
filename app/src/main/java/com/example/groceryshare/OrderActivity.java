@@ -45,7 +45,7 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     public void openpersonal(){
-        Intent intent = new Intent(this, PersonalActivity.class);
+        Intent intent = new Intent(this, PersonalActivityBuyer.class);
         intent.putExtra("USER_ID", userID);
         startActivity(intent);
     }

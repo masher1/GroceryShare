@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,10 +71,10 @@ public class PersonalActivityShopper extends AppCompatActivity {
     EditText nameInput;
     EditText addressInput;
     EditText phoneInput;
-    EditText frequencyInput;
+    Spinner frequencyspinner;
     Button submitButton;
 
-//    TextField Data Collection End
+    //    TextField Data Collection End
 
     ImageView img; //used for the back button navigation
 
@@ -90,7 +91,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
         addressInput = (EditText) findViewById(R.id.addressId);
         nameInput = (EditText) findViewById(R.id.nameid2);
         phoneInput = (EditText) findViewById(R.id.numberId2);
-        frequencyInput = (EditText) findViewById(R.id.frequencyid);
+        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
         ProfileImage = (ImageView) findViewById(R.id.imageid2);
 
         if (user != null) {
@@ -115,7 +116,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
                         addressInput.setText(shopper.getAddress());
                         nameInput.setText(shopper.getFirstName() + " " + shopper.getLastName());
                         phoneInput.setText(shopper.getPhoneNumber());
-                        frequencyInput.setText(shopper.getFrequency());
+                        addListenerOnSpinnerItemSelection();
                     }
 
                     @Override
@@ -143,7 +144,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
         String lastName = name[1];
         address = addressInput.getText().toString();
         phoneNumber = phoneInput.getText().toString();
-        frequency = frequencyInput.getText().toString();
+        frequency = frequencyspinner.getSelectedItem().toString();
 
         try{
             handleUpload(imageBitmap, user);
@@ -330,5 +331,10 @@ public class PersonalActivityShopper extends AppCompatActivity {
                         Toast.makeText(PersonalActivityShopper.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void addListenerOnSpinnerItemSelection() {
+        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
+        frequencyspinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 }

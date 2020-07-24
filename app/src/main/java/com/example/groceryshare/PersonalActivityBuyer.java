@@ -44,7 +44,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class PersonalActivity extends AppCompatActivity {
+public class PersonalActivityBuyer extends AppCompatActivity {
 
     String[] name;
     String firstName;
@@ -72,7 +72,7 @@ public class PersonalActivity extends AppCompatActivity {
     private String userChoosenTask;
     Bitmap imageBitmap;
     private StorageReference StorageRef;
-    private static final String TAG = "PersonalActivity";
+    private static final String TAG = "PersonalActivityBuyer";
     //Profile Pic Content End
 
     DatabaseReference databaseBuyers;
@@ -86,7 +86,7 @@ public class PersonalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal_activity);
+        setContentView(R.layout.personal_activity_buyer);
 
         databaseOrders = FirebaseDatabase.getInstance().getReference("Personal Info");
         databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
@@ -256,12 +256,12 @@ public class PersonalActivity extends AppCompatActivity {
         final CharSequence[] items = {"Take Photo", "Choose from Library",
                 "Cancel"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(PersonalActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(PersonalActivityBuyer.this);
         builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result = Utils.checkPermission(PersonalActivity.this);
+                boolean result = Utils.checkPermission(PersonalActivityBuyer.this);
 
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
@@ -328,13 +328,13 @@ public class PersonalActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(PersonalActivity.this, "Updated successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PersonalActivityBuyer.this, "Updated successfully", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PersonalActivity.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PersonalActivityBuyer.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
