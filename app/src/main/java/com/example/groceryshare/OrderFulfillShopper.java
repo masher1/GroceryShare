@@ -13,6 +13,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
     private Button viewShoppingListBtnShopper;
     private Button uploadRcptBtnShopper;
     private Button confirmOrderBtnShopper;
+
     private TextView orderNameText;
     public String orderid;
 
@@ -33,6 +34,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
         orderNameText = (TextView) findViewById(R.id.orderNameTxt);
 
         confirmOrderBtnShopper = (Button) findViewById(R.id.orderDoneBtn);
+
 
         orderNameText.setText("Order Number: " + orderid);
         // Add_button add click listener
@@ -57,6 +59,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
         uploadRcptBtnShopper.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(OrderFulfillShopper.this, UploadReceipt.class);
+                intent.putExtra("Order_ID", orderid);
                 // start the activity connect to the specified class
                 startActivity(intent);
             }

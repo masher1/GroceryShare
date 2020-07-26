@@ -86,4 +86,5 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
         //notifyDataSetChanged();
         notifyItemInserted(data1.size()-1);
     }
+
 }

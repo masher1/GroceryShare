@@ -61,6 +61,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
                                     String storeName = snapshot.child("storeName").getValue(String.class);
                                     String address = snapshot.child("address").getValue(String.class);
                                     orderID = snapshot.child("orderId").getValue(String.class);
+
                                     myAdapter.addOrder(buyerID, storeName, address, orderID);
                                 }
                             }
@@ -86,6 +87,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
     }
     public void goDetails(String orderID){
         Intent intent = new Intent(this, OrderFulfillShopper.class);
+
         intent.putExtra("ORDER_ID", orderID);
         startActivity(intent);
     }
