@@ -53,7 +53,7 @@ public class PersonalActivity extends AppCompatActivity {
     String store;
     String payment;
     String others;
-    String userID;
+    //String userID;
 
     EditText storeInput;
     EditText paymentInput;

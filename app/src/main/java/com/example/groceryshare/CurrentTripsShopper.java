@@ -31,6 +31,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
     ArrayList<String> s3 = new ArrayList<String>();
     ArrayList<String> s4 = new ArrayList<String>();
     String userID;
+    String orderID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
                                     String buyerID = snapshot.child("buyerId").getValue(String.class);
                                     String storeName = snapshot.child("storeName").getValue(String.class);
                                     String address = snapshot.child("address").getValue(String.class);
-                                    String orderID = snapshot.child("orderId").getValue(String.class);
+                                    orderID = snapshot.child("orderId").getValue(String.class);
                                     myAdapter.addOrder(buyerID, storeName, address, orderID);
                                 }
                             }
@@ -84,7 +85,6 @@ public class CurrentTripsShopper extends AppCompatActivity {
         startActivity(intent);
     }
     public void goDetails(String orderID){
-        System.out.println("jjjjj");
         Intent intent = new Intent(this, OrderFulfillShopper.class);
         intent.putExtra("ORDER_ID", orderID);
         startActivity(intent);
