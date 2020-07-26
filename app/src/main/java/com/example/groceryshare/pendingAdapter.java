@@ -19,42 +19,38 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_trips_shopper_adapter.MyViewHolder>{
+public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHolder>{
 
-    ArrayList<String> data1 = new ArrayList<String>();
-    ArrayList<String> data2 = new ArrayList<String>();
-    ArrayList<String> data3 = new ArrayList<String>();
+    ArrayList<String> storeName = new ArrayList<String>();
     ArrayList<String> orderID = new ArrayList<String>();
-    String userID;
+    ArrayList<String> shopperId = new ArrayList<String>();
 
     Context context;
 
-    public Current_trips_shopper_adapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, String id){
+    public pendingAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3){
         context = ct;
-        data1= s1;
-        data2 = s2;
-        data3 = s3;
-        orderID = s4;
-        userID = id;
+        storeName= s1;
+        orderID = s2;
+        shopperId = s3;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.current_trips_shopper_row, parent, false);
+        View view = inflater.inflate(R.layout.pending_trips_row, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        holder.fullName_text.setText(data1.get(position));
-        holder.storeName_text.setText(data2.get(position));
-        holder.howFar_text.setText(data3.get(position));
+        holder.storeName_text.setText(storeName.get(position));
+        holder.orderId_text.setText(orderID.get(position));
+        holder.shopperId_text.setText(shopperId.get(position));
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((CurrentTripsShopper)context).goDetails(orderID.get(position));
+                ((PendingActivity)context).goDetails(orderID.get(position));
             }
         });
 
@@ -62,29 +58,27 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
 
     @Override
     public int getItemCount() {
-        return data1.size();
+        return storeName.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         //find the content here
-        TextView fullName_text, storeName_text, howFar_text;
+        TextView storeName_text, orderId_text, shopperId_text;
         Button button;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            fullName_text = itemView.findViewById(R.id.fullName_text);
             storeName_text = itemView.findViewById(R.id.storeName_text);
-            howFar_text = itemView.findViewById(R.id.howFar_text);
-            button = itemView.findViewById(R.id.pickOrder);
+            orderId_text = itemView.findViewById(R.id.orderId_text);
+            shopperId_text = itemView.findViewById(R.id.shopperId_text);
+            button =itemView.findViewById(R.id.pickOrder);
         }
     }
-    public void addOrder(String s1, String s2, String s3, String s4) {
-        data1.add(s1);
-        data2.add(s2);
-        data3.add(s3);
-        orderID.add(s4);
-        //notifyDataSetChanged();
-        notifyItemInserted(data1.size()-1);
+    public void addOrder(String s1, String s2, String s3) {
+        storeName.add(s1);
+        orderID.add(s2);
+        shopperId.add(s3);
+        notifyItemInserted(storeName.size()-1);
     }
-
 }
+

@@ -42,6 +42,7 @@ public class ListActivity extends AppCompatActivity {
     String otherInfo;
     String shopperId;
     String buyerId;
+    String id;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -83,20 +84,27 @@ public class ListActivity extends AppCompatActivity {
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int id) {
                                 addShoppingList();
+                                sendtoPending();
                                 finish();
                                 Toast.makeText(getApplicationContext(),"you choose confirm action for alertbox",
                                         Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //  Action for 'NO' Button
-                                dialog.cancel();
+                                Intent intent = new Intent(ListActivity.this, PersonalActivity.class);
+                                startActivity(intent);
                                 Toast.makeText(getApplicationContext(),"you choose edit action for alertbox",
                                         Toast.LENGTH_SHORT).show();
                             }
+                        })
+
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
                         });
-                //Creating dialog box
                 AlertDialog alert = builder.create();
                 //Setting the title manually
                 alert.setTitle("Confirm Personal Information");
@@ -132,10 +140,18 @@ public class ListActivity extends AppCompatActivity {
     private void addShoppingList(){
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         if(ItemAdapter.shopList.size() != 0){
-            String id = databaseOrders.push().getKey();
+            id = databaseOrders.push().getKey();
             NewOrder order = new NewOrder(id, datePlaced, dateFulfilled, dateBy, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo);
             databaseOrders.child(id).setValue(order);
             Toast.makeText(getApplicationContext(),  "New Shopping List Added!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void sendtoPending(){
+        Intent intent = new Intent(ListActivity.this, PendingActivity.class);
+        intent.putExtra("orderid", id);
+        intent.putExtra("storeName", storeName);
+        intent.putExtra("shopperid", shopperId);
+        startActivity(intent);
     }
 }

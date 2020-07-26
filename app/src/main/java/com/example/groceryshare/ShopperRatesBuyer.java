@@ -9,21 +9,31 @@ import android.widget.RatingBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ShopperRatesBuyer extends AppCompatActivity {
-    private DatabaseReference databaseOrdersShopper;
+    private DatabaseReference databaseOrders;
+    private DatabaseReference databaseBuyers;
     private Button doneBtnRatingByShopper;
     private RatingBar ratingBarShopper;
     private EditText userReviewByShopperEditText;
     Float ratingByShopperValue;
     String userReviewByShopperString;
+    String orderID;
+    String buyerId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopper_rates_buyer);
-        databaseOrdersShopper = FirebaseDatabase.getInstance().getReference("Orders");
+
+        Intent intent = getIntent();
+        orderID = intent.getStringExtra("ORDER_ID");
+        databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
+        databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
         doneBtnRatingByShopper = (Button)findViewById(R.id.doneRatingByShopperBtn);
         ratingBarShopper = (RatingBar)findViewById(R.id.ratingBarByShopper);
         userReviewByShopperEditText = (EditText)findViewById(R.id.tellUsByShopperInput);
@@ -34,8 +44,36 @@ public class ShopperRatesBuyer extends AppCompatActivity {
 
                 ratingByShopperValue = ratingBarShopper.getRating();
                 userReviewByShopperString=userReviewByShopperEditText.getText().toString();
-                databaseOrdersShopper.child("Review").setValue(userReviewByShopperString);
-                databaseOrdersShopper.child("Rating").setValue(ratingByShopperValue);
+                databaseOrders.child(orderID).child("Review").setValue(userReviewByShopperString);
+                databaseOrders.child(orderID).child("Rating").setValue(ratingByShopperValue);
+                databaseOrders.child(orderID).child("Status").setValue("Complete");
+                System.out.println("Yes");
+                FirebaseDatabase.getInstance().getReference()
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                buyerId = dataSnapshot.child("Orders").child(orderID).child("buyerId").getValue(String.class);
+                                System.out.println(buyerId);
+                                if(dataSnapshot.child("Buyers").child(buyerId).child("Rating").getValue(double.class) == null){
+                                    databaseBuyers.child(buyerId).child("Rating").setValue((double)ratingByShopperValue);
+                                    databaseBuyers.child(buyerId).child("numRatings").setValue(1);
+                                }
+                                else{
+                                    int numRatings = dataSnapshot.child("Buyers").child(buyerId).child("numRatings").getValue(int.class) + 1;
+                                    double newRating = (double)(dataSnapshot.child("Buyers").child(buyerId).child("Rating").getValue(double.class) * (numRatings - 1) + ratingByShopperValue)/(double)numRatings;
+                                    databaseBuyers.child(buyerId).child("numRatings").setValue(numRatings);
+                                    databaseBuyers.child(buyerId).child("Rating").setValue(newRating);
+                                }
+
+
+
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
+
+
                 startActivity(intent);
             }
 
