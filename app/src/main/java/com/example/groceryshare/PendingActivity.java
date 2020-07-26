@@ -91,8 +91,9 @@ public class PendingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goDetails(View v) {
+    public void goDetails(String orderId) {
         Intent intent = new Intent(this, OrderFulfillBuyer.class);
+        intent.putExtra("ORDER_ID", orderId);
         startActivity(intent);
     }
 }

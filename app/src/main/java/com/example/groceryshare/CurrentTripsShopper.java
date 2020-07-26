@@ -80,9 +80,9 @@ public class CurrentTripsShopper extends AppCompatActivity {
         Intent intent = new Intent(this, OrderFulfillShopper.class);
         startActivity(intent);
     }
-    public void goDetails(View v){
+    public void goDetails(String orderID){
         Intent intent = new Intent(this, OrderFulfillShopper.class);
-        intent.putExtra("USER_ID", userID);
+        intent.putExtra("ORDER_ID", orderID);
         startActivity(intent);
     }
 }
