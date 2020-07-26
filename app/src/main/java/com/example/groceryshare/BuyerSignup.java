@@ -25,7 +25,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,7 +33,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -82,6 +80,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
 
     //TextField Data Collection Start
     String profileImage, email, password, password2, firstName, lastName, address, phoneNumber, birthday, disabilities;
+    String store = "", payment = "", others = "";
     private EditText emailInput;
     private EditText passwordInput;
     private EditText passwordInput2;
@@ -251,7 +250,7 @@ public class BuyerSignup extends AppCompatActivity implements DatePickerDialog.O
     class UploadData implements BuyerSignupEventListener {
         @Override
         public void uploadData(String id) {
-            newBuyerCreds buyer = new newBuyerCreds(id, email, firstName, lastName, address, phoneNumber, birthday, disabilities);
+            newBuyerCreds buyer = new newBuyerCreds(id, email, firstName, lastName, address, phoneNumber, birthday, disabilities, store, payment, others);
             databaseBuyers.child(id).setValue(buyer);
         }
     }

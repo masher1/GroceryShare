@@ -3,8 +3,7 @@ package com.example.groceryshare;
 public class newBuyerCreds {
     String buyerID, email, firstName, lastName, address, phoneNumber, birthday, disabilities, store, payment, others;
 
-
-    public newBuyerCreds(String buyerID, String email, String firstName, String lastName, String address, String phoneNumber, String birthday, String disabilities) {
+    public newBuyerCreds(String buyerID, String email, String firstName, String lastName, String address, String phoneNumber, String birthday, String disabilities, String store, String payment, String others) {
         this.buyerID = buyerID;
         this.email = email;
         this.firstName = firstName;
@@ -13,13 +12,6 @@ public class newBuyerCreds {
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.disabilities = disabilities;
-    }
-
-    public newBuyerCreds(String buyerID, String firstName, String lastName, String address, String store, String payment, String others) {
-        this.buyerID = buyerID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
         this.store = store;
         this.payment = payment;
         this.others = others;

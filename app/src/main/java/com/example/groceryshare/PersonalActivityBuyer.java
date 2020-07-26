@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,22 +37,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class PersonalActivityBuyer extends AppCompatActivity {
-
     String[] name;
-    String firstName;
-    String lastName;
-    String address;
-    String store;
-    String payment;
-    String others;
-    String userID;
+    String email, firstName, lastName, address, phoneNumber, birthday, disabilities, store, payment, others;
 
     EditText storeInput;
     EditText paymentInput;
@@ -78,8 +69,9 @@ public class PersonalActivityBuyer extends AppCompatActivity {
     DatabaseReference databaseBuyers;
     DatabaseReference databaseOrders;
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//    TextField Data Collection End
+    FirebaseUser user;
+
+    //    TextField Data Collection End
 
     ImageView img; //used for the back button navigation
 
@@ -91,13 +83,12 @@ public class PersonalActivityBuyer extends AppCompatActivity {
         databaseOrders = FirebaseDatabase.getInstance().getReference("Personal Info");
         databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
 
-
         img = findViewById(R.id.GoBackIcon);//defines the back button image
         addressInput = (EditText) findViewById(R.id.addressid);
         nameInput = (EditText) findViewById(R.id.nameid);
         ProfileImage = (ImageView) findViewById(R.id.imageid);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
             Log.d(TAG, "onCreate: " + user.getDisplayName());
@@ -163,7 +154,7 @@ public class PersonalActivityBuyer extends AppCompatActivity {
             Log.e(TAG, "Error: ", e.getCause());
         }
 
-        newBuyerCreds buyer = new newBuyerCreds(user.getUid(), firstName, lastName, address, store, payment, others);
+        newBuyerCreds buyer = new newBuyerCreds(user.getUid(), email, firstName, lastName, address, phoneNumber, birthday, disabilities, store, payment, others);
         databaseBuyers.child(user.getUid()).setValue(buyer);
 
 

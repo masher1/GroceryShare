@@ -14,15 +14,6 @@ public class newShopperCreds {
         this.frequency = frequency;
     }
 
-    public newShopperCreds(String shopperID, String firstName, String lastName, String address, String phoneNumber, String frequency) {
-        this.shopperID = shopperID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.frequency = frequency;
-    }
-
     public String getShopperID() {
         return shopperID;
     }

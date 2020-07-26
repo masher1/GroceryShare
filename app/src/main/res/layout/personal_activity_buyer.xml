@@ -161,7 +161,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/joinButton2"
+                android:id="@+id/joinButton"
                 android:layout_width="280dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"

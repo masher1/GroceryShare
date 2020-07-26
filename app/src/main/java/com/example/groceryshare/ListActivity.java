@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,9 +33,8 @@ public class ListActivity extends AppCompatActivity {
     DatabaseReference databaseBuyers;
     DatabaseReference databaseOrders;
     String address;
+    String status;
     Date dateFulfilled;
-    Date datePlaced;
-    Date dateBy;
     String storeName;
     String payment;
     String receiptcopy;
@@ -63,13 +62,11 @@ public class ListActivity extends AppCompatActivity {
                 payment = buyer.getPayment();
                 storeName = buyer.getStore();
                 otherInfo = buyer.getOthers();
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
 
         builder = new AlertDialog.Builder(this);
         submitbtn.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +130,7 @@ public class ListActivity extends AppCompatActivity {
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         if(ItemAdapter.shopList.size() != 0){
             String id = databaseOrders.push().getKey();
-            NewOrder order = new NewOrder(id, datePlaced, dateFulfilled, dateBy, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo);
+            newOrder order = new newOrder(id, status, dateFulfilled, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo);
             databaseOrders.child(id).setValue(order);
             Toast.makeText(getApplicationContext(),  "New Shopping List Added!", Toast.LENGTH_LONG).show();
         }

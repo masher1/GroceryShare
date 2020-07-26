@@ -48,10 +48,7 @@ import java.io.IOException;
 public class PersonalActivityShopper extends AppCompatActivity {
 
     String[] name;
-    String address;
-    String phoneNumber;
-    String frequency;
-    String userID;
+    String email, firstName, lastName, address, phoneNumber, birthday, frequency;
 
     //Profile Pic Content Start
     String profileImage;
@@ -116,6 +113,9 @@ public class PersonalActivityShopper extends AppCompatActivity {
                         addressInput.setText(shopper.getAddress());
                         nameInput.setText(shopper.getFirstName() + " " + shopper.getLastName());
                         phoneInput.setText(shopper.getPhoneNumber());
+                        email = shopper.getEmail();
+                        birthday = shopper.getBirthday();
+
                         addListenerOnSpinnerItemSelection();
                     }
 
@@ -140,8 +140,8 @@ public class PersonalActivityShopper extends AppCompatActivity {
 
     private void addPreferences() {
         name = nameInput.getText().toString().split(" ");
-        String firstName = name[0];
-        String lastName = name[1];
+        firstName = name[0];
+        lastName = name[1];
         address = addressInput.getText().toString();
         phoneNumber = phoneInput.getText().toString();
         frequency = frequencyspinner.getSelectedItem().toString();
@@ -153,7 +153,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
             Log.e(TAG, "Error: ", e.getCause());
         }
 
-        newShopperCreds buyer = new newShopperCreds(user.getUid(), firstName, lastName, address, phoneNumber, frequency);
+        newShopperCreds buyer = new newShopperCreds(user.getUid(), email, firstName, lastName, address, phoneNumber, birthday, frequency);
         databaseShoppers.child(user.getUid()).setValue(buyer);
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
