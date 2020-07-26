@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_trips_shopper_adapter.MyViewHolder>{
+public class Past_trips_shopper_adapter extends RecyclerView.Adapter<Past_trips_shopper_adapter.MyViewHolder>{
 
     ArrayList<String> data1 = new ArrayList<String>();
     ArrayList<String> data2 = new ArrayList<String>();
@@ -29,7 +29,7 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
 
     Context context;
 
-    public Current_trips_shopper_adapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, String id){
+    public Past_trips_shopper_adapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, String id){
         context = ct;
         data1= s1;
         data2 = s2;
@@ -42,7 +42,7 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.current_trips_shopper_row, parent, false);
+        View view = inflater.inflate(R.layout.past_trips_shopper_row, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -54,14 +54,14 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // ((CurrentTripsShopper)context).deleteShopper(orderID.get(position));
+                // ((CurrentTripsShopper)context).deleteShopper(orderID.get(position));
                 //data1.remove(position);
                 //data2.remove(position);
                 //data3.remove(position);
                 //orderID.remove(position);
                 //notifyItemRemoved(position);
                 //notifyItemRangeChanged(position, data1.size());
-                ((CurrentTripsShopper)context).goDetails(orderID.get(position));
+                ((PastTripsShopper)context).goDetails(orderID.get(position));
             }
         });
 
