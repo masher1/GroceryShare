@@ -8,11 +8,20 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class OrderFulfillShopper extends AppCompatActivity {
     private Button viewOrderBtnShopper;
     private Button viewShoppingListBtnShopper;
     private Button uploadRcptBtnShopper;
     private Button confirmOrderBtnShopper;
+    private Button cancelOrder;
+
+    DatabaseReference databaseOrders;
+    FirebaseUser user;
 
     private TextView orderNameText;
     public String orderid;
@@ -22,6 +31,8 @@ public class OrderFulfillShopper extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_fulfill_shopper);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         Intent intent= getIntent();
         Bundle extras = intent.getExtras();
         if(extras != null)
@@ -31,6 +42,8 @@ public class OrderFulfillShopper extends AppCompatActivity {
         viewOrderBtnShopper = (Button) findViewById(R.id.orderInfoBtn);
         viewShoppingListBtnShopper = (Button) findViewById(R.id.viewListBtnShopper);
         uploadRcptBtnShopper = (Button) findViewById(R.id.uploadRcptTxtBtn);
+        cancelOrder = findViewById(R.id.cancelOrderBtn);
+
         orderNameText = (TextView) findViewById(R.id.orderNameTxt);
 
         confirmOrderBtnShopper = (Button) findViewById(R.id.orderDoneBtn);
@@ -73,6 +86,14 @@ public class OrderFulfillShopper extends AppCompatActivity {
                 startActivity(intent);
             }
 
+        });
+        cancelOrder.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                databaseOrders.child(orderid).child("shopperId").setValue(null);
+
+                Intent intent = new Intent(OrderFulfillShopper.this, ShopperHomeScreen.class);
+                startActivity(intent);
+            }
         });
     }
 

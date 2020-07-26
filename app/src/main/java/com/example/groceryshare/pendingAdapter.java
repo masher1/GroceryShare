@@ -1,5 +1,4 @@
 package com.example.groceryshare;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,7 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
 
     ArrayList<String> storeName = new ArrayList<String>();
     ArrayList<String> orderID = new ArrayList<String>();
-    ArrayList<String> shopperId = new ArrayList<String>();
+    ArrayList<String> name = new ArrayList<String>();
 
     Context context;
 
@@ -31,9 +30,8 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
         context = ct;
         storeName= s1;
         orderID = s2;
-        shopperId = s3;
+        name = s3;
     }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,44 +39,38 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
         View view = inflater.inflate(R.layout.pending_trips_row, parent, false);
         return new MyViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.storeName_text.setText(storeName.get(position));
         holder.orderId_text.setText(orderID.get(position));
-        holder.shopperId_text.setText(shopperId.get(position));
+        holder.name_text.setText(name.get(position));
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((PendingActivity)context).goDetails(orderID.get(position));
             }
         });
-
     }
-
     @Override
     public int getItemCount() {
         return storeName.size();
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
         //find the content here
-        TextView storeName_text, orderId_text, shopperId_text;
+        TextView storeName_text, orderId_text, name_text;
         Button button;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             storeName_text = itemView.findViewById(R.id.storeName_text);
             orderId_text = itemView.findViewById(R.id.orderId_text);
-            shopperId_text = itemView.findViewById(R.id.shopperId_text);
+            name_text = itemView.findViewById(R.id.name_text);
             button =itemView.findViewById(R.id.pickOrder);
         }
     }
     public void addOrder(String s1, String s2, String s3) {
         storeName.add(s1);
         orderID.add(s2);
-        shopperId.add(s3);
+        name.add(s3);
         notifyItemInserted(storeName.size()-1);
     }
 }
-

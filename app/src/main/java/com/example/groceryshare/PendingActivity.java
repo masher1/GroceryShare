@@ -33,6 +33,7 @@ public class PendingActivity extends AppCompatActivity {
     String storeName;
     String orderId;
     String shopperId;
+    String name;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -41,9 +42,10 @@ public class PendingActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
+        database = FirebaseDatabase.getInstance().getReference();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pending_activity);
-
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -52,35 +54,46 @@ public class PendingActivity extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        FirebaseDatabase.getInstance().getReference().child("Orders")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                if (snapshot.child("buyerId").getValue(String.class).equals(user.getUid())) {
-                                    storeName = snapshot.child("storeName").getValue(String.class);
-                                    orderId = snapshot.child("orderId").getValue(String.class);
-                                    shopperId = snapshot.child("shopperId").getValue(String.class);
-                                    myAdapter.addOrder(storeName,orderId,shopperId);
-                                }
-
-                        }
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot snapshots = dataSnapshot.child("Orders");
+                for (DataSnapshot snapshot : snapshots.getChildren()) {
+                    if (snapshot.child("buyerId").getValue(String.class).equals(user.getUid())) {
+                        storeName = snapshot.child("storeName").getValue(String.class);
+                        orderId = snapshot.child("orderId").getValue(String.class);
+                        shopperId = snapshot.child("shopperId").getValue(String.class);
+                        getbuyer(database, dataSnapshot, storeName, orderId, shopperId, myAdapter);
                     }
+                }
+            }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
+
+    private void getbuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
+        DataSnapshot snapshots;
+        snapshots = dataSnapshot.child("Shoppers");
+        for (DataSnapshot snapshot : snapshots.getChildren()) {
+            if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
+                name = snapshot.child("firstName").getValue(String.class);
+            }
+        }
+        myAdapter.addOrder(storeName, orderId, name);
+    }
+
+
     public void goBack(View v) {
         Intent intent = new Intent(this, BuyerHomeScreen.class);
         startActivity(intent);
     }
 
-    public void goDetails(String orderId){
+    public void goDetails(String orderId) {
         Intent intent = new Intent(this, OrderFulfillBuyer.class);
-        intent.putExtra("orderid", orderId);
+        intent.putExtra("ORDER_ID", orderId);
         startActivity(intent);
     }
 }

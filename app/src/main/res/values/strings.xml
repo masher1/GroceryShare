@@ -36,9 +36,10 @@
     <string name="check_if_related_to_app">Check if related to app</string>
     <string name="payment_issue">Payment Issue</string>
     <string name="submit_complaint">Submit Complaint</string>
-    <string name="order_name_placeholder">Order Name Placeholder</string>
+    <string name="order_name_placeholder">Order Name</string>
     <string name="upload_receipt">Upload Receipt</string>
     <string name="confirm_order_complete">Confirm Order Complete</string>
+    <string name="cancel_order">Cancel Order</string>
     <string name="view_order_info">View Order Info</string>
     <string name="view_shopping_list">View Shopping List</string>
     <string name="order_info">Order Info</string>
@@ -103,6 +104,7 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="logout">Logout</string>
     <string name="back_button">Back Button</string>
+    <string name="unassign_order">Unassign Order</string>
 
     <!-- Sync Preferences -->
     <string-array name="frequency">
