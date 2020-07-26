@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,9 +33,8 @@ public class ListActivity extends AppCompatActivity {
     DatabaseReference databaseBuyers;
     DatabaseReference databaseOrders;
     String address;
+    String status;
     Date dateFulfilled;
-    Date datePlaced;
-    Date dateBy;
     String storeName;
     String payment;
     String receiptcopy;
@@ -64,13 +63,11 @@ public class ListActivity extends AppCompatActivity {
                 payment = buyer.getPayment();
                 storeName = buyer.getStore();
                 otherInfo = buyer.getOthers();
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
 
         builder = new AlertDialog.Builder(this);
         submitbtn.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +90,7 @@ public class ListActivity extends AppCompatActivity {
                         .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //  Action for 'NO' Button
-                                Intent intent = new Intent(ListActivity.this, PersonalActivity.class);
+                                Intent intent = new Intent(ListActivity.this, PersonalActivityBuyer.class);
                                 startActivity(intent);
                                 Toast.makeText(getApplicationContext(),"you choose edit action for alertbox",
                                         Toast.LENGTH_SHORT).show();
@@ -140,8 +137,8 @@ public class ListActivity extends AppCompatActivity {
     private void addShoppingList(){
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         if(ItemAdapter.shopList.size() != 0){
-            id = databaseOrders.push().getKey();
-            NewOrder order = new NewOrder(id, datePlaced, dateFulfilled, dateBy, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo);
+            String id = databaseOrders.push().getKey();
+            newOrder order = new newOrder(id, status, dateFulfilled, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo);
             databaseOrders.child(id).setValue(order);
             Toast.makeText(getApplicationContext(),  "New Shopping List Added!", Toast.LENGTH_LONG).show();
         }

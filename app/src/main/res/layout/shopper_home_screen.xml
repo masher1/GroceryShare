@@ -36,20 +36,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="169dp"
-        android:layout_marginTop="0dp"
-        android:clipToPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingRight="15sp"
-        android:paddingEnd="15sp">
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/availableIDShop"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="190dp"
-            android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -58,7 +55,7 @@
                 android:id="@+id/availableCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#009699"
+                android:background="@drawable/home_screen_background"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -82,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/graycolor" />
+                    android:background="@color/greencolor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -97,10 +94,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/currentOrderIDShop"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="190dp"
-            android:layout_margin="10dp"
             android:clickable="true"
+            android:layout_marginLeft="10dp"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
@@ -108,7 +105,7 @@
                 android:id="@+id/currentTripsCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#009699"
+                android:background="@drawable/home_screen_background"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -131,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/graycolor" />
+                    android:background="@color/greencolor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -147,20 +144,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="163dp"
-        android:layout_marginTop="10sp"
-        android:clipToPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingRight="15sp"
-        android:paddingEnd="15sp">
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/pastOrderIDShop"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="190dp"
-            android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -169,7 +163,7 @@
                 android:id="@+id/pastTripsCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#009699"
+                android:background="@drawable/home_screen_background"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -192,7 +186,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/graycolor" />
+                    android:background="@color/greencolor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -207,9 +201,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/settingsIDShop"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="190dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -218,7 +212,7 @@
                 android:id="@+id/settingsCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#009699"
+                android:background="@drawable/home_screen_background"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -241,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/graycolor" />
+                    android:background="@color/greencolor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -257,20 +251,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="178dp"
-        android:layout_marginTop="10sp"
-        android:clipToPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingRight="15sp"
-        android:paddingEnd="15sp">
+        android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/ratingIDShop"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="190dp"
-            android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -279,7 +270,7 @@
                 android:id="@+id/ratingAndReviewCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#009699"
+                android:background="@drawable/home_screen_background"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -302,7 +293,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/graycolor" />
+                    android:background="@color/greencolor" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -317,9 +308,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/problemIDShop"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="190dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -328,7 +319,7 @@
                 android:id="@+id/problemCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#009699"
+                android:background="@drawable/home_screen_background"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -351,7 +342,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/graycolor" />
+                    android:background="@color/greencolor" />
 
                 <TextView
                     android:layout_width="wrap_content"

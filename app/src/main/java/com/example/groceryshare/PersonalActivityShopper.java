@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,10 +48,7 @@ import java.io.IOException;
 public class PersonalActivityShopper extends AppCompatActivity {
 
     String[] name;
-    String address;
-    String phoneNumber;
-    String frequency;
-    String userID;
+    String email, firstName, lastName, address, phoneNumber, birthday, frequency;
 
     //Profile Pic Content Start
     String profileImage;
@@ -70,10 +68,10 @@ public class PersonalActivityShopper extends AppCompatActivity {
     EditText nameInput;
     EditText addressInput;
     EditText phoneInput;
-    EditText frequencyInput;
+    Spinner frequencyspinner;
     Button submitButton;
 
-//    TextField Data Collection End
+    //    TextField Data Collection End
 
     ImageView img; //used for the back button navigation
 
@@ -90,7 +88,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
         addressInput = (EditText) findViewById(R.id.addressId);
         nameInput = (EditText) findViewById(R.id.nameid2);
         phoneInput = (EditText) findViewById(R.id.numberId2);
-        frequencyInput = (EditText) findViewById(R.id.frequencyid);
+        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
         ProfileImage = (ImageView) findViewById(R.id.imageid2);
 
         if (user != null) {
@@ -115,7 +113,10 @@ public class PersonalActivityShopper extends AppCompatActivity {
                         addressInput.setText(shopper.getAddress());
                         nameInput.setText(shopper.getFirstName() + " " + shopper.getLastName());
                         phoneInput.setText(shopper.getPhoneNumber());
-                        frequencyInput.setText(shopper.getFrequency());
+                        email = shopper.getEmail();
+                        birthday = shopper.getBirthday();
+
+                        addListenerOnSpinnerItemSelection();
                     }
 
                     @Override
@@ -139,11 +140,11 @@ public class PersonalActivityShopper extends AppCompatActivity {
 
     private void addPreferences() {
         name = nameInput.getText().toString().split(" ");
-        String firstName = name[0];
-        String lastName = name[1];
+        firstName = name[0];
+        lastName = name[1];
         address = addressInput.getText().toString();
         phoneNumber = phoneInput.getText().toString();
-        frequency = frequencyInput.getText().toString();
+        frequency = frequencyspinner.getSelectedItem().toString();
 
         try{
             handleUpload(imageBitmap, user);
@@ -152,7 +153,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
             Log.e(TAG, "Error: ", e.getCause());
         }
 
-        newShopperCreds buyer = new newShopperCreds(user.getUid(), firstName, lastName, address, phoneNumber, frequency);
+        newShopperCreds buyer = new newShopperCreds(user.getUid(), email, firstName, lastName, address, phoneNumber, birthday, frequency);
         databaseShoppers.child(user.getUid()).setValue(buyer);
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
@@ -330,5 +331,10 @@ public class PersonalActivityShopper extends AppCompatActivity {
                         Toast.makeText(PersonalActivityShopper.this, "Profile image failed...", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void addListenerOnSpinnerItemSelection() {
+        frequencyspinner = (Spinner) findViewById(R.id.FrequencyInput);
+        frequencyspinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 }
