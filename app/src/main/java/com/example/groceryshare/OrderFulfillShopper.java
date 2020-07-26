@@ -12,6 +12,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
     private Button viewShoppingListBtnShopper;
     private Button uploadRcptBtnShopper;
     private Button confirmOrderBtnShopper;
+    String orderIDFulfill;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,8 @@ public class OrderFulfillShopper extends AppCompatActivity {
         uploadRcptBtnShopper = (Button) findViewById(R.id.uploadRcptTxtBtn);
 
         confirmOrderBtnShopper = (Button) findViewById(R.id.orderDoneBtn);
+
+
         // Add_button add click listener
         viewOrderBtnShopper.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -43,6 +46,10 @@ public class OrderFulfillShopper extends AppCompatActivity {
         uploadRcptBtnShopper.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(OrderFulfillShopper.this, UploadReceipt.class);
+                Intent intentFetch = getIntent();
+                Bundle intentOrderID = intentFetch.getExtras();
+                orderIDFulfill = intentOrderID.getString("Order_ID");
+                intent.putExtra("Order_ID", orderIDFulfill);
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
