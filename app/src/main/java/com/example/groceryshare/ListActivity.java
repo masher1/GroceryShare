@@ -90,7 +90,7 @@ public class ListActivity extends AppCompatActivity {
                         .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //  Action for 'NO' Button
-                                Intent intent = new Intent(ListActivity.this, PersonalActivity.class);
+                                Intent intent = new Intent(ListActivity.this, PersonalActivityBuyer.class);
                                 startActivity(intent);
                                 Toast.makeText(getApplicationContext(),"you choose edit action for alertbox",
                                         Toast.LENGTH_SHORT).show();
