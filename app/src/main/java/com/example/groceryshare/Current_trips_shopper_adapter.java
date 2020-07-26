@@ -5,19 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
 
 public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_trips_shopper_adapter.MyViewHolder>{
 
@@ -54,13 +47,6 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // ((CurrentTripsShopper)context).deleteShopper(orderID.get(position));
-                //data1.remove(position);
-                //data2.remove(position);
-                //data3.remove(position);
-                //orderID.remove(position);
-                //notifyItemRemoved(position);
-                //notifyItemRangeChanged(position, data1.size());
                 ((CurrentTripsShopper)context).goDetails(orderID.get(position));
             }
         });
@@ -93,10 +79,5 @@ public class Current_trips_shopper_adapter extends RecyclerView.Adapter<Current_
         //notifyDataSetChanged();
         notifyItemInserted(data1.size()-1);
     }
-    public void goDetails(View v){
-        //System.out.println("iiii");
-        //((CurrentTripsShopper)context).goDetails(v);
-        //android:clickable="true"
-        //android:onClick="goDetails"
-    }
+
 }

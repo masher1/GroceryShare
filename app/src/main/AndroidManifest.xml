@@ -41,7 +41,7 @@
         <activity android:name=".OrderActivity" />
         <activity android:name=".PastActivity" />
         <activity android:name=".PendingActivity" />
-        <activity android:name=".PersonalActivity" />
+        <activity android:name=".PersonalActivityBuyer" />
         <activity android:name=".RatingActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

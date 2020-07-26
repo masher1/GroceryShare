@@ -3,22 +3,18 @@ package com.example.groceryshare;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 
-import com.example.groceryshare.ui.login.LoginActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class CurrentTripsShopper extends AppCompatActivity {
 
@@ -31,6 +27,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
     ArrayList<String> s3 = new ArrayList<String>();
     ArrayList<String> s4 = new ArrayList<String>();
     String userID;
+    String buyerID, storeName, address, orderID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +53,10 @@ public class CurrentTripsShopper extends AppCompatActivity {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if(snapshot.child("shopperId").getValue(String.class) != null && snapshot.child("Status").getValue(String.class) == null) {
                                 if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
-                                    String buyerID = snapshot.child("buyerId").getValue(String.class);
-                                    String storeName = snapshot.child("storeName").getValue(String.class);
-                                    String address = snapshot.child("address").getValue(String.class);
-                                    String orderID = snapshot.child("orderId").getValue(String.class);
+                                    buyerID = snapshot.child("buyerId").getValue(String.class);
+                                    storeName = snapshot.child("storeName").getValue(String.class);
+                                    address = snapshot.child("address").getValue(String.class);
+                                    orderID = snapshot.child("orderId").getValue(String.class);
                                     myAdapter.addOrder(buyerID, storeName, address, orderID);
                                 }
                             }
@@ -84,7 +81,6 @@ public class CurrentTripsShopper extends AppCompatActivity {
         startActivity(intent);
     }
     public void goDetails(String orderID){
-        System.out.println("jjjjj");
         Intent intent = new Intent(this, OrderFulfillShopper.class);
         intent.putExtra("ORDER_ID", orderID);
         startActivity(intent);

@@ -5,15 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.groceryshare.ui.login.LoginActivity;
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsBuyer extends AppCompatActivity {
     private Button personalBtn;
@@ -67,7 +62,7 @@ public class SettingsBuyer extends AppCompatActivity {
     }
 
     public void openPersonal(){
-        Intent intent = new Intent(this, PersonalActivity.class);
+        Intent intent = new Intent(this, PersonalActivityBuyer.class);
         startActivity(intent);
     }
 
