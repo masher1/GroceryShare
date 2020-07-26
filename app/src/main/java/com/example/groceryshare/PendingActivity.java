@@ -24,7 +24,7 @@ public class PendingActivity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    DatabaseReference databaseOrders;
+    DatabaseReference database;
 
     ArrayList<String> s1 = new ArrayList<String>();
     ArrayList<String> s2 = new ArrayList<String>();
@@ -40,8 +40,6 @@ public class PendingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-
-        databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         database = FirebaseDatabase.getInstance().getReference();
 
         super.onCreate(savedInstanceState);
@@ -63,7 +61,7 @@ public class PendingActivity extends AppCompatActivity {
                         storeName = snapshot.child("storeName").getValue(String.class);
                         orderId = snapshot.child("orderId").getValue(String.class);
                         shopperId = snapshot.child("shopperId").getValue(String.class);
-                        getbuyer(database, dataSnapshot, storeName, orderId, shopperId, myAdapter);
+                        getBuyer(database, dataSnapshot, storeName, orderId, shopperId, myAdapter);
                     }
                 }
             }
@@ -74,7 +72,7 @@ public class PendingActivity extends AppCompatActivity {
         });
     }
 
-    private void getbuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
+    private void getBuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
