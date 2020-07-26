@@ -54,7 +54,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("shopperId").getValue(String.class) != null) {
+                            if(snapshot.child("shopperId").getValue(String.class) != null && snapshot.child("Status").getValue(String.class) == null) {
                                 if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
                                     String buyerID = snapshot.child("buyerId").getValue(String.class);
                                     String storeName = snapshot.child("storeName").getValue(String.class);
@@ -83,9 +83,10 @@ public class CurrentTripsShopper extends AppCompatActivity {
         Intent intent = new Intent(this, OrderFulfillShopper.class);
         startActivity(intent);
     }
-    public void goDetails(View v){
+    public void goDetails(String orderID){
         System.out.println("jjjjj");
         Intent intent = new Intent(this, OrderFulfillShopper.class);
+        intent.putExtra("ORDER_ID", orderID);
         startActivity(intent);
     }
 }

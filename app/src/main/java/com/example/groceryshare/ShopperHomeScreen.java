@@ -71,7 +71,7 @@ public class ShopperHomeScreen extends AppCompatActivity {
             public void onClick(View v) {
                 //add way to handle empty or bad input
                 Intent intent = new Intent(ShopperHomeScreen.this, PastTripsShopper.class);
-
+                intent.putExtra("USER_ID", userID);
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
