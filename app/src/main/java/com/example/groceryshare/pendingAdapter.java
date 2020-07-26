@@ -4,17 +4,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHolder>{
+
     ArrayList<String> storeName = new ArrayList<String>();
     ArrayList<String> orderID = new ArrayList<String>();
     ArrayList<String> name = new ArrayList<String>();
+
     Context context;
+
     public pendingAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3){
         context = ct;
         storeName= s1;

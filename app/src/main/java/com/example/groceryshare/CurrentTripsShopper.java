@@ -51,7 +51,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("shopperId").getValue(String.class) != null) {
+                            if(snapshot.child("shopperId").getValue(String.class) != null && snapshot.child("Status").getValue(String.class) == null) {
                                 if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
                                     buyerID = snapshot.child("buyerId").getValue(String.class);
                                     storeName = snapshot.child("storeName").getValue(String.class);

@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,6 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -38,18 +46,40 @@ public class UploadReceipt extends AppCompatActivity {
     private StorageReference StorageRef;
     private StorageTask UploadTask;
     private android.widget.ProgressBar ProgressBar;
+    private EditText total;
     //Profile Pic Content End
-    String receiptImage;
+    String receiptImageString;
+    String userID;
+    //add to correct part of database
+    String orderReference;
+    String orderId;
+    DatabaseReference databaseReceipts;
+    Integer picNum;
+    String totalString;
+    String orderNum;
+    String orderID;
+    String receipt;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Intent intent = getIntent();
+        //userID = intent.getStringExtra("USER_ID");
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_receipt);
-        StorageRef = FirebaseStorage.getInstance().getReference("receiptUploads");
+        picNum = 0;
+        StorageRef = FirebaseStorage.getInstance().getReference("Receipts");
         ProgressBar = findViewById(R.id.progress_bar_receipt);
         next = findViewById(R.id.nextButton);
         ButtonUpload1 = findViewById(R.id.uploadBtn1);
         ReceiptImg1 = findViewById(R.id.receipt_img_1);
-
+        total = findViewById(R.id.totalOwedDecimal);
+        Bundle intentOrderID = getIntent().getExtras();
+        orderID = intentOrderID.getString("Order_ID");
+        final String uploadLocation = "Orders/"+orderID+"/Receipts";
+        System.out.println(uploadLocation);
         ButtonUpload1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,12 +87,25 @@ public class UploadReceipt extends AppCompatActivity {
                     Toast.makeText(UploadReceipt.this, "Upload in progress!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    uploadFile();
+                    receipt = uploadFile();
+                    System.out.println("Upload Receipt OrderID" + orderID);
+                    databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
+                    if (receipt!=null){
+                        String picLabel = "Picture Number " + (picNum).toString() + " Reference String";
+                        databaseReceipts.child(picLabel).setValue(receipt);
+                        Toast.makeText(UploadReceipt.this, "Upload successful", Toast.LENGTH_LONG).show();
+                        picNum++;
+                    }
+                    else{
+                        Toast.makeText(UploadReceipt.this, "Upload failed, please try again", Toast.LENGTH_LONG).show();
+                    }
                 }
                 if (next.isEnabled()==false) {
                     next.setBackgroundResource(R.drawable.joinbtn);
                     next.setEnabled(true);
                 }
+
+
             }
         });
 
@@ -82,7 +125,10 @@ public class UploadReceipt extends AppCompatActivity {
             public void onClick(View v) {
                 //add way to handle empty or bad input
                 Intent intent = new Intent(UploadReceipt.this, OrderFulfillShopper.class);
-
+                //databaseReceipts = FirebaseDatabase.getInstance().getReference("Orders");
+                databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
+                totalString = total.getText().toString();
+                databaseReceipts.child("Total").setValue(totalString);
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
@@ -118,7 +164,7 @@ public class UploadReceipt extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
-    private void uploadFile() {
+    private String uploadFile() {
         if (imageUri != null) {
             StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(imageUri));
@@ -132,8 +178,10 @@ public class UploadReceipt extends AppCompatActivity {
                             ProgressBar.setProgress(0);
                         }
                     }, 50);
-                    Toast.makeText(UploadReceipt.this, "Upload successful", Toast.LENGTH_LONG).show();
-                    receiptImage = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                    //Toast.makeText(UploadReceipt.this, "Upload successful", Toast.LENGTH_LONG).show();
+                    receiptImageString = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                    //replace with orderId path when get it
+
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
@@ -153,6 +201,7 @@ public class UploadReceipt extends AppCompatActivity {
         else {
             Toast.makeText(this, "Please Select a Profile Photo!", Toast.LENGTH_SHORT).show();
         }
+        return receiptImageString;
     }
 
 }

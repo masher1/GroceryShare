@@ -3,11 +3,15 @@ package com.example.groceryshare;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 
+import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -16,15 +20,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 public class PendingActivity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
     DatabaseReference databaseOrders;
-    DatabaseReference database;
-
 
     ArrayList<String> s1 = new ArrayList<String>();
     ArrayList<String> s2 = new ArrayList<String>();
@@ -32,8 +32,8 @@ public class PendingActivity extends AppCompatActivity {
 
     String storeName;
     String orderId;
-    String name;
     String shopperId;
+    String name;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
