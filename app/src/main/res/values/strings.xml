@@ -105,6 +105,10 @@
     <string name="logout">Logout</string>
     <string name="back_button">Back Button</string>
     <string name="unassign_order">Unassign Order</string>
+    <string name="name">Name</string>
+    <string name="store">Store</string>
+    <string name="distance">Distance</string>
+    <string name="buyer_profile_photo">Buyer\'s Profile Photo</string>
 
     <!-- Sync Preferences -->
     <string-array name="frequency">

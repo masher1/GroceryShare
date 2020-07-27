@@ -3,15 +3,11 @@ package com.example.groceryshare;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 
-import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class PendingActivity extends AppCompatActivity {
 
@@ -61,7 +59,7 @@ public class PendingActivity extends AppCompatActivity {
                         storeName = snapshot.child("storeName").getValue(String.class);
                         orderId = snapshot.child("orderId").getValue(String.class);
                         shopperId = snapshot.child("shopperId").getValue(String.class);
-                        getBuyer(database, dataSnapshot, storeName, orderId, shopperId, myAdapter);
+                        getBuyer(dataSnapshot, storeName, orderId, shopperId, myAdapter);
                     }
                 }
             }
@@ -72,7 +70,7 @@ public class PendingActivity extends AppCompatActivity {
         });
     }
 
-    private void getBuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
+    private void getBuyer(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
@@ -82,7 +80,6 @@ public class PendingActivity extends AppCompatActivity {
         }
         myAdapter.addOrder(storeName, orderId, name);
     }
-
 
     public void goBack(View v) {
         Intent intent = new Intent(this, BuyerHomeScreen.class);

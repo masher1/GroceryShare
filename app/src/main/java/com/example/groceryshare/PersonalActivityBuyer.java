@@ -104,15 +104,17 @@ public class PersonalActivityBuyer extends AppCompatActivity {
             }
         }
 
-        //TODO: There is an error message that shows up when you access this activity twice from the main screen
         FirebaseDatabase.getInstance().getReference().child("Buyers").child(user.getUid())
-          .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         newBuyerCreds buyer = dataSnapshot.getValue(newBuyerCreds.class);
                         addressInput.setText(buyer.getAddress());
                         nameInput.setText(buyer.getFirstName() + " " + buyer.getLastName());
-                        storeInput.setText(buyer.getStore());
+                        if (buyer.getStore() == null || buyer.getStore() == "")
+                            storeInput.setText("Anywhere");
+                        else
+                            storeInput.setText(buyer.getStore());
                         paymentInput.setText(buyer.getPayment());
                         othersInput.setText(buyer.getOthers());
                     }
@@ -147,10 +149,9 @@ public class PersonalActivityBuyer extends AppCompatActivity {
         payment = paymentInput.getText().toString();
         others = othersInput.getText().toString();
 
-        try{
+        try {
             handleUpload(imageBitmap, user);
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e(TAG, "Error: ", e.getCause());
         }
 
