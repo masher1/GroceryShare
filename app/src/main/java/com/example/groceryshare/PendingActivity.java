@@ -22,18 +22,19 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PendingActivity extends AppCompatActivity {
 
-
     RecyclerView recyclerView;
     DatabaseReference database;
 
     ArrayList<String> s1 = new ArrayList<String>();
     ArrayList<String> s2 = new ArrayList<String>();
     ArrayList<String> s3 = new ArrayList<String>();
+    ArrayList<String> s4 = new ArrayList<String>();
 
     String storeName;
     String orderId;
     String shopperId;
     String name;
+    String orderNickname;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -47,7 +48,7 @@ public class PendingActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3);
+        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3, s4);
 
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,7 +62,8 @@ public class PendingActivity extends AppCompatActivity {
                         storeName = snapshot.child("storeName").getValue(String.class);
                         orderId = snapshot.child("orderId").getValue(String.class);
                         shopperId = snapshot.child("shopperId").getValue(String.class);
-                        getBuyer(database, dataSnapshot, storeName, orderId, shopperId, myAdapter);
+                        orderNickname = snapshot.child("orderNickname").getValue(String.class);
+                        getBuyer(database, dataSnapshot, storeName, orderId, shopperId, name, orderNickname, myAdapter);
                     }
                 }
             }
@@ -72,7 +74,7 @@ public class PendingActivity extends AppCompatActivity {
         });
     }
 
-    private void getBuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
+    private void getBuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, String name, String orderNickname, pendingAdapter myAdapter) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
@@ -80,7 +82,7 @@ public class PendingActivity extends AppCompatActivity {
                 name = snapshot.child("firstName").getValue(String.class);
             }
         }
-        myAdapter.addOrder(storeName, orderId, name);
+        myAdapter.addOrder(storeName, orderId, name, orderNickname);
     }
 
 

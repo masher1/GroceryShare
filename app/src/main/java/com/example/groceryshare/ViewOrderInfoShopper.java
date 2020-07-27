@@ -111,10 +111,12 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
                 for (DataSnapshot snapshot : snapshots.getChildren()) {
-                    if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
-                        if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
-                            buyerId = snapshot.child("buyerId").getValue(String.class);
-                            getbuyer(database, dataSnapshot, buyerId);
+                    if (snapshot.child("shopperId").getValue(String.class) != null) {
+                        if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
+                            if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
+                                buyerId = snapshot.child("buyerId").getValue(String.class);
+                                getbuyer(database, dataSnapshot, buyerId);
+                            }
                         }
                     }
                 }
