@@ -21,13 +21,15 @@ public class CurrentTripsShopper extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseReference databaseOrders;
+    DatabaseReference database;
 
     ArrayList<String> s1 = new ArrayList<String>();
     ArrayList<String> s2 = new ArrayList<String>();
     ArrayList<String> s3 = new ArrayList<String>();
     ArrayList<String> s4 = new ArrayList<String>();
     String userID;
-    String buyerID, storeName, address, orderID;
+    String name, storeName, distance, orderID, buyerID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
         userID = intent.getStringExtra("USER_ID");
 
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
+        database = FirebaseDatabase.getInstance().getReference();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.current_trips_shopper);
 
@@ -46,18 +49,18 @@ public class CurrentTripsShopper extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        FirebaseDatabase.getInstance().getReference().child("Orders")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot snapshots = dataSnapshot.child("Orders");
+                for (DataSnapshot snapshot : snapshots.getChildren()) {
                             if(snapshot.child("shopperId").getValue(String.class) != null && snapshot.child("Status").getValue(String.class) == null) {
                                 if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
-                                    buyerID = snapshot.child("buyerId").getValue(String.class);
                                     storeName = snapshot.child("storeName").getValue(String.class);
-                                    address = snapshot.child("address").getValue(String.class);
+                                    distance = snapshot.child("address").getValue(String.class);
                                     orderID = snapshot.child("orderId").getValue(String.class);
-                                    myAdapter.addOrder(buyerID, storeName, address, orderID);
+                                    buyerID = snapshot.child("buyerId").getValue(String.class);
+                                    getBuyer(database, dataSnapshot, storeName, orderID, buyerID, myAdapter);
                                 }
                             }
                         }
@@ -70,6 +73,17 @@ public class CurrentTripsShopper extends AppCompatActivity {
 
 
 
+    }
+
+    private void getBuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String buyerId, Current_trips_shopper_adapter myAdapter) {
+        DataSnapshot snapshots;
+        snapshots = dataSnapshot.child("Buyers");
+        for (DataSnapshot snapshot : snapshots.getChildren()) {
+            if (snapshot.child("buyerID").getValue(String.class).equals(buyerId)) {
+                name = snapshot.child("firstName").getValue(String.class);
+            }
+        }
+        myAdapter.addOrder(name, storeName, distance, orderID);
     }
     public void goBack(View v) {
         Intent intent = new Intent(this, ShopperHomeScreen.class);
