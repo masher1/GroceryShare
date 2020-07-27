@@ -4,34 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_margin="5dp"
     android:clickable="true"
-    android:onClick="goDetails"
-    tools:context=".ShoppingTripsAvailable"
-    android:layout_margin="5dp">
+    android:orientation="vertical"
+    tools:context=".PastTripsShopper">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/pickOrder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fui_transparent" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@drawable/main_border"
             android:layout_height="wrap_content"
+            android:background="@drawable/main_border"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/pickOrder"
+            <ImageView
+                android:id="@+id/profile_image"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="9dp"
-                android:background="@drawable/joinbtn"
-                android:elevation="5dp"
-                android:text="X"
-                android:textAllCaps="false"
-                android:textColor="@color/whitecolor"
-                android:textSize="20sp"
-                />
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/buyer_profile_photo"
+                android:padding="3dp"
+                app:srcCompat="@drawable/ic_baseline_face_24"
+                tools:ignore="VectorDrawableCompat" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,8 +49,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Name"
-                    android:textStyle="bold"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -58,11 +61,11 @@
                         android:id="@+id/storeName_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Store"
-                        android:textSize="20sp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
+                        android:text="Store"
+                        android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-tools:context=".CurrentTripsShopper"
-android:layout_margin="5dp">
-
-<androidx.cardview.widget.CardView
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
     android:orientation="vertical"
-    tools:context=".CurrentTripsShopper"
-    android:layout_margin="5dp">
-    ​
-        ​
+    tools:context=".CurrentTripsShopper">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/pickOrder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fui_transparent" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@drawable/main_border"
             android:layout_height="wrap_content"
+            android:background="@drawable/main_border"
             android:orientation="horizontal">
-            ​
-            <Button
-                android:id="@+id/pickOrder"
+
+            <ImageView
+                android:id="@+id/profile_image"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="9dp"
-                android:background="@drawable/joinbtn"
-                android:elevation="5dp"
-                android:text="X"
-                android:textAllCaps="false"
-                android:textColor="@color/whitecolor"
-                android:textSize="20sp"
-                />
-            ​
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/buyer_profile_photo"
+                android:padding="3dp"
+                app:srcCompat="@drawable/ic_baseline_face_24"
+                tools:ignore="VectorDrawableCompat" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/border"
                 android:orientation="vertical">
-                ​
+
                 <TextView
                     android:id="@+id/fullName_text"
                     android:layout_width="wrap_content"
@@ -50,26 +49,26 @@ android:layout_margin="5dp">
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Name"
-                    android:textStyle="bold"
-                    android:textSize="20dp" />
-                ​
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
-                    ​
+
                     <TextView
                         android:id="@+id/storeName_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Store"
-                        android:textSize="20sp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
+                        android:text="Store"
+                        android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-                    ​
+
                     <TextView
                         android:id="@+id/howFar_text"
                         android:layout_width="wrap_content"
@@ -83,7 +82,7 @@ android:layout_margin="5dp">
                         android:textStyle="italic"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-                    ​
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </LinearLayout>

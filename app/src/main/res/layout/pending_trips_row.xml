@@ -5,12 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:clickable="true"
     tools:context=".PendingActivity"
     android:layout_margin="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/pickOrder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fui_transparent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,7 +68,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                     ​
-                    <!--                        TODO: fix this to be limited to a specific num of characters-->
+                    <!--TODO: fix this to be limited to a specific num of characters possibly utilizing StringUtils.abbreviate-->
                     <TextView
                         android:id="@+id/name_text"
                         android:layout_width="wrap_content"

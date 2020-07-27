@@ -18,6 +18,9 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class ShoppingTripsAvailable extends AppCompatActivity {
@@ -32,21 +35,31 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
     String userID;
     String buyerID, storeName, addressShopper, orderID;
 
+
+    //newCode started
+    private Shopping_trips_available_adapter myAdapter;
+    private List orders =new ArrayList<>();
+    //newCode ended
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent = getIntent();
-        userID = intent.getStringExtra("USER_ID");
-
-        databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopping_trips_available);
 
+        Intent intent = getIntent();
+        userID = intent.getStringExtra("USER_ID");
+
         recyclerView = findViewById(R.id.recyclerView);
+        databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
 
-        final Shopping_trips_available_adapter myAdapter = new Shopping_trips_available_adapter(this, s1, s2, s3, s4, userID);
+        //newCode started
+        RecyclerView.LayoutManager manager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+        myAdapter = new Shopping_trips_available_adapter(orders);
+        //newCode ended
 
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        final Shopping_trips_available_adapter myAdapter = new Shopping_trips_available_adapter(this, s1, s2, s3, s4, userID);
 
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -85,10 +98,21 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
             }
         }
         String distance = DistanceCalculator.main(addressBuyer, addressShopper);
-        myAdapter.addOrder(buyerID, storeName, distance, orderID);
-        
+        buyerID = buyerID.substring(0, Math.min(buyerID.length(), 15));
+        orderData data = new orderData(buyerID, storeName, distance, orderID);
+        orders.add(data);
+        recyclerView.setAdapter(myAdapter);
+        sortAndSubmit(orders);
     }
 
+    private void sortAndSubmit(List orders) {
+        Collections.sort(orders, new Comparator<orderData>() {
+            @Override
+            public int compare(orderData o1, orderData o2) {
+                return o1.distance.compareTo(o2.distance);
+            }
+        });
+    }
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
