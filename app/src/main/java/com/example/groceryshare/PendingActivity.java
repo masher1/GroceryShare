@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 
 public class PendingActivity extends AppCompatActivity {
@@ -59,7 +61,7 @@ public class PendingActivity extends AppCompatActivity {
                         storeName = snapshot.child("storeName").getValue(String.class);
                         orderId = snapshot.child("orderId").getValue(String.class);
                         shopperId = snapshot.child("shopperId").getValue(String.class);
-                        getBuyer(dataSnapshot, storeName, orderId, shopperId, myAdapter);
+                        getShopper(dataSnapshot, storeName, orderId, shopperId, myAdapter);
                     }
                 }
             }
@@ -70,12 +72,14 @@ public class PendingActivity extends AppCompatActivity {
         });
     }
 
-    private void getBuyer(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
+    private void getShopper(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
             if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
-                name = snapshot.child("firstName").getValue(String.class);
+                name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class).charAt(0) + ".";
+                if (name.length() > 18)
+                    name = StringUtils.abbreviate(name, 15);
             }
         }
         myAdapter.addOrder(storeName, orderId, name);

@@ -78,7 +78,7 @@
                         android:layout_marginRight="16dp"
                         android:gravity="right"
                         android:text="Distance"
-                        android:textSize="16dp"
+                        android:textSize="18sp"
                         android:textStyle="italic"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
