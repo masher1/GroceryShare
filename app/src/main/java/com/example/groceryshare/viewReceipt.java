@@ -1,20 +1,46 @@
 package com.example.groceryshare;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class viewReceipt extends AppCompatActivity {
     //replace with receipt images
@@ -23,38 +49,62 @@ public class viewReceipt extends AppCompatActivity {
     String userID;
     String total;
     String orderID;
+    String passedOrderId;
     Long numOfPicsLong;
     int numOfPicsInt;
     int numForLoop;
     String referencePic;
     String receipt;
-    String imgArray [];
+    String imgArray[];
+    FirebaseUser user;
+    String firebaseImgString;
+    private String receiptImg;
+    //ImageView receiptImgView;
+    private static final String TAG = "viewReceipt";
+    StorageReference storageReference;
+    ImageView imageView;
+    Button next;
+    Button back;
+    int nextValue;
+    String imgStringToPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_receipt);
-        /*Intent intent = getIntent();
-        userID = intent.getStringExtra("USER_ID");
-        numForLoop=0;
+        //receiptImgView = findViewById(R.id.receiptImgView);
+        Intent intent= getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null)
+            passedOrderId = extras.getString("orderid");
+        System.out.println("LOOK HERE" + passedOrderId);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userID = user.getUid();
+        System.out.println("userid" + userID);
+        next = findViewById(R.id.nextReceiptView);
+        back = findViewById(R.id.backReceiptView);
+        nextValue=0;
         FirebaseDatabase.getInstance().getReference().child("Orders")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("shopperId").getValue(String.class) != null) {
-                                if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
-                                    numOfPicsLong = snapshot.getChildrenCount() - 9;
-                                    numOfPicsInt = numOfPicsLong.intValue();
-                                    imgArray = new String [numOfPicsInt];
-                                    for (int i = 0; i<numOfPicsInt; i++){
-                                         referencePic = "Picture Number " + numForLoop + " Reference String";
-                                         System.out.println("Reference Pic" + referencePic);
-                                         receipt = snapshot.child(referencePic).getValue(String.class);
-                                         imgArray[0] = receipt;
-                                         numForLoop++;
-                                    }
+                            if (snapshot.child("orderId").getValue(String.class) != null) {
+                                numForLoop=0;
+                                if (snapshot.child("orderId").getValue(String.class).equals(passedOrderId)) {
                                     orderID = snapshot.child("orderId").getValue(String.class);
-                                    total = snapshot.child("Total").getValue(String.class);
+                                    total = snapshot.child("Receipts/Total").getValue(String.class);
+                                    System.out.println("TotalInLoop"+total);
+                                    numOfPicsLong = snapshot.child("Receipts").getChildrenCount();
+                                    numOfPicsInt = numOfPicsLong.intValue();
+                                    imgArray = new String[numOfPicsInt];
+                                    for (int i = 0; i < numOfPicsInt-1; i++) {
+                                        referencePic = "Picture Number " + numForLoop + " Reference String";
+                                        firebaseImgString = orderID + numForLoop + ".jpeg";
+                                        receipt = snapshot.child(referencePic).getValue(String.class);
+                                        imgArray[i] = firebaseImgString;
+                                        numForLoop++;
+                                        pause(firebaseImgString, imgArray[0], total);
+                                    }
                                 }
                             }
                         }
@@ -64,38 +114,62 @@ public class viewReceipt extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
-        totalView = findViewById(R.id.totalDue);
-        if (total !=null) {
-            totalView.setText(total);
-        }
-        else {
-            System.out.println("Total is Null!!!");
-        }
 
-        addImagesToThegallery(); */
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (nextValue<(numOfPicsInt-2)) {
+                    nextValue++;
+                }
+                imgStringToPass = imgArray[nextValue];
+                pause(firebaseImgString, imgStringToPass, total);
+
+            }
+
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (nextValue>0) {
+                    nextValue--;
+                }
+                imgStringToPass = imgArray[nextValue];
+                pause(firebaseImgString, imgStringToPass, total);
+
+            }
+
+
+        });
+        //new code
+        // Reference to an image file in Cloud Storage
+        pause(firebaseImgString, imgStringToPass, total);
+
 
     }
 
-   /* private void addImagesToThegallery() {
-        LinearLayout imageGallery = (LinearLayout) findViewById(R.id.imageGallery);
-        for (Integer image : images) {
-            imageGallery.addView(getImageView(image));
-        }
-    }
 
-
-    private View getImageView(Integer image) {
-        ImageView imageView = new ImageView(getApplicationContext());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(0, 0, 10, 0);
-        imageView.setLayoutParams(lp);
-        imageView.setImageResource(image);
-        return imageView;
-    }
-    */
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, OrderFulfillShopper.class);
+        Intent intent = new Intent(this, OrderFulfillBuyer.class);
         startActivity(intent);
+    }
+    public void pause(String imgString, String arrayItem, String tot) {
+        if (imgArray!=null) {
+            storageReference = FirebaseStorage.getInstance().getReference("Receipts/" + arrayItem);
+            // ImageView in your Activity
+            imageView = findViewById(R.id.receiptImgView);
+
+            // Download directly from StorageReference using Glide
+            // (See MyAppGlideModule for Loader registration)
+            Glide.with(this)
+                    .load(storageReference)
+                    .into(imageView);
+        }
+        //end new code
+
+        totalView = findViewById(R.id.totalDue);
+        if (tot != null) {
+            totalView.setText(tot);
+        } else {
+            System.out.println("Total is Null!!!");
+        }
     }
 }

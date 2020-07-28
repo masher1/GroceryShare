@@ -50,6 +50,8 @@ public class buyerComplaints extends AppCompatActivity {
         submitComplaint.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerComplaints.this, BuyerHomeScreen.class);
+                String id = databaseComplaints.push().getKey();
+                databaseComplaints = databaseComplaints.child(id);
                 problemDescripString = problemDescrip.getText().toString();
                 orderOtherIssueString = orderOtherIssue.getText().toString();
                 orderIssueValue = orderIssue.isChecked();

@@ -76,6 +76,7 @@ public class OrderFulfillBuyer extends AppCompatActivity {
         viewReceipt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(OrderFulfillBuyer.this, viewReceipt.class);
+                intent.putExtra("orderid", orderid);
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
