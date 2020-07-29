@@ -36,7 +36,7 @@
     <string name="check_if_related_to_app">Check if related to app</string>
     <string name="payment_issue">Payment Issue</string>
     <string name="submit_complaint">Submit Complaint</string>
-    <string name="order_name_placeholder">Order Name</string>
+    <string name="order_name_placeholder">Order ID</string>
     <string name="upload_receipt">Upload Receipt</string>
     <string name="confirm_order_complete">Confirm Order Complete</string>
     <string name="cancel_order">Cancel Order</string>
