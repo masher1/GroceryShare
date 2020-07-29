@@ -50,21 +50,16 @@ public class ShoppingListShopperView extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("orderId").getValue(String.class).equals(orderid)) {
-                                if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
-                                    ArrayList items = new ArrayList<>();
-                                    for (DataSnapshot shot : snapshot.child("shoppingList").getChildren()) {
-                                        String itemName = shot.child("itemName").getValue(String.class);
-                                        String brand = shot.child("brand").getValue(String.class);
-                                        String quantity = shot.child("quantity").getValue(String.class);
-                                        // Using your overloaded class constructor to populate the Order data
-                                        GroceryItem order = new GroceryItem(itemName, brand, quantity);
-                                        // here we are adding the order to the ArrayList
-                                        itemList.add(order);
-                                    }
-                                }
-                            }
+
+                        ArrayList items = new ArrayList<>();
+                        for (DataSnapshot shot : dataSnapshot.child(orderid).child("shoppingList").getChildren()) {
+                            String itemName = shot.child("itemName").getValue(String.class);
+                            String brand = shot.child("brand").getValue(String.class);
+                            String quantity = shot.child("quantity").getValue(String.class);
+                            // Using your overloaded class constructor to populate the Order data
+                            GroceryItem order = new GroceryItem(itemName, brand, quantity);
+                            // here we are adding the order to the ArrayList
+                            itemList.add(order);
                         }
                         listAdapter.notifyDataSetChanged();
                     }
@@ -77,8 +72,7 @@ public class ShoppingListShopperView extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShopperHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
 }
