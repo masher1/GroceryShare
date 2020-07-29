@@ -85,6 +85,20 @@
         app:layout_constraintTop_toBottomOf="@+id/personalinfoshopper" />
 
     <Button
+        android:id="@+id/changePasswordShopper"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/signupbtn"
+        android:fontFamily="sans-serif-light"
+        android:text="Reset Password"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/privacypolicyshopper"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
         android:id="@+id/logoutshopperbtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -98,7 +112,7 @@
         android:textColor="@color/whitecolor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/privacypolicyshopper" />
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordShopper" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

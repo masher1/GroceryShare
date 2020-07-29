@@ -99,7 +99,6 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
         ratingInput = (TextView) findViewById(R.id.ratingid);
         ProfileImage = (ImageView) findViewById(R.id.imageid);
 
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
         final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -109,7 +108,7 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
                 for (DataSnapshot snapshot : snapshots.getChildren()) {
                     if (snapshot.child("buyerId").getValue(String.class).equals(user.getUid())) {
-                        System.out.println(snapshot.child("buyerId").getValue(String.class) + "  " + user.getUid());
+                       // System.out.println(snapshot.child("buyerId").getValue(String.class) + "  " + user.getUid());
                         if (snapshot.child("orderId").getValue(String.class).contains(orderid)) {
                             shopperid = snapshot.child("shopperId").getValue(String.class);
                             getshopper(database, dataSnapshot, shopperid);

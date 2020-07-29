@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class newOrder {
     Date dateFulfilled;
-    String orderId, storeName, buyerId, shopperId, receiptCopy, address, paymentType, otherInfo, status;
+    String orderId, storeName, buyerId, shopperId, receiptCopy, address, paymentType, otherInfo, status, orderNickname;
     ArrayList<GroceryItem> shoppingList;
 
 
-    public newOrder(String orderId, String status, Date dateFulfilled, String storeName, String buyerId, String shopperId, String receiptCopy, ArrayList<GroceryItem> shoppingList, String address, String paymentType, String otherInfo){
+    public newOrder(String orderId, String status, Date dateFulfilled, String storeName, String buyerId, String shopperId, String receiptCopy, ArrayList<GroceryItem> shoppingList, String address, String paymentType, String otherInfo, String orderNickname){
         this.orderId = orderId;
         this.status = status;
         this.dateFulfilled = dateFulfilled;
@@ -21,6 +21,7 @@ public class newOrder {
         this.address = address;
         this.paymentType = paymentType;
         this.otherInfo = otherInfo;
+        this.orderNickname = orderNickname;
     }
 
     public String getOrderId(){
@@ -55,6 +56,9 @@ public class newOrder {
     }
     public String getOtherInfo(){
         return otherInfo;
+    }
+    public String getOrderNickname(){
+        return orderNickname;
     }
     public newOrder(){}
 }

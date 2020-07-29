@@ -28,6 +28,7 @@ import java.util.List;
 public class CurrentTripsShopper extends AppCompatActivity {
 
     DatabaseReference databaseOrders;
+
     RecyclerView recyclerView;
     LinearLayout emptyView;
     String userID;

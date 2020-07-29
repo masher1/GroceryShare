@@ -22,6 +22,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
     Button logoutBtn;
     String userID;
     private FirebaseAuth mAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
         OneSignal.sendTag("UserID", userId);
+      
         // OneSignal Initialization
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
@@ -39,6 +41,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
                 .init();
 
         OneSignal.sendTag("UserID",user.getUid());
+
         Intent intent = getIntent();
         userID = intent.getStringExtra("USER_ID");
         newOrder = findViewById(R.id.neworderId);
@@ -92,7 +95,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
         rate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BuyerHomeScreen.this, BuyerRatesShopper.class);
+                Intent intent = new Intent(BuyerHomeScreen.this, RatingActivity.class);
                 startActivity(intent);
 
             }

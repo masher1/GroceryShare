@@ -3,8 +3,10 @@ package com.example.groceryshare;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,6 +35,7 @@ public class ListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView addbtn;
     Button submitbtn;
+    EditText nickNameEdit;
     AlertDialog.Builder builder;
     DatabaseReference databaseBuyers;
     DatabaseReference databaseOrders;
@@ -44,6 +49,7 @@ public class ListActivity extends AppCompatActivity {
     String shopperId;
     String buyerId;
     String id;
+    String orderNickname;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -53,6 +59,7 @@ public class ListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         addbtn = findViewById(R.id.tv_add_item);
         submitbtn = findViewById(R.id.btn_submit);
+        nickNameEdit = findViewById(R.id.order_nickname);
         itemList = populateList();
         itemAdapter = new ItemAdapter(this, itemList);
         recyclerView.setAdapter(itemAdapter);
@@ -79,6 +86,16 @@ public class ListActivity extends AppCompatActivity {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (nickNameEdit.length() > 33)
+                    nickNameEdit.setText(StringUtils.abbreviate(nickNameEdit.getText().toString(), 30));
+
+                if( TextUtils.isEmpty(nickNameEdit.getText())){
+                    Toast.makeText(getApplicationContext(),"Don't forget the order name!",
+                            Toast.LENGTH_SHORT).show();
+
+                    nickNameEdit.setError( "Order Name is required!" );
+
+                }else{
                 //Uncomment the below code to Set the message and title from the strings.xml file
                 builder.setMessage("Confirm").setTitle("Confirm your personal information");
                 //Setting message manually and performing action on button click
@@ -86,6 +103,7 @@ public class ListActivity extends AppCompatActivity {
                         .setCancelable(false)
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                orderNickname = nickNameEdit.getText().toString();
                                 addShoppingList();
                                 sendtoPending();
                                 finish();
@@ -113,6 +131,7 @@ public class ListActivity extends AppCompatActivity {
                 alert.setTitle("Confirm Personal Information");
                 alert.show();
 
+            }
             }
         });
         addbtn.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +165,9 @@ public class ListActivity extends AppCompatActivity {
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         if (ItemAdapter.shopList.size() != 0) {
             String id = databaseOrders.push().getKey();
-            newOrder order = new newOrder(id, status, dateFulfilled, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment, otherInfo);
+
+            newOrder order = new newOrder(id, status, dateFulfilled, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo, orderNickname);
+
             databaseOrders.child(id).setValue(order);
             Toast.makeText(getApplicationContext(), "New Shopping List Added!", Toast.LENGTH_LONG).show();
         }

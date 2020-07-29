@@ -31,7 +31,7 @@ public class PendingActivity extends AppCompatActivity {
     ArrayList<String> s3 = new ArrayList<String>();
     ArrayList<String> s4 = new ArrayList<String>();
 
-    String name, storeName, orderId, shopperId;
+    String name, storeName, orderId, shopperId, orderNickname;
     Button settingsBuyer;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -61,7 +61,9 @@ public class PendingActivity extends AppCompatActivity {
                         storeName = snapshot.child("storeName").getValue(String.class);
                         orderId = snapshot.child("orderId").getValue(String.class);
                         shopperId = snapshot.child("shopperId").getValue(String.class);
-                        getShopper(dataSnapshot, storeName, orderId, shopperId, myAdapter);
+                        orderNickname = snapshot.child("orderNickname").getValue(String.class);
+                        getShopper(dataSnapshot, storeName, orderId, shopperId, orderNickname, myAdapter);
+
                     }
                 }
             }
@@ -78,7 +80,7 @@ public class PendingActivity extends AppCompatActivity {
         });
     }
 
-    private void getShopper(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
+    private void getShopper(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, String orderNickname, pendingAdapter myAdapter) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
@@ -94,7 +96,8 @@ public class PendingActivity extends AppCompatActivity {
                     name = "Unassigned";
             }
         }
-        myAdapter.addOrder(storeName, orderId, name, shopperId);
+
+        myAdapter.addOrder(storeName, orderId, name, orderNickname, shopperId);
     }
 
     public void goBack(View v) {

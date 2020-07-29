@@ -23,6 +23,7 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
     ArrayList<String> storeName = new ArrayList<String>();
     ArrayList<String> orderID = new ArrayList<String>();
     ArrayList<String> name = new ArrayList<String>();
+    ArrayList<String> nickNames = new ArrayList<String>();
     ArrayList<String> shopperId = new ArrayList<String>();
 
 
@@ -33,7 +34,9 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
         storeName= s1;
         orderID = s2;
         name = s3;
-        shopperId = s4;
+        nickNames =s4;
+        shopperId = s5;
+      //TODO: add shopperID everywhere else in the pipeline
     }
 
     @NonNull
@@ -57,7 +60,7 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
             }
         });
         holder.storeName_text.setText(storeName.get(position));
-        holder.orderId_text.setText(orderID.get(position));
+        holder.order_nickname.setText(nickNames.get(position));
         holder.name_text.setText(name.get(position));
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,23 +77,26 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         //find the content here
-        TextView storeName_text, orderId_text, name_text;
+
+        TextView storeName_text, order_nickname, name_text;
         ImageView profilePhoto;
+
         Button button;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             storeName_text = itemView.findViewById(R.id.storeName_text);
-            orderId_text = itemView.findViewById(R.id.orderId_text);
+            order_nickname = itemView.findViewById(R.id.order_nickname);
             name_text = itemView.findViewById(R.id.name_text);
             profilePhoto = itemView.findViewById(R.id.profile_image);
             button =itemView.findViewById(R.id.pickOrder);
         }
     }
-    public void addOrder(String s1, String s2, String s3, String s4) {
+    public void addOrder(String s1, String s2, String s3, String s4, String s5) {
         storeName.add(s1);
         orderID.add(s2);
         name.add(s3);
-        shopperId.add(s4);
+        nickNames.add(s4);
+        shopperId.add(s5);
         notifyItemInserted(storeName.size()-1);
     }
 }

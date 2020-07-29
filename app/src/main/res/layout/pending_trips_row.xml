@@ -42,12 +42,12 @@
                 android:background="@drawable/border"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/orderId_text"
+                    android:id="@+id/order_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Order Number"
+                    android:text="Order Nickname"
                     android:textStyle="bold"
                     android:textSize="20dp" />
 
