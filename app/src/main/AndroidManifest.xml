@@ -44,8 +44,10 @@
         <activity android:name=".ShopperSignup" />
         <activity android:name=".ViewOrderInfoShopper" />
         <activity android:name=".OrderFulfillShopper" />
+        <activity android:name=".OrderDetailsShopper" />
         <activity android:name=".ComplaintsShopper" />
         <activity android:name=".ReviewsAndRatingsShopper" />
+        <activity android:name=".OrderCompleteDetails" />
         <activity android:name=".SettingsShopper" />
         <activity android:name=".BuyerHomeScreen" />
         <activity android:name=".PastTripsShopper" />

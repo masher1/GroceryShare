@@ -1,22 +1,22 @@
 package com.example.groceryshare;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHolder>{
 
@@ -24,6 +24,8 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
     ArrayList<String> orderID = new ArrayList<String>();
     ArrayList<String> name = new ArrayList<String>();
     ArrayList<String> nickNames = new ArrayList<String>();
+    ArrayList<String> shopperId = new ArrayList<String>();
+
 
     Context context;
 
@@ -33,7 +35,10 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
         orderID = s2;
         name = s3;
         nickNames =s4;
+        shopperId = s5;
+      //TODO: add shopperID everywhere else in the pipeline
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +47,18 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
         return new MyViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("profileImages/" + shopperId.get(position) + ".jpeg");
+        // This gets the download url async
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                final String downloadUrl = uri.toString();
+                if (!downloadUrl.equals("default")) {
+                    Glide.with(holder.itemView.getContext()).load(downloadUrl).into(holder.profilePhoto);
+                }
+            }
+        });
         holder.storeName_text.setText(storeName.get(position));
         holder.order_nickname.setText(nickNames.get(position));
         holder.name_text.setText(name.get(position));
@@ -53,27 +69,34 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return storeName.size();
     }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
         //find the content here
+
         TextView storeName_text, order_nickname, name_text;
+        ImageView profilePhoto;
+
         Button button;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             storeName_text = itemView.findViewById(R.id.storeName_text);
             order_nickname = itemView.findViewById(R.id.order_nickname);
             name_text = itemView.findViewById(R.id.name_text);
+            profilePhoto = itemView.findViewById(R.id.profile_image);
             button =itemView.findViewById(R.id.pickOrder);
         }
     }
-    public void addOrder(String s1, String s2, String s3, String s4) {
+    public void addOrder(String s1, String s2, String s3, String s4, String s5) {
         storeName.add(s1);
         orderID.add(s2);
         name.add(s3);
         nickNames.add(s4);
+        shopperId.add(s5);
         notifyItemInserted(storeName.size()-1);
     }
 }

@@ -98,6 +98,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
                 nameInput.setText(user.getDisplayName());
                 nameInput.setSelection(user.getDisplayName().length());
             }
+            
             if (user.getPhotoUrl() != null) {
                 Glide.with(this)
                         .load(user.getPhotoUrl())
