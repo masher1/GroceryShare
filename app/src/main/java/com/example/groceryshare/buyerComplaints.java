@@ -76,7 +76,7 @@ public class buyerComplaints extends AppCompatActivity {
 
     }
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShopperHomeScreen.class);
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
         startActivity(intent);
     }
 }

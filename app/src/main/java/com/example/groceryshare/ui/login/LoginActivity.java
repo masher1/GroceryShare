@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.groceryshare.MainActivity;
+import com.example.groceryshare.PersonalActivityBuyer;
 import com.example.groceryshare.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference databaseBuyers;
     String username, password;
     Button logInButton;
+    private Button forgotPassword;
     Boolean buyer;
 
     @Override
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameInput = (EditText) findViewById(R.id.username);
         passwordInput = (EditText) findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.resetPasswordBtn);
         //final EditText usernameEditText = findViewById(R.id.username);
         //final EditText passwordEditText = findViewById(R.id.password);
 
@@ -64,6 +67,13 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ResetPassword.class);
+                startActivity(intent);
             }
         });
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);

@@ -76,10 +76,8 @@ public class viewReceipt extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         if(extras != null)
             passedOrderId = extras.getString("orderid");
-        System.out.println("LOOK HERE" + passedOrderId);
         user = FirebaseAuth.getInstance().getCurrentUser();
         userID = user.getUid();
-        System.out.println("userid" + userID);
         next = findViewById(R.id.nextReceiptView);
         back = findViewById(R.id.backReceiptView);
         nextValue=0;
@@ -93,7 +91,6 @@ public class viewReceipt extends AppCompatActivity {
                                 if (snapshot.child("orderId").getValue(String.class).equals(passedOrderId)) {
                                     orderID = snapshot.child("orderId").getValue(String.class);
                                     total = snapshot.child("Receipts/Total").getValue(String.class);
-                                    System.out.println("TotalInLoop"+total);
                                     numOfPicsLong = snapshot.child("Receipts").getChildrenCount();
                                     numOfPicsInt = numOfPicsLong.intValue();
                                     imgArray = new String[numOfPicsInt];
@@ -103,7 +100,13 @@ public class viewReceipt extends AppCompatActivity {
                                         receipt = snapshot.child(referencePic).getValue(String.class);
                                         imgArray[i] = firebaseImgString;
                                         numForLoop++;
-                                        pause(firebaseImgString, imgArray[0], total);
+                                        totalView = findViewById(R.id.totalDue);
+                                        if (total != null) {
+                                            totalView.setText(total);
+                                        } else {
+                                            System.out.println("Total is Null!!!");
+                                        }
+                                        pause(firebaseImgString, imgArray[0]);
                                     }
                                 }
                             }
@@ -114,14 +117,25 @@ public class viewReceipt extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
-
+ /*       if (nextValue>=(numOfPicsInt-2)){
+            if (next.isEnabled()==true){
+                next.setBackgroundResource(R.drawable.joinbtngray);
+                next.setEnabled(false);
+            }
+        }
+        if (nextValue<=0){
+            if (back.isEnabled()==true){
+                back.setBackgroundResource(R.drawable.joinbtngray);
+                back.setEnabled(false);
+            }
+        }*/
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (nextValue<(numOfPicsInt-2)) {
                     nextValue++;
                 }
                 imgStringToPass = imgArray[nextValue];
-                pause(firebaseImgString, imgStringToPass, total);
+                pause(firebaseImgString, imgStringToPass);
 
             }
 
@@ -132,7 +146,7 @@ public class viewReceipt extends AppCompatActivity {
                     nextValue--;
                 }
                 imgStringToPass = imgArray[nextValue];
-                pause(firebaseImgString, imgStringToPass, total);
+                pause(firebaseImgString, imgStringToPass);
 
             }
 
@@ -140,7 +154,7 @@ public class viewReceipt extends AppCompatActivity {
         });
         //new code
         // Reference to an image file in Cloud Storage
-        pause(firebaseImgString, imgStringToPass, total);
+       // pause(firebaseImgString, imgStringToPass);
 
 
     }
@@ -148,10 +162,10 @@ public class viewReceipt extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, OrderFulfillBuyer.class);
+        Intent intent = new Intent(this, BuyerHomeScreen.class);
         startActivity(intent);
     }
-    public void pause(String imgString, String arrayItem, String tot) {
+    public void pause(String imgString, String arrayItem) {
         if (imgArray!=null) {
             storageReference = FirebaseStorage.getInstance().getReference("Receipts/" + arrayItem);
             // ImageView in your Activity
@@ -165,11 +179,5 @@ public class viewReceipt extends AppCompatActivity {
         }
         //end new code
 
-        totalView = findViewById(R.id.totalDue);
-        if (tot != null) {
-            totalView.setText(tot);
-        } else {
-            System.out.println("Total is Null!!!");
-        }
     }
 }
