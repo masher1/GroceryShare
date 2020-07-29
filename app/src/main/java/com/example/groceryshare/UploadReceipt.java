@@ -59,6 +59,7 @@ public class UploadReceipt extends AppCompatActivity {
     String orderNum;
     String orderID;
     String receipt;
+    String uploadLocation;
 
 
     @Override
@@ -78,7 +79,7 @@ public class UploadReceipt extends AppCompatActivity {
         total = findViewById(R.id.totalOwedDecimal);
         Bundle intentOrderID = getIntent().getExtras();
         orderID = intentOrderID.getString("Order_ID");
-        final String uploadLocation = "Orders/"+orderID+"/Receipts";
+        uploadLocation = "Orders/"+orderID+"/Receipts";
         System.out.println(uploadLocation);
         ButtonUpload1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +88,7 @@ public class UploadReceipt extends AppCompatActivity {
                     Toast.makeText(UploadReceipt.this, "Upload in progress!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    receipt = uploadFile();
+                    receipt = uploadFile(picNum);
                     System.out.println("Upload Receipt OrderID" + orderID);
                     databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
                     if (receipt!=null){
@@ -116,7 +117,7 @@ public class UploadReceipt extends AppCompatActivity {
                 gallery.setType("image/*");
                 gallery.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE);
-                uploadFile();
+                //uploadFile();
             }
         });
 
@@ -164,10 +165,13 @@ public class UploadReceipt extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
-    private String uploadFile() {
+    private String uploadFile(Integer num) {
         if (imageUri != null) {
-            StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(imageUri));
+            //StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
+                 //   + "." + getFileExtension(imageUri));
+            final StorageReference fileReference = FirebaseStorage.getInstance().getReference()
+                    .child("Receipts")
+                    .child(orderID + num + ".jpeg");
             UploadTask = fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

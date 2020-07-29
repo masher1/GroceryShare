@@ -67,9 +67,9 @@
         android:layout_marginTop="70dp"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="@string/tell_us_about_your_experience_with_this_customer"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:text="@string/tell_us_about_your_experience_with_this_customer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarByBuyer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

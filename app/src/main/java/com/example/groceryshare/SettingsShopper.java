@@ -10,6 +10,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,14 +20,38 @@ public class SettingsShopper extends AppCompatActivity {
     private Button privacyBtn;
     private Button logoutBtn;
     private FirebaseAuth mAuth;
-
+    FirebaseUser user;
+    String userID;
+    private String emailAddress;
+    private Button passwordReset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_shopper);
         mAuth = FirebaseAuth.getInstance();
+        passwordReset = findViewById(R.id.changePasswordShopper);
+        passwordReset.setOnClickListener(
+                new View.OnClickListener() {
 
+                    public void onClick(View v) {
+                        user = FirebaseAuth.getInstance().getCurrentUser();
+                        userID = user.getUid();
+                        emailAddress = user.getEmail();
+                        FirebaseAuth.getInstance().sendPasswordResetEmail(emailAddress)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                        }
+                                    }
+                                });
+
+                    }
+
+
+                }
+        );
         personalBtn = findViewById(R.id.personalinfoshopper);
         personalBtn.setOnClickListener(new View.OnClickListener() {
             @Override

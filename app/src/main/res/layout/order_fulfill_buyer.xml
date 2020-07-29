@@ -80,16 +80,17 @@
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/joinbtn"
+            android:background="@drawable/joinbtngray"
             android:elevation="5dp"
+            android:enabled="false"
             android:fontFamily="sans-serif-medium"
+            android:paddingStart="15dp"
             android:paddingLeft="15dp"
             android:text="View Receipt"
             android:textAllCaps="false"
             android:textColor="@color/whitecolor"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:paddingStart="15dp" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/confirmOrderDoneBtn"
@@ -97,7 +98,8 @@
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/joinbtn"
+            android:background="@drawable/joinbtngray"
+            android:enabled="false"
             android:elevation="5dp"
             android:fontFamily="sans-serif-medium"
             android:paddingLeft="15dp"
