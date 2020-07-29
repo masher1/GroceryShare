@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -78,6 +81,9 @@ public class ListActivity extends AppCompatActivity {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (nickNameEdit.length() > 33)
+                    nickNameEdit.setText(StringUtils.abbreviate(nickNameEdit.getText().toString(), 30));
+
                 if( TextUtils.isEmpty(nickNameEdit.getText())){
                     Toast.makeText(getApplicationContext(),"Don't forget the order name!",
                             Toast.LENGTH_SHORT).show();
