@@ -9,39 +9,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/GoBackIcon"
-            android:layout_width="56dp"
-            android:layout_height="45dp"
-            android:onClick="goBack"
-            android:src="@drawable/ic_arrow_back_black_24dp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/UploadReceiptPageTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginRight="92dp"
-        android:text="@string/upload_receipt"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="493dp"
-        android:layout_marginTop="35dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UploadReceiptPageTxt">
+        <TextView
+            android:id="@+id/UploadReceiptPageTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:text="@string/upload_receipt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,65 +35,61 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_baseline_add_a_photo_24" />
-
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/uploadWarning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:text="@string/can_upload_multiple_photos" />
 
-            <Button
-                android:id="@+id/uploadBtn1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/joinbtn"
-                android:elevation="5dp"
-                android:enabled="true"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/upload"
-                android:textAllCaps="false"
-                android:textColor="@color/whitecolor"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+        <Button
+            android:layout_width="288dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/joinbtn"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/upload_receipt"
+            android:textAllCaps="false"
+            android:textColor="@color/whitecolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ProgressBar
             android:id="@+id/progress_bar_receipt"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60sp"
-            android:layout_marginTop="10dp"
             android:indeterminate="false"
+            android:layout_marginTop="15dp"
             android:maxHeight="10dip"
             android:minHeight="10dip"
             android:progress="0"
-            android:progressDrawable="@drawable/greenprogress"
-            android:layout_marginStart="60sp" />
-
+            android:progressDrawable="@drawable/greenprogress" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:gravity="center">
 
             <TextView
-                android:layout_width="222dp"
-                android:layout_height="44dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="false"
+                android:textColor="@color/blackcolor"
                 android:text="Total Owed: $"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/totalOwedDecimal"
-                android:layout_width="211dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:ems="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5"
                 android:inputType="textPersonName|numberDecimal"
                 android:textSize="30dp"
                 android:textStyle="bold" />
@@ -121,8 +99,6 @@
             android:id="@+id/nextButton"
             android:layout_width="169dp"
             android:layout_height="71dp"
-            android:layout_marginStart="130sp"
-            android:layout_marginLeft="130sp"
             android:layout_marginTop="50sp"
             android:background="@drawable/joinbtngray"
             android:elevation="5dp"
@@ -135,15 +111,4 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/uploadWarning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="117dp"
-        android:layout_marginRight="117dp"
-        android:text="@string/can_upload_multiple_photos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UploadReceiptPageTxt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
