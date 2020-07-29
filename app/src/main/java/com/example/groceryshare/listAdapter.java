@@ -1,13 +1,10 @@
 package com.example.groceryshare;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +25,6 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.ItemViewHolder
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.list_item, parent, false);
         ItemViewHolder holder = new ItemViewHolder(view);
-
         return holder;
     }
 
