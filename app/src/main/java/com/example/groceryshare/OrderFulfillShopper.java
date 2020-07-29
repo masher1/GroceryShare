@@ -101,19 +101,16 @@ public class OrderFulfillShopper extends AppCompatActivity {
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 databaseOrders.child(orderid).child("shopperId").setValue(null);
-
-                Intent intent = new Intent(OrderFulfillShopper.this, ShopperHomeScreen.class);
+                databaseOrders.child(orderid).child("Status").setValue("Available");
                 sendNotif();
-                startActivity(intent);
-
+                finish();
             }
         });
     }
 
-    //used to navigate back to the previous screen
+    //used to navigate back to the screen it came from
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShopperHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
     public void sendNotifications(final String send_user) {
@@ -188,7 +185,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
-                                if (snapshot.child("shopperId").getValue(String.class).equals(user)) {
+                                if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
                                     send_user = snapshot.child("buyerId").getValue(String.class);
 
                                     sendNotifications(send_user);

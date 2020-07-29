@@ -17,8 +17,6 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
-
         manifestPlaceholders = [
                 onesignal_app_id: 'e8b23997-bfa9-4ffc-8c9d-171c095533c7',
                 // Project number pulled from dashboard, local value is ignored.
@@ -49,6 +47,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'org.mod4j.org.apache.commons:lang:2.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -78,5 +77,6 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
     maven { url 'https://maven.google.com' }
 }

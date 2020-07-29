@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/GoBackIcon"
@@ -25,24 +25,27 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_constraintLeft_toLeftOf="@+id/GoBackIcon"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
+            android:fontFamily="sans-serif-light"
             android:text="@string/settings"
             android:textColor="@color/colorPrimary"
-            android:fontFamily="sans-serif-light"
-            android:textSize="20sp" />
-
-
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/GoBackIcon" />
     </LinearLayout>
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/notifswitch"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="36dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/notifications"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -54,11 +57,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/signupbtn"
-        android:fontFamily="sans-serif-light"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/joinbtn"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/change_personal_information"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/whitecolor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifswitch" />
@@ -67,12 +72,14 @@
         android:id="@+id/privacypolicy"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/signupbtn"
-        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/joinbtn"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/privacy_policy"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/whitecolor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personalinfo" />
@@ -95,17 +102,16 @@
         android:id="@+id/logoutbtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/signupbtn"
-        android:fontFamily="sans-serif-light"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/cancelbtn"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/logout"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/whitecolor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changePasswordShopper" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

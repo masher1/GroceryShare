@@ -12,11 +12,13 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 
 public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
 
-//    private static String url;
+    //    private static String url;
     String address1, address2;
+
     public DistanceCalculator(String address1, String address2) {
         this.address1 = address1;
         this.address2 = address2;
@@ -25,6 +27,7 @@ public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
     public String getAddress1() {
         return address1;
     }
+
     public String getAddress2() {
         return address2;
     }
@@ -51,8 +54,7 @@ public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
         }
     }
 
-    public static double distance(double lat1, double lat2, double lon1, double lon2)
-    {
+    public static double distance(double lat1, double lat2, double lon1, double lon2) {
         // The math module contains a function
         // named toRadians which converts from
         // degrees to radians.
@@ -66,7 +68,7 @@ public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
         double dlat = lat2 - lat1;
         double a = Math.pow(Math.sin(dlat / 2), 2)
                 + Math.cos(lat1) * Math.cos(lat2)
-                * Math.pow(Math.sin(dlon / 2),2);
+                * Math.pow(Math.sin(dlon / 2), 2);
 
         double c = 2 * Math.asin(Math.sqrt(a));
 
@@ -97,14 +99,14 @@ public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
 //        url = "https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&addressdetails=1";
 //        String json  =  new DistanceCalculator(address).onPostExecute();
         String json = readJsonFromUrl("https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&addressdetails=1");
-        if(json.equals("[]")){
+        if (json.equals("[]")) {
             return null;
         }
         int firstIndexLat = json.indexOf("\"lat\":");
         int firstIndexLon = json.indexOf("\"lon\":");
         int firstIndexEnd = json.indexOf("\",\"display_name\"");
 
-        double lat = Double.parseDouble(json.substring(firstIndexLat + 7, firstIndexLon -2));
+        double lat = Double.parseDouble(json.substring(firstIndexLat + 7, firstIndexLon - 2));
         double lon = Double.parseDouble(json.substring(firstIndexLon + 7, firstIndexEnd));
 
         ans[0] = lat;
@@ -142,14 +144,37 @@ public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
 //        return output;
 //    }
 
+    public static String main(String address1, String address2) throws IOException, JSONException {
+        String result = "";
+        try {
+            double[] ans1 = addressToLonLat(address1);
+            double[] ans2 = addressToLonLat(address2);
+
+            double lat1 = ans1[0];
+            double lon1 = ans1[1];
+            double lat2 = ans2[0];
+            double lon2 = ans2[1];
+
+            //formats the distance to 2 decimal points
+            double answer = distance(lat1, lat2, lon1, lon2);
+            if(answer < 10)
+                result = new DecimalFormat("#.##").format(distance(lat1, lat2, lon1, lon2)) + " Miles";
+            else
+                result = new DecimalFormat("#").format(distance(lat1, lat2, lon1, lon2)) + " Miles";
+
+        } catch (NullPointerException e) {
+            result = "";
+        }
+        return result;
+    }
+
     // driver code
     public String main(String[] args) throws IOException, JSONException {
-
         String address1 = getAddress1();
         String address2 = getAddress2();
 
         double[] ans1 = addressToLonLat(address1);
-        double[] ans2 =  addressToLonLat(address2);
+        double[] ans2 = addressToLonLat(address2);
 
         System.out.println("Address 1: " + address1);
         System.out.println("Address 2: " + address2);
@@ -159,8 +184,9 @@ public class DistanceCalculator /*extends AsyncTask<Void, Void, Void>*/ {
         double lat2 = ans2[0];
         double lon2 = ans2[1];
 
-        String result = distance(lat1, lat2,
-                lon1, lon2) + " Miles";
+
+        //formats the distance to 2 decimal points
+        String result = new DecimalFormat("#.##").format(distance(lat1, lat2, lon1, lon2)) + " Miles";
         System.out.println(result);
 
         return result;

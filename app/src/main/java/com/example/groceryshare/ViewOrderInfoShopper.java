@@ -1,34 +1,18 @@
 package com.example.groceryshare;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,14 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.io.ByteArrayOutputStream;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class ViewOrderInfoShopper extends AppCompatActivity {
 
@@ -64,18 +40,8 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
     TextView othersInput;
     TextView storeInput;
 
-
-    //Profile Pic Content Start
-    String profileImage;
     String orderid;
     private ImageView ProfileImage;
-    private static final int PICK_IMAGE = 1;
-    private int REQUEST_CAMERA = 0;
-    private String userChoosenTask;
-    Bitmap imageBitmap;
-    private StorageReference StorageRef;
-    private static final String TAG = "ViewOrderInfoShopper";
-    //Profile Pic Content End
 
     DatabaseReference databaseBuyers;
 
@@ -89,13 +55,12 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_order_info_shopper);
 
-        Intent intent= getIntent();
+        Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if(extras != null)
+        if (extras != null)
             orderid = extras.getString("orderid");
 
         databaseBuyers = FirebaseDatabase.getInstance().getReference("Shoppers");
-
 
         img = findViewById(R.id.GoBackIcon);//defines the back button image
         addressInput = (TextView) findViewById(R.id.addressid);
@@ -115,22 +80,35 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
                         if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
                             if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
                                 buyerId = snapshot.child("buyerId").getValue(String.class);
-                                getbuyer(database, dataSnapshot, buyerId);
+                                getbuyer(dataSnapshot, buyerId);
                             }
                         }
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
-    private void getbuyer(DatabaseReference database, DataSnapshot dataSnapshot, String buyerId) {
+
+    private void getbuyer(DataSnapshot dataSnapshot, String buyerId) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Buyers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
             if (snapshot.child("buyerID").getValue(String.class).equals(buyerId)) {
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference("profileImages/"+ buyerId + ".jpeg");
+                // This gets the download url async
+                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        final String downloadUrl = uri.toString();
+                        if (!downloadUrl.equals("default")) {
+                            Glide.with(ViewOrderInfoShopper.this).load(downloadUrl).into(ProfileImage);
+                        }
+                    }
+                });
                 address = snapshot.child("address").getValue(String.class);
                 name = snapshot.child("firstName").getValue(String.class);
                 store = snapshot.child("store").getValue(String.class);
@@ -141,20 +119,18 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
         }
     }
 
-
-
     //used to navigate back to the previous screen
-        public void goBack(View v){
-            Intent intent = new Intent(this, ShopperHomeScreen.class);
-            startActivity(intent);
-        }
-
-        public void viewText(String address,String name, String store, String payment, String others){
-            addressInput.setText(address);
-            nameInput.setText(name);
-            storeInput.setText(store);
-            paymentInput.setText(payment);
-            othersInput.setText(others);
-        }
-
+    public void goBack(View v) {
+        Intent intent = new Intent(this, ShopperHomeScreen.class);
+        startActivity(intent);
     }
+
+    public void viewText(String address, String name, String store, String payment, String others) {
+        addressInput.setText(address);
+        nameInput.setText(name);
+        storeInput.setText(store);
+        paymentInput.setText(payment);
+        othersInput.setText(others);
+    }
+
+}
