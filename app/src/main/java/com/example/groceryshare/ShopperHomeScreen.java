@@ -15,6 +15,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.onesignal.OneSignal;
 
 public class ShopperHomeScreen extends AppCompatActivity {
 
@@ -27,12 +28,19 @@ public class ShopperHomeScreen extends AppCompatActivity {
     private Button logoutBtn;
     private FirebaseAuth mAuth;
     String userID;
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopper_home_screen);
 
         mAuth = FirebaseAuth.getInstance();
+        // OneSignal Initialization
+        OneSignal.startInit(this).init();
+
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        OneSignal.sendTag("UserID",user.getUid());
 
         availableTrips = findViewById(R.id.availableIDShop);
         currentTrips = findViewById(R.id.currentOrderIDShop);
