@@ -66,9 +66,10 @@ public class ShopperRatesBuyer extends AppCompatActivity {
                 // start the activity connect to the specified class
 
                 ratingByShopperValue = ratingBarShopper.getRating();
-                userReviewByShopperString = userReviewByShopperEditText.getText().toString();
-                databaseOrders.child(orderID).child("Review").setValue(userReviewByShopperString);
-                databaseOrders.child(orderID).child("Rating").setValue(ratingByShopperValue);
+
+                userReviewByShopperString=userReviewByShopperEditText.getText().toString();
+                databaseOrders.child(orderID).child("ReviewByShopper").setValue(userReviewByShopperString);
+                databaseOrders.child(orderID).child("RatingByShopper").setValue(ratingByShopperValue);
                 databaseOrders.child(orderID).child("Status").setValue("Complete");
                 System.out.println("Yes");
                 FirebaseDatabase.getInstance().getReference()

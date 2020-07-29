@@ -93,7 +93,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
         rate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BuyerHomeScreen.this, BuyerRatesShopper.class);
+                Intent intent = new Intent(BuyerHomeScreen.this, RatingActivity.class);
                 startActivity(intent);
 
             }
