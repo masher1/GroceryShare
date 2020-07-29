@@ -80,7 +80,11 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
         startActivity(intent);
     }
     public void addShopper(String orderID) {
-        databaseOrders.child(orderID).child("shopperId").setValue(userID);
+        Intent intent = new Intent(this, OrderDetailsShopper.class);
+        intent.putExtra("ORDER_ID", orderID);
+        intent.putExtra("USER_ID", userID);
+        startActivity(intent);
+        //databaseOrders.child(orderID).child("shopperId").setValue(userID);
     }
 
 }

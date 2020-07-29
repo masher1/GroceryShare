@@ -44,6 +44,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class ViewOrderInfoShopper extends AppCompatActivity {
 
@@ -57,12 +58,14 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
     String userID;
     String shopperId;
     String buyerId;
+    double rating;
 
     TextView addressInput;
     TextView nameInput;
     TextView paymentInput;
     TextView othersInput;
     TextView storeInput;
+    TextView ratingsInput;
 
 
     //Profile Pic Content Start
@@ -104,37 +107,38 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
         paymentInput = (TextView) findViewById(R.id.paymentId);
         othersInput = (TextView) findViewById(R.id.othersid);
         ProfileImage = (ImageView) findViewById(R.id.imageid);
+        ratingsInput = (TextView) findViewById(R.id.ratingid);
 
         final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                DataSnapshot snapshots = dataSnapshot.child("Orders");
-                for (DataSnapshot snapshot : snapshots.getChildren()) {
-                    if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
-                        if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
-                            buyerId = snapshot.child("buyerId").getValue(String.class);
-                            getbuyer(database, dataSnapshot, buyerId);
-                        }
-                    }
-                }
+                buyerId = dataSnapshot.child("Orders").child(orderid).child("buyerId").getValue(String.class);
+                getBuyer(database, dataSnapshot, buyerId);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
-    private void getbuyer(DatabaseReference database, DataSnapshot dataSnapshot, String buyerId) {
+    private void getBuyer(DatabaseReference database, DataSnapshot dataSnapshot, String buyerId) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Buyers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
             if (snapshot.child("buyerID").getValue(String.class).equals(buyerId)) {
                 address = snapshot.child("address").getValue(String.class);
-                name = snapshot.child("firstName").getValue(String.class);
+                name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class);
                 store = snapshot.child("store").getValue(String.class);
                 payment = snapshot.child("payment").getValue(String.class);
                 others = snapshot.child("others").getValue(String.class);
-                viewText(address, name, store, payment, others);
+                if(snapshot.child("Rating").getValue(double.class) == null){
+                    rating = 10.00;
+                }
+                else{
+                    rating = snapshot.child("Rating").getValue(double.class);
+                }
+                viewText(address, name, store, payment, others, rating);
             }
         }
     }
@@ -143,16 +147,20 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
 
     //used to navigate back to the previous screen
         public void goBack(View v){
-            Intent intent = new Intent(this, ShopperHomeScreen.class);
-            startActivity(intent);
+            finish();
         }
 
-        public void viewText(String address,String name, String store, String payment, String others){
+        public void viewText(String address,String name, String store, String payment, String others, double rating){
+            String result = new DecimalFormat("#.##").format(rating);
             addressInput.setText(address);
             nameInput.setText(name);
             storeInput.setText(store);
             paymentInput.setText(payment);
             othersInput.setText(others);
+            if(result == "10.00"){
+                result = "None";
+            }
+            ratingsInput.setText(result);
         }
 
     }
