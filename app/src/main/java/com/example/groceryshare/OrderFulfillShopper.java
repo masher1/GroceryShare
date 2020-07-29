@@ -90,16 +90,14 @@ public class OrderFulfillShopper extends AppCompatActivity {
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 databaseOrders.child(orderid).child("shopperId").setValue(null);
-
-                Intent intent = new Intent(OrderFulfillShopper.this, ShopperHomeScreen.class);
-                startActivity(intent);
+                databaseOrders.child(orderid).child("Status").setValue("Available");
+                finish();
             }
         });
     }
 
-    //used to navigate back to the previous screen
+    //used to navigate back to the screen it came from
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShopperHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 }

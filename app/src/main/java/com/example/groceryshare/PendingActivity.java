@@ -3,6 +3,7 @@ package com.example.groceryshare;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,18 +23,16 @@ import java.util.ArrayList;
 
 public class PendingActivity extends AppCompatActivity {
 
-
     RecyclerView recyclerView;
     DatabaseReference database;
 
     ArrayList<String> s1 = new ArrayList<String>();
     ArrayList<String> s2 = new ArrayList<String>();
     ArrayList<String> s3 = new ArrayList<String>();
+    ArrayList<String> s4 = new ArrayList<String>();
 
-    String storeName;
-    String orderId;
-    String shopperId;
-    String name;
+    String name, storeName, orderId, shopperId;
+    Button settingsBuyer;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -46,13 +45,14 @@ public class PendingActivity extends AppCompatActivity {
         setContentView(R.layout.pending_activity);
 
         recyclerView = findViewById(R.id.recyclerView);
+        settingsBuyer = findViewById(R.id.settingsBuyer);
 
-        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3);
+        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3, s4);
 
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
@@ -70,19 +70,31 @@ public class PendingActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+        settingsBuyer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                settingsBuyer();
+            }
+        });
     }
 
     private void getShopper(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
-            if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
-                name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class).charAt(0) + ".";
-                if (name.length() > 18)
-                    name = StringUtils.abbreviate(name, 15);
+            if (snapshot.child("shopperID").getValue(String.class) != null) {
+                name = null;
+                if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
+                    name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class).charAt(0) + ".";
+                    if (name.length() > 18)
+                        name = StringUtils.abbreviate(name, 15);
+                    break;
+                }
+                else if(name == null)
+                    name = "Unassigned";
             }
         }
-        myAdapter.addOrder(storeName, orderId, name);
+        myAdapter.addOrder(storeName, orderId, name, shopperId);
     }
 
     public void goBack(View v) {
@@ -93,6 +105,10 @@ public class PendingActivity extends AppCompatActivity {
     public void goDetails(String orderId) {
         Intent intent = new Intent(this, OrderFulfillBuyer.class);
         intent.putExtra("ORDER_ID", orderId);
+        startActivity(intent);
+    }
+    public void settingsBuyer() {
+        Intent intent = new Intent(this, SettingsBuyer.class);
         startActivity(intent);
     }
 }

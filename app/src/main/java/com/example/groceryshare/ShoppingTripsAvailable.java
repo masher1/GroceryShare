@@ -2,7 +2,10 @@ package com.example.groceryshare;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,25 +25,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
 public class ShoppingTripsAvailable extends AppCompatActivity {
 
-    RecyclerView recyclerView;
     DatabaseReference databaseOrders;
-
-    ArrayList<String> s1 = new ArrayList<String>();
-    ArrayList<String> s2 = new ArrayList<String>();
-    ArrayList<String> s3 = new ArrayList<String>();
-    ArrayList<String> s4 = new ArrayList<String>();
+    RecyclerView recyclerView;
+    LinearLayout emptyView;
     String userID;
-    String buyerID, storeName, addressShopper, orderID;
+    String name, buyerID, storeName, addressShopper, addressBuyer, orderID;
+    Button settingsShopper;
+    private static final String TAG = "ShoppingTripsAvailable";
 
-
-    //newCode started
     private Shopping_trips_available_adapter myAdapter;
-    private List orders =new ArrayList<>();
-    //newCode ended
-
+    private List orders = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +45,16 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
 
         Intent intent = getIntent();
         userID = intent.getStringExtra("USER_ID");
-
-        recyclerView = findViewById(R.id.recyclerView);
+        settingsShopper = findViewById(R.id.settingsShopper);
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
 
-        //newCode started
-        RecyclerView.LayoutManager manager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager);
-        myAdapter = new Shopping_trips_available_adapter(orders);
-        //newCode ended
+        emptyView = findViewById(R.id.recycler_empty_view);
 
-//        final Shopping_trips_available_adapter myAdapter = new Shopping_trips_available_adapter(this, s1, s2, s3, s4, userID);
+        recyclerView = findViewById(R.id.recyclerViewDefault);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        myAdapter = new Shopping_trips_available_adapter(this, orders);
+        recyclerView.setAdapter(myAdapter);
 
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -72,7 +67,7 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
                         addressShopper = snapshot.child("address").getValue(String.class);
                         orderID = snapshot.child("orderId").getValue(String.class);
                         try {
-                            getAddress(dataSnapshot, buyerID, storeName, addressShopper, orderID, myAdapter);
+                            getBuyer(dataSnapshot, buyerID, storeName, addressShopper, orderID, myAdapter);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
@@ -80,26 +75,37 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
                         }
                     }
                 }
+                if (orders.isEmpty()) {
+                    recyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    Log.e(TAG, "Order is Empty");
+                }
+                else
+                    recyclerView.setVisibility(View.VISIBLE);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+        settingsShopper.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                settingsShopper();
+            }
+        });
     }
 
-    private void getAddress(DataSnapshot dataSnapshot, String buyerID, String storeName, String addressShopper, String orderID, Shopping_trips_available_adapter myAdapter) throws IOException, JSONException {
+    private void getBuyer(DataSnapshot dataSnapshot, String buyerID, String storeName, String addressShopper, String orderID, Shopping_trips_available_adapter myAdapter) throws IOException, JSONException {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Buyers");
-        String addressBuyer = "";
         for (DataSnapshot snapshot : snapshots.getChildren()) {
             if (snapshot.child("buyerID").getValue(String.class).equals(buyerID)) {
+                name = snapshot.child("firstName").getValue(String.class);
                 addressBuyer = snapshot.child("address").getValue(String.class);
             }
         }
         String distance = DistanceCalculator.main(addressBuyer, addressShopper);
-        buyerID = buyerID.substring(0, Math.min(buyerID.length(), 15));
-        orderData data = new orderData(buyerID, storeName, distance, orderID);
+        orderData data = new orderData(name, buyerID, storeName, distance, orderID);
         orders.add(data);
         recyclerView.setAdapter(myAdapter);
         sortAndSubmit(orders);
@@ -120,8 +126,14 @@ public class ShoppingTripsAvailable extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addShopper(String orderID) {
-        databaseOrders.child(orderID).child("shopperId").setValue(userID);
+    public void goDetails(String orderID) {
+        Intent intent = new Intent(this, OrderFulfillShopper.class);
+        intent.putExtra("ORDER_ID", orderID);
+        startActivity(intent);
     }
 
+    public void settingsShopper() {
+        Intent intent = new Intent(this, SettingsShopper.class);
+        startActivity(intent);
+    }
 }

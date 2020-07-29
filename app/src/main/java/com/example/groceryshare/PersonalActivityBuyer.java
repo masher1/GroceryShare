@@ -167,7 +167,6 @@ public class PersonalActivityBuyer extends AppCompatActivity {
         Intent intent = new Intent(this, OrderActivity.class);
         startActivity(intent);
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -182,7 +181,6 @@ public class PersonalActivityBuyer extends AppCompatActivity {
                 break;
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -193,7 +191,6 @@ public class PersonalActivityBuyer extends AppCompatActivity {
                 onCaptureImageResult(data);
         }
     }
-
     private void onCaptureImageResult(Intent data) {
         Bitmap bm = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -216,7 +213,6 @@ public class PersonalActivityBuyer extends AppCompatActivity {
         ProfileImage.setImageBitmap(bm);
         imageBitmap = bm;
     }
-
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
         Bitmap bm = null;
@@ -231,19 +227,16 @@ public class PersonalActivityBuyer extends AppCompatActivity {
         imageBitmap = bm;
 
     }
-
     public void galleryIntent() {
         Intent gallery = new Intent();
         gallery.setType("image/*");
         gallery.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE);
     }
-
     private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
-
     public void handleImageClick(View view) {
         final CharSequence[] items = {"Take Photo", "Choose from Library",
                 "Cancel"};
@@ -272,7 +265,6 @@ public class PersonalActivityBuyer extends AppCompatActivity {
         });
         builder.show();
     }
-
     private void handleUpload(Bitmap bitmap, final FirebaseUser user) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -298,7 +290,6 @@ public class PersonalActivityBuyer extends AppCompatActivity {
                     }
                 });
     }
-
     private void getDownloadUrl(StorageReference reference, final FirebaseUser user) {
         reference.getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -310,7 +301,6 @@ public class PersonalActivityBuyer extends AppCompatActivity {
                     }
                 });
     }
-
     private void setUserProfileUrl(Uri uri, FirebaseUser user) {
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setPhotoUri(uri)

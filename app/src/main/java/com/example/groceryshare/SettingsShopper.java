@@ -5,14 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.groceryshare.ui.login.LoginActivity;
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsShopper extends AppCompatActivity {
     private Button personalBtn;
@@ -59,11 +54,10 @@ public class SettingsShopper extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShopperHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
-    public void openPersonal(){
+    public void openPersonal() {
         Intent intent = new Intent(this, PersonalActivityShopper.class);
         startActivity(intent);
     }

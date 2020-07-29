@@ -57,11 +57,10 @@ public class SettingsBuyer extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, BuyerHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
-    public void openPersonal(){
+    public void openPersonal() {
         Intent intent = new Intent(this, PersonalActivityBuyer.class);
         startActivity(intent);
     }
