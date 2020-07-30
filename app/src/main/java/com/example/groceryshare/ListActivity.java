@@ -102,7 +102,7 @@ public class ListActivity extends AppCompatActivity {
 
                     String shoppingList="";
 
-                    for(int i= 0; i<=itemList.size(); i++){
+                    for(int i= 0; i<itemList.size(); i++){
                         shoppingList += "\nItem Name: " + itemList.get(i).getItemName() + "\tQuantity: " + itemList.get(i).getQuantity() + "\tBrand: " + itemList.get(i).getBrand();
                     }
 

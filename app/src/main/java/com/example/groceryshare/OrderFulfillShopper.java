@@ -102,7 +102,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 databaseOrders.child(orderid).child("shopperId").setValue(null);
-                databaseOrders.child(orderid).child("Status").setValue("Available");
+                databaseOrders.child(orderid).child("status").setValue("Available");
                 sendNotif();
                 finish();
             }

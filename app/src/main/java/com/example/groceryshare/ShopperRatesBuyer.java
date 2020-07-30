@@ -70,7 +70,7 @@ public class ShopperRatesBuyer extends AppCompatActivity {
                 userReviewByShopperString=userReviewByShopperEditText.getText().toString();
                 databaseOrders.child(orderID).child("ReviewByShopper").setValue(userReviewByShopperString);
                 databaseOrders.child(orderID).child("RatingByShopper").setValue(ratingByShopperValue);
-                databaseOrders.child(orderID).child("Status").setValue("Complete");
+                databaseOrders.child(orderID).child("status").setValue("Complete");
                 System.out.println("Yes");
                 FirebaseDatabase.getInstance().getReference()
                         .addListenerForSingleValueEvent(new ValueEventListener() {

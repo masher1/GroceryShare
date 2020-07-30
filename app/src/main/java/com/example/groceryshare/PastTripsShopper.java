@@ -63,7 +63,7 @@ public class PastTripsShopper extends AppCompatActivity {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
                 for (DataSnapshot snapshot : snapshots.getChildren()) {
                     if (snapshot.child("shopperId").getValue(String.class) != null && snapshot.child("Status").getValue(String.class) != null) {
-                        if (snapshot.child("shopperId").getValue(String.class).equals(userID) && snapshot.child("Status").getValue(String.class).equals(complete)) {
+                        if (snapshot.child("shopperId").getValue(String.class).equals(userID) && snapshot.child("status").getValue(String.class).equals(complete)) {
                             buyerID = snapshot.child("buyerId").getValue(String.class);
                             storeName = snapshot.child("storeName").getValue(String.class);
                             addressShopper = snapshot.child("address").getValue(String.class);
