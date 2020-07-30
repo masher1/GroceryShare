@@ -144,7 +144,7 @@ public class ViewOrderInfoShopper extends AppCompatActivity {
             storeInput.setText(store);
             paymentInput.setText(payment);
             othersInput.setText(others);
-            if(result == "10.00"){
+            if(rating == 10.0){
                 result = "None";
             }
             ratingsInput.setText(result);

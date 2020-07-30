@@ -165,7 +165,7 @@ public class ListActivity extends AppCompatActivity {
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         if (ItemAdapter.shopList.size() != 0) {
             String id = databaseOrders.push().getKey();
-
+            status = "Available";
             newOrder order = new newOrder(id, status, dateFulfilled, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo, orderNickname);
 
             databaseOrders.child(id).setValue(order);

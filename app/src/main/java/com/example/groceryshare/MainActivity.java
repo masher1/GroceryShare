@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private Button signupbutton;
     private Button testBtn;
     private FirebaseAuth mAuth;
-    Boolean buyer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,19 +67,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     private void updateUI(final String id){
-        buyer = false;
         FirebaseDatabase.getInstance().getReference().child("Buyers")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            String buyerID = snapshot.child("buyerID").getValue(String.class);
-                            System.out.println(buyerID.equals(id));
-                            if(buyerID.equals(id)){
-                                buyer = true;
-                            }
-                        }
-                        if(buyer){
+                        if(dataSnapshot.child(id).getValue() != null){
                             Intent intent = new Intent(com.example.groceryshare.MainActivity.this, com.example.groceryshare.BuyerHomeScreen.class);
                             intent.putExtra("USER_ID", id);
                             startActivity(intent);
