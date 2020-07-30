@@ -123,7 +123,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Payment method"
+                        android:text="Payment method:Username (if applicable)"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/colorPrimary"
                         android:textSize="15sp"
@@ -133,7 +133,7 @@
                         android:id="@+id/paymentId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Paypal, Venmo, Cash, etc.."
+                        android:hint="Paypal:@JohnDoe"
                         android:inputType="text"
                         android:textColor="#000000"
                         android:textColorHint="@color/fullwhite"
