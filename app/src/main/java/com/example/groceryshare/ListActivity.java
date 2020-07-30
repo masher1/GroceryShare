@@ -107,7 +107,7 @@ public class ListActivity extends AppCompatActivity {
                                 addShoppingList();
                                 sendtoPending();
                                 finish();
-                                Toast.makeText(getApplicationContext(), "you choose confirm action for alertbox",
+                                Toast.makeText(getApplicationContext(), "you chose confirm action for alertbox",
                                         Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -116,7 +116,7 @@ public class ListActivity extends AppCompatActivity {
                                 //  Action for 'NO' Button
                                 Intent intent = new Intent(ListActivity.this, PersonalActivityBuyer.class);
                                 startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "you choose edit action for alertbox",
+                                Toast.makeText(getApplicationContext(), "you chose edit action for alertbox",
                                         Toast.LENGTH_SHORT).show();
                             }
                         })
