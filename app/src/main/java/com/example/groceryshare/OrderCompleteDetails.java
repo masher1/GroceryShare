@@ -41,7 +41,6 @@ public class OrderCompleteDetails extends AppCompatActivity {
         /* use findViewById() to get the next Button */
         viewOrderBtnShopper = (Button) findViewById(R.id.orderInfoBtn);
         viewShoppingListBtnShopper = (Button) findViewById(R.id.viewListBtnShopper);
-        uploadRcptBtnShopper = (Button) findViewById(R.id.uploadRcptTxtBtn);
 
         orderNameText = (TextView) findViewById(R.id.orderNameTxt);
 
@@ -62,15 +61,6 @@ public class OrderCompleteDetails extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(OrderCompleteDetails.this, ShoppingListShopperView.class);
                 intent.putExtra("orderid",orderid);
-                // start the activity connect to the specified class
-                startActivity(intent);
-            }
-
-        });
-        uploadRcptBtnShopper.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(OrderCompleteDetails.this, UploadReceipt.class);
-                intent.putExtra("Order_ID", orderid);
                 // start the activity connect to the specified class
                 startActivity(intent);
             }
