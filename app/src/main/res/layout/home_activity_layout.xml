@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greencolor"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:text="Welcome to GroceryShare"
+        android:textColor="@color/whitecolor"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light"
+        android:textSize="45dp"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="103dp"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginTop="353dp"
+        android:background="@drawable/signupbtn"
+        android:elevation="5dp"
+        android:text="Login"
+        android:textColor="@color/colorPrimary"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="273dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginTop="457dp"
+        android:background="@drawable/loginbtn"
+        android:elevation="5dp"
+        android:text="Sign-up"
+        android:textColor="@color/whitecolor"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="273dp" />
+
+</RelativeLayout>

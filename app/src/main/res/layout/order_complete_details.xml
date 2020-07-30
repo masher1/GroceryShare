@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderCompleteShopper"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:id="@+id/GoBackIcon"
+            android:layout_width="56dp"
+            android:layout_height="45dp"
+            android:onClick="goBack"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/orderNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/order_name_placeholder"
+            android:textSize="25dp"
+
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/orderInfoBtn"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/joinbtn"
+            android:elevation="5dp"
+            android:paddingLeft="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="false"
+            android:textColor="@color/whitecolor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="@string/view_order_info" />
+
+        <Button
+            android:id="@+id/viewListBtnShopper"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/joinbtn"
+            android:elevation="5dp"
+            android:paddingLeft="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="false"
+            android:textColor="@color/whitecolor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="@string/view_shopping_list" />
+
+        <Button
+            android:id="@+id/uploadRcptTxtBtn"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/joinbtn"
+            android:elevation="5dp"
+            android:paddingLeft="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="false"
+            android:textColor="@color/whitecolor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="@string/upload_receipt" />
+    </LinearLayout>
+
+</LinearLayout>

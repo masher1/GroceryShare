@@ -57,7 +57,7 @@ public class Shopping_trips_available_adapter extends RecyclerView.Adapter<Shopp
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ShoppingTripsAvailable)context).goDetails(data.orderID);
+                ((ShoppingTripsAvailable)context).addShopper(data.orderID);
             }
         });
     }

@@ -127,11 +127,14 @@ public class PastTripsShopper extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goDetails(String orderID) {
-        Intent intent = new Intent(this, OrderFulfillShopper.class);
+
+    public void goDetails(String orderID){
+        Intent intent = new Intent(this, OrderCompleteDetails.class);
         intent.putExtra("ORDER_ID", orderID);
+        intent.putExtra("USER_ID",userID);
         startActivity(intent);
     }
+
 
     public void settingsShopper() {
         Intent intent = new Intent(this, SettingsShopper.class);
