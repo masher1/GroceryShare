@@ -36,7 +36,6 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
         name = s3;
         nickNames =s4;
         shopperId = s5;
-      //TODO: add shopperID everywhere else in the pipeline
     }
 
     @NonNull
