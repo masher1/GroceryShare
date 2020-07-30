@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.groceryshare.ui.login.LoginActivity;
 import com.firebase.ui.auth.AuthUI;
@@ -47,6 +48,8 @@ public class SettingsShopper extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Email is sent to change password!",
+                                                    Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
