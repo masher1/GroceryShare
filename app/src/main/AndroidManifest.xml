@@ -26,6 +26,7 @@
         <activity android:name=".ui.login.ResetPassword"></activity>
         <activity android:name=".buyerComplaints" />
         <activity android:name=".PersonalActivityShopper" />
+        <activity android:name=".PastOrderDetails" />
         <activity android:name=".SettingsBuyer" />
         <activity android:name=".BuyerRatesShopper" />
         <activity android:name=".viewReceipt" />

@@ -135,8 +135,7 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v){
-        Intent intent = new Intent(this, BuyerHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
     public void viewText(String name, String phone){

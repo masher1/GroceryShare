@@ -78,8 +78,7 @@ public class viewShoppingListCurrentOrder extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, BuyerHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
 }
