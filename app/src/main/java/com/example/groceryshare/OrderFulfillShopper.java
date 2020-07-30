@@ -188,7 +188,7 @@ public class OrderFulfillShopper extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
-                                if (snapshot.child("shopperId").getValue(String.class).equals(user)) {
+                                if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
                                     send_user = snapshot.child("buyerId").getValue(String.class);
 
                                     sendNotifications(send_user);
