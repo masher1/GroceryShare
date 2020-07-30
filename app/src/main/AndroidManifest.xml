@@ -47,7 +47,6 @@
         <activity android:name=".OrderFulfillShopper" />
         <activity android:name=".OrderDetailsShopper" />
         <activity android:name=".ComplaintsShopper" />
-        <activity android:name=".ReviewsAndRatingsShopper" />
         <activity android:name=".OrderCompleteDetails" />
         <activity android:name=".SettingsShopper" />
         <activity android:name=".BuyerHomeScreen" />
@@ -59,7 +58,6 @@
         <activity android:name=".PastActivity" />
         <activity android:name=".PendingActivity" />
         <activity android:name=".PersonalActivityBuyer" />
-        <activity android:name=".RatingActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -125,7 +125,7 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
             if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
-                name = snapshot.child("firstName").getValue(String.class) + snapshot.child("lastName").getValue(String.class) ;
+                name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class) ;
                 phone = snapshot.child("phoneNumber").getValue(String.class);
                 viewText(name,phone);
             }
@@ -135,8 +135,7 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v){
-        Intent intent = new Intent(this, BuyerHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
     public void viewText(String name, String phone){
