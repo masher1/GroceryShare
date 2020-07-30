@@ -104,6 +104,7 @@ public class ShopperRatesBuyer extends AppCompatActivity {
         });
     }
 
+
     //used to navigate back to the previous screen
     public void goBack(View v) {
         Intent intent = new Intent(this, OrderFulfillShopper.class);
@@ -141,7 +142,7 @@ public class ShopperRatesBuyer extends AppCompatActivity {
 
                                 + "\"filters\": [{\"field\": \"tag\", \"key\": \"UserID\", \"relation\": \"=\", \"value\": \"" + send_user + "\"},{\"operator\": \"OR\"},{\"field\": \"amount_spent\", \"relation\": \">\",\"value\": \"0\"}],"
                                 + "\"data\": {\"foo\": \"bar\"},"
-                                + "\"contents\": {\"en\": \"Someone Completed your Order!\"}"
+                                + "\"contents\": {\"en\": \"Your shopper completed your order!\"}"
                                 + "}";
 
 
