@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderFulfillBuyer"
+    tools:context=".OrderCompleteShopper"
     android:orientation="vertical">
 
     <LinearLayout
@@ -32,97 +32,63 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/orderNameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif-medium"
             android:text="@string/order_name_placeholder"
-            android:textSize="25sp"
+            android:textSize="25dp"
+
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/viewShopperInfoBtn"
+            android:id="@+id/orderInfoBtn"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="80dp"
             android:background="@drawable/joinbtn"
             android:elevation="5dp"
-            android:fontFamily="sans-serif-medium"
             android:paddingLeft="15dp"
-            android:text="View Shopper Info"
+            android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
             android:textColor="@color/whitecolor"
+            android:textStyle="bold"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:text="@string/view_order_info" />
 
         <Button
-            android:id="@+id/viewShoppingListBtn"
+            android:id="@+id/viewListBtnShopper"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@drawable/joinbtn"
             android:elevation="5dp"
-            android:fontFamily="sans-serif-medium"
             android:paddingLeft="15dp"
-            android:text="View Shopping List"
+            android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
             android:textColor="@color/whitecolor"
-            android:textSize="20sp"
             android:textStyle="bold"
-            android:paddingStart="15dp" />
+            android:textSize="20sp"
+            android:text="@string/view_shopping_list" />
 
         <Button
-            android:id="@+id/viewReceiptBtn"
+            android:id="@+id/uploadRcptTxtBtn"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/joinbtngray"
+            android:background="@drawable/joinbtn"
             android:elevation="5dp"
-            android:enabled="false"
-            android:fontFamily="sans-serif-medium"
-            android:paddingStart="15dp"
             android:paddingLeft="15dp"
-            android:text="View Receipt"
+            android:fontFamily="sans-serif-medium"
             android:textAllCaps="false"
             android:textColor="@color/whitecolor"
+            android:textStyle="bold"
             android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/confirmOrderDoneBtn"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/joinbtngray"
-            android:enabled="false"
-            android:elevation="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:paddingLeft="15dp"
-            android:text="@string/confirm_order_complete"
-            android:textAllCaps="false"
-            android:textColor="@color/whitecolor"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/cancelOrderBtn"
-            android:layout_width="280dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/cancelbtn"
-            android:elevation="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:paddingLeft="15dp"
-            android:text="@string/cancel_order"
-            android:textAllCaps="false"
-            android:textColor="@color/whitecolor"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:text="@string/upload_receipt" />
     </LinearLayout>
+
 </LinearLayout>

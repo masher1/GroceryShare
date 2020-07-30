@@ -36,13 +36,14 @@ public class OrderFulfillShopper extends AppCompatActivity {
     private TextView orderNameText;
     public String orderid;
     public String send_user;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_fulfill_shopper);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         Intent intent= getIntent();
         Bundle extras = intent.getExtras();
@@ -101,19 +102,21 @@ public class OrderFulfillShopper extends AppCompatActivity {
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 databaseOrders.child(orderid).child("shopperId").setValue(null);
-
-                Intent intent = new Intent(OrderFulfillShopper.this, ShopperHomeScreen.class);
+                databaseOrders.child(orderid).child("Status").setValue("Available");
                 sendNotif();
-                startActivity(intent);
-
+                finish();
             }
         });
     }
 
-    //used to navigate back to the previous screen
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        user = mAuth.getCurrentUser();
+    }
+    //used to navigate back to the screen it came from
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShopperHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
     public void sendNotifications(final String send_user) {

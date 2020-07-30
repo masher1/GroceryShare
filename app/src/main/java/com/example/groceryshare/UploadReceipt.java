@@ -59,6 +59,7 @@ public class UploadReceipt extends AppCompatActivity {
     String orderNum;
     String orderID;
     String receipt;
+    String uploadLocation;
 
 
     @Override
@@ -78,7 +79,7 @@ public class UploadReceipt extends AppCompatActivity {
         total = findViewById(R.id.totalOwedDecimal);
         Bundle intentOrderID = getIntent().getExtras();
         orderID = intentOrderID.getString("Order_ID");
-        final String uploadLocation = "Orders/"+orderID+"/Receipts";
+        uploadLocation = "Orders/"+orderID+"/Receipts";
         System.out.println(uploadLocation);
         ButtonUpload1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +88,7 @@ public class UploadReceipt extends AppCompatActivity {
                     Toast.makeText(UploadReceipt.this, "Upload in progress!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    receipt = uploadFile();
+                    receipt = uploadFile(picNum);
                     System.out.println("Upload Receipt OrderID" + orderID);
                     databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
                     if (receipt!=null){
@@ -116,7 +117,7 @@ public class UploadReceipt extends AppCompatActivity {
                 gallery.setType("image/*");
                 gallery.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE);
-                uploadFile();
+                //uploadFile();
             }
         });
 
@@ -124,13 +125,12 @@ public class UploadReceipt extends AppCompatActivity {
 
             public void onClick(View v) {
                 //add way to handle empty or bad input
-                Intent intent = new Intent(UploadReceipt.this, OrderFulfillShopper.class);
                 //databaseReceipts = FirebaseDatabase.getInstance().getReference("Orders");
                 databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
                 totalString = total.getText().toString();
                 databaseReceipts.child("Total").setValue(totalString);
                 // start the activity connect to the specified class
-                startActivity(intent);
+                finish();
             }
 
         });
@@ -138,8 +138,7 @@ public class UploadReceipt extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, OrderFulfillShopper.class);
-        startActivity(intent);
+        finish();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -164,10 +163,13 @@ public class UploadReceipt extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
-    private String uploadFile() {
+    private String uploadFile(Integer num) {
         if (imageUri != null) {
-            StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(imageUri));
+            //StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
+                 //   + "." + getFileExtension(imageUri));
+            final StorageReference fileReference = FirebaseStorage.getInstance().getReference()
+                    .child("Receipts")
+                    .child(orderID + num + ".jpeg");
             UploadTask = fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

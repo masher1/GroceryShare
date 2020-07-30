@@ -8,56 +8,20 @@
     android:background="@color/greencolor"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="336dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:text="Welcome to Shopping with Friends"
-        android:textColor="@color/whitecolor"
-        android:textAlignment="center"
-        android:fontFamily="sans-serif-light"
-        android:textSize="45dp"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="103dp"
-        android:gravity="center_horizontal" />
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="357dp"
+        android:layout_height="292dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintVertical_bias="0.252"
+        tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="280dp"
-        android:layout_height="45dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
-        android:layout_marginTop="353dp"
-        android:background="@drawable/signupbtn"
-        android:elevation="5dp"
-        android:text="Login"
-        android:textColor="@color/colorPrimary"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="273dp" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="280dp"
-        android:layout_height="45dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
-        android:layout_marginTop="457dp"
-        android:background="@drawable/loginbtn"
-        android:elevation="5dp"
-        android:text="Sign-up"
-        android:textColor="@color/whitecolor"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="273dp" />
 
 </RelativeLayout>

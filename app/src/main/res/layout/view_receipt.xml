@@ -23,45 +23,82 @@
             android:src="@drawable/ic_arrow_back_black_24dp" />
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="354dp"
-        android:layout_height="451dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <LinearLayout
-            android:id="@+id/imageGallery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
-    </ScrollView>
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="sans-serif-medium"
         android:text="Total: $"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/backReceiptView" />
 
     <TextView
         android:id="@+id/totalDue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="30dp"
         android:text="Temp"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/backReceiptView" />
+
+    <ImageView
+        android:id="@+id/receiptImgView"
+        android:layout_width="357dp"
+        android:layout_height="292dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.252"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/nextReceiptView"
+        android:layout_width="122dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/joinbtn"
+        android:elevation="5dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="@color/whitecolor"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/receiptImgView" />
+
+    <Button
+        android:id="@+id/backReceiptView"
+        android:layout_width="122dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/joinbtn"
+        android:elevation="5dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Back"
+        android:textAllCaps="false"
+        android:textColor="@color/whitecolor"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/receiptImgView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

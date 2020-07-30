@@ -55,6 +55,8 @@ public class ComplaintsShopper extends AppCompatActivity {
         submitComplaint.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                String id = databaseComplaints.push().getKey();
+                databaseComplaints = databaseComplaints.child(id);
                 problemDescripString = problemDescrip.getText().toString();
                 orderOtherIssueString = orderOtherIssue.getText().toString();
                 orderIssueValue = orderIssue.isChecked();
