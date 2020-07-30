@@ -62,7 +62,6 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
             holder.storeName_text.setText(storeName.get(position));
         else
             holder.storeName_text.setText("Anywhere");
-
         holder.order_nickname.setText(nickNames.get(position));
         holder.name_text.setText(name.get(position));
         holder.button.setOnClickListener(new View.OnClickListener() {
