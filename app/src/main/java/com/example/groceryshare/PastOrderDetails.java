@@ -107,7 +107,7 @@ public class PastOrderDetails extends AppCompatActivity {
         });
         complain.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(PastOrderDetails.this, buyerComplaints.class);
+                Intent intent = new Intent(PastOrderDetails.this, ComplaintsBuyer.class);
                 intent.putExtra("orderid", orderid);
                 // start the activity connect to the specified class
                 startActivity(intent);
