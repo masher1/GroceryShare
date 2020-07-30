@@ -31,7 +31,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/orderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/order_name_placeholder"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/orderNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/order_name_placeholder"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/orderInfoBtn"

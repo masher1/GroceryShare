@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class buyerComplaints extends AppCompatActivity {
+public class ComplaintsBuyer extends AppCompatActivity {
     private Button submit;
     private Button submitComplaint;
     private EditText problemDescrip;
@@ -36,7 +36,7 @@ public class buyerComplaints extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buyer_complaints);
+        setContentView(R.layout.complaints_buyer);
         problemDescrip = (EditText) findViewById(R.id.problemInputBuyer);
         orderIssue = (CheckBox) findViewById(R.id.checkBoxComplaintGeneralBuyer);
         wrongAddress = (CheckBox) findViewById(R.id.wAddressCheckBuyer);
@@ -49,7 +49,7 @@ public class buyerComplaints extends AppCompatActivity {
 
         submitComplaint.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(buyerComplaints.this, BuyerHomeScreen.class);
+                Intent intent = new Intent(ComplaintsBuyer.this, BuyerHomeScreen.class);
                 String id = databaseComplaints.push().getKey();
                 databaseComplaints = databaseComplaints.child(id);
                 problemDescripString = problemDescrip.getText().toString();

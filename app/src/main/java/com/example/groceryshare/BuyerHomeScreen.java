@@ -94,7 +94,7 @@ public class BuyerHomeScreen extends AppCompatActivity {
         complaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BuyerHomeScreen.this, buyerComplaints.class);
+                Intent intent = new Intent(BuyerHomeScreen.this, ComplaintsBuyer.class);
                 startActivity(intent);
 
             }
