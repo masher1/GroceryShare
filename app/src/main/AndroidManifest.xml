@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.login.ResetPassword"></activity>
-        <activity android:name=".buyerComplaints" />
+        <activity android:name=".ComplaintsBuyer" />
         <activity android:name=".PersonalActivityShopper" />
         <activity android:name=".SettingsBuyer" />
         <activity android:name=".BuyerRatesShopper" />

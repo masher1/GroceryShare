@@ -99,7 +99,7 @@
         <Button
             android:id="@+id/nextButton"
             android:layout_width="169dp"
-            android:layout_height="71dp"
+            android:layout_height="50dp"
             android:layout_marginTop="50sp"
             android:background="@drawable/joinbtngray"
             android:elevation="5dp"

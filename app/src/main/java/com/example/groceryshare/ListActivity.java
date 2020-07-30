@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -15,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +33,6 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<GroceryItem> itemList = new ArrayList<>();
     ItemAdapter itemAdapter;
     RecyclerView recyclerView;
-    TextView addbtn;
     Button submitbtn;
     EditText nickNameEdit;
     AlertDialog.Builder builder;
@@ -57,7 +56,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
         recyclerView = findViewById(R.id.recycler_view);
-        addbtn = findViewById(R.id.tv_add_item);
+        FloatingActionButton addbtn = findViewById(R.id.fab);
         submitbtn = findViewById(R.id.btn_submit);
         nickNameEdit = findViewById(R.id.order_nickname);
         itemList = populateList();
@@ -100,13 +99,23 @@ public class ListActivity extends AppCompatActivity {
                     builder.setMessage("Confirm").setTitle("Confirm your personal information");
                     //Setting message manually and performing action on button click
 
-                    String shoppingList="";
+                    String shoppingList = "";
 
-                    for(int i= 0; i<=itemList.size(); i++){
-                        shoppingList += "\nItem Name: " + itemList.get(i).getItemName() + "\tQuantity: " + itemList.get(i).getQuantity() + "\tBrand: " + itemList.get(i).getBrand();
+                    for (int i = 0; i < itemList.size(); i++) {
+                        if ((itemList.get(i).getBrand() == null || itemList.get(i).getBrand().equals("")) && (itemList.get(i).getQuantity() == null || itemList.get(i).getQuantity().equals("")) && (itemList.get(i).getItemName() == null || itemList.get(i).getItemName().equals(""))) {
+                        } else{
+                            if (itemList.get(i).getItemName() == null || itemList.get(i).getItemName().equals(""))
+                                itemList.get(i).setItemName("N/A");
+                            if (itemList.get(i).getQuantity() == null || itemList.get(i).getQuantity().equals(""))
+                                itemList.get(i).setQuantity("N/A");
+                            if (itemList.get(i).getBrand() == null || itemList.get(i).getBrand().equals(""))
+                                itemList.get(i).setBrand("N/A");
+
+                            shoppingList += "\nItem Name: " + itemList.get(i).getItemName() + "\tQuantity: " + itemList.get(i).getQuantity() + "\tBrand: " + itemList.get(i).getBrand();
+                        }
                     }
 
-                    builder.setMessage("Address: " + address + "\nPayment Type: " + payment + "\nShopping List: " + shoppingList)
+                    builder.setMessage("Address: " + address + "\nPayment Type: " + payment + "\nStore: " + storeName + "\nShopping List: " + shoppingList)
                             .setCancelable(false)
                             .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -123,6 +132,7 @@ public class ListActivity extends AppCompatActivity {
                                     //  Action for 'NO' Button
                                     Intent intent = new Intent(ListActivity.this, PersonalActivityBuyer.class);
                                     startActivity(intent);
+                                    dialog.cancel();
                                     Toast.makeText(getApplicationContext(), "you chose edit action for alertbox",
                                             Toast.LENGTH_SHORT).show();
                                 }

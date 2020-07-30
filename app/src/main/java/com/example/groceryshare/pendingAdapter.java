@@ -58,10 +58,10 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
                 }
             }
         });
-        if(!storeName.get(position).equals(""))
-            holder.storeName_text.setText(storeName.get(position));
-        else
+        if(storeName.get(position).equals("") || storeName.get(position) == null)
             holder.storeName_text.setText("Anywhere");
+        else
+            holder.storeName_text.setText(storeName.get(position));
         holder.order_nickname.setText(nickNames.get(position));
         holder.name_text.setText(name.get(position));
         holder.button.setOnClickListener(new View.OnClickListener() {
