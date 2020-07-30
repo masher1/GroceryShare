@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrivacyPolicy">
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/GoBackIcon"
+            android:layout_width="56dp"
+            android:layout_height="45dp"
+            android:onClick="goBack"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:contentDescription="@string/back_button" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/privacy_policy"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/GoBackIcon" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="406dp"
+        android:layout_height="504dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15sp"
+                android:paddingBottom="10sp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/your_privacy_is_important_to_us_it_is_groceryshare_s_policy_to_respect_your_privacy_regarding_any_information_we_may_collect_from_you_through_our_app_groceryshare_we_only_ask_for_personal_information_when_we_truly_need_it_to_provide_a_service_to_you_we_collect_it_by_fair_and_lawful_means_with_your_knowledge_and_consent_we_also_let_you_know_why_we_re_collecting_it_and_how_it_will_be_used_we_only_retain_collected_information_for_as_long_as_necessary_to_provide_you_with_your_requested_service_what_data_we_store_we_ll_protect_within_commercially_acceptable_means_to_prevent_loss_and_theft_as_well_as_unauthorized_access_disclosure_copying_use_or_modification_we_don_t_share_any_personally_identifying_information_publicly_or_with_third_parties_except_when_required_to_by_law_our_app_may_link_to_external_sites_that_are_not_operated_by_us_please_be_aware_that_we_have_no_control_over_the_content_and_practices_of_these_sites_and_cannot_accept_responsibility_or_liability_for_their_respective_privacy_policies_you_are_free_to_refuse_our_request_for_your_personal_information_with_the_understanding_that_we_may_be_unable_to_provide_you_with_some_of_your_desired_services_your_continued_use_of_our_app_will_be_regarded_as_acceptance_of_our_practices_around_privacy_and_personal_information_if_you_have_any_questions_about_how_we_handle_user_data_and_personal_information_feel_free_to_contact_us_this_policy_is_effective_as_of_30_july_2020_privacy_policy_created_with_getterms"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
