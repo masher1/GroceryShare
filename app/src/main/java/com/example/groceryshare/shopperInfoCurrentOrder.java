@@ -1,7 +1,6 @@
 package com.example.groceryshare;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -35,14 +34,7 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
 
 
     //Profile Pic Content Start
-    String profileImage;
     private ImageView ProfileImage;
-    private static final int PICK_IMAGE = 1;
-    private int REQUEST_CAMERA = 0;
-    private String userChoosenTask;
-    Bitmap imageBitmap;
-    private StorageReference StorageRef;
-    private static final String TAG = "shopperInfoCurrentOrder";
     //Profile Pic Content End
 
     DatabaseReference databaseShoppers;

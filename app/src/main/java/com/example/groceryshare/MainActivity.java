@@ -1,17 +1,13 @@
 package com.example.groceryshare;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.groceryshare.ui.login.LoginActivity;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,18 +30,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-
         mAuth = FirebaseAuth.getInstance();
-
-
-
     }
     public void onStart() {
         super.onStart();
         storageReference = FirebaseStorage.getInstance().getReference("iconLogo.jpg");
 
         imageView = findViewById(R.id.imgView);
-
 
         Glide.with(this)
                 .load(storageReference)
@@ -77,15 +68,11 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("USER_ID", id);
                             startActivity(intent);
                         }
-
-
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
-
-
     }
 }
 

@@ -54,9 +54,7 @@ public class OrderDetailsShopper extends AppCompatActivity {
 
         orderNameText = (TextView) findViewById(R.id.orderNameTxt);
 
-
-
-        orderNameText.setText("Order Number: " + orderid);
+        orderNameText.setText(orderid);
         // Add_button add click listener
         viewOrderBtnShopper.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

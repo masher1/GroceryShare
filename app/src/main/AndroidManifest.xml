@@ -23,9 +23,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ComplaintsBuyer" />
         <activity android:name=".PrivacyPolicy"></activity>
         <activity android:name=".ui.login.ResetPassword" />
-        <activity android:name=".buyerComplaints" />
         <activity android:name=".PersonalActivityShopper" />
         <activity android:name=".PastOrderDetails" />
         <activity android:name=".SettingsBuyer" />
