@@ -119,7 +119,6 @@ public class PastOrderDetails extends AppCompatActivity {
     }
 
     public void goBack(View v) {
-        Intent intent = new Intent(this, PendingActivity.class);
-        startActivity(intent);
+        finish();
     }
 }
