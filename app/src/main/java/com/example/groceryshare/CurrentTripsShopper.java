@@ -56,13 +56,13 @@ public class CurrentTripsShopper extends AppCompatActivity {
 
         myAdapter = new Current_trips_shopper_adapter(this, orders);
         recyclerView.setAdapter(myAdapter);
-
+        final String inProgress = "In-Progress";
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
                 for (DataSnapshot snapshot : snapshots.getChildren()) {
-                    if (snapshot.child("shopperId").getValue(String.class) != null && snapshot.child("Status").getValue(String.class) == null) {
+                    if (snapshot.child("Status").getValue(String.class).equals(inProgress)) {
                         if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
                             buyerID = snapshot.child("buyerId").getValue(String.class);
                             storeName = snapshot.child("storeName").getValue(String.class);

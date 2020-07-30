@@ -29,7 +29,7 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
 
     Context context;
 
-    public pendingAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4){
+    public pendingAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, ArrayList<String> s5){
         context = ct;
         storeName= s1;
         orderID = s2;

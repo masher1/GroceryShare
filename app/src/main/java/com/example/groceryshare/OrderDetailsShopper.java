@@ -69,6 +69,7 @@ public class OrderDetailsShopper extends AppCompatActivity {
         addOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 databaseOrders.child(orderid).child("shopperId").setValue(userID);
+                databaseOrders.child(orderid).child("Status").setValue("In-Progress");
 
                 Intent intent = new Intent(OrderDetailsShopper.this, ShopperHomeScreen.class);
                 startActivity(intent);

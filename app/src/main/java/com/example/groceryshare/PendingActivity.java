@@ -30,6 +30,7 @@ public class PendingActivity extends AppCompatActivity {
     ArrayList<String> s2 = new ArrayList<String>();
     ArrayList<String> s3 = new ArrayList<String>();
     ArrayList<String> s4 = new ArrayList<String>();
+    ArrayList<String> s5 = new ArrayList<String>();
 
     String name, storeName, orderId, shopperId, orderNickname;
     Button settingsBuyer;
@@ -47,7 +48,7 @@ public class PendingActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         settingsBuyer = findViewById(R.id.settingsBuyer);
 
-        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3, s4);
+        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3, s4, s5);
 
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
