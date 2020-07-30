@@ -23,6 +23,7 @@ public class SettingsBuyer extends AppCompatActivity {
     String userID;
     private String emailAddress;
     private Button passwordReset;
+    private Button policyBtn;
 
 
 
@@ -53,8 +54,21 @@ public class SettingsBuyer extends AppCompatActivity {
 
                 }
         );
+        policyBtn = findViewById(R.id.privacypolicy);
+        policyBtn.setOnClickListener(
+                new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        //add way to handle empty or bad input
+                        Intent intent = new Intent(SettingsBuyer.this, PrivacyPolicy.class);
+                        // start the activity connect to the specified class
+                        startActivity(intent);
+
+                    }
 
 
+                }
+        );
         logoutBtn = findViewById(R.id.logoutbtn);
         logoutBtn.setOnClickListener(
                 new View.OnClickListener() {
