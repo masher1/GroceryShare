@@ -2,7 +2,6 @@ package com.example.groceryshare;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -107,7 +106,7 @@ public class PastOrderDetails extends AppCompatActivity {
         });
         complain.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(PastOrderDetails.this, buyerComplaints.class);
+                Intent intent = new Intent(PastOrderDetails.this, ComplaintsBuyer.class);
                 intent.putExtra("orderid", orderid);
                 // start the activity connect to the specified class
                 startActivity(intent);

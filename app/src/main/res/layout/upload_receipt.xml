@@ -83,8 +83,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/blackcolor"
                 android:text="Total Owed: $"
-                android:textSize="30dp"
-                android:textStyle="bold" />
+                android:textSize="30dp" />
 
             <EditText
                 android:id="@+id/totalOwedDecimal"
