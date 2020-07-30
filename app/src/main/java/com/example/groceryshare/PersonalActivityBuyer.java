@@ -160,6 +160,7 @@ public class PersonalActivityBuyer extends AppCompatActivity {
 
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     //used to navigate back to the previous screen

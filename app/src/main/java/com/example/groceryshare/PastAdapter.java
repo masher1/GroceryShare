@@ -18,7 +18,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHolder>{
+public class PastAdapter extends RecyclerView.Adapter<PastAdapter.MyViewHolder>{
 
     ArrayList<String> storeName = new ArrayList<String>();
     ArrayList<String> orderID = new ArrayList<String>();
@@ -29,7 +29,7 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
 
     Context context;
 
-    public pendingAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, ArrayList<String> s5){
+    public PastAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<String> s3, ArrayList<String> s4, ArrayList<String> s5){
         context = ct;
         storeName= s1;
         orderID = s2;
@@ -58,16 +58,13 @@ public class pendingAdapter extends RecyclerView.Adapter<pendingAdapter.MyViewHo
                 }
             }
         });
-        if(storeName.get(position).equals("") || storeName.get(position) == null)
-            holder.storeName_text.setText("Anywhere");
-        else
-            holder.storeName_text.setText(storeName.get(position));
+        holder.storeName_text.setText(storeName.get(position));
         holder.order_nickname.setText(nickNames.get(position));
         holder.name_text.setText(name.get(position));
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((PendingActivity)context).goDetails(orderID.get(position));
+                ((PastActivity)context).goDetails(orderID.get(position));
             }
         });
     }

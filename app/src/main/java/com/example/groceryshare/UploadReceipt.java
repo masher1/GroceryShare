@@ -88,17 +88,6 @@ public class UploadReceipt extends AppCompatActivity {
                 }
                 else {
                     receipt = uploadFile(picNum);
-                    System.out.println("Upload Receipt OrderID" + orderID);
-                    databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
-                    if (receipt!=null){
-                        String picLabel = "Picture Number " + (picNum).toString() + " Reference String";
-                        databaseReceipts.child(picLabel).setValue(receipt);
-                        Toast.makeText(UploadReceipt.this, "Upload successful", Toast.LENGTH_LONG).show();
-                        picNum++;
-                    }
-                    else{
-                        Toast.makeText(UploadReceipt.this, "Upload failed, please try again", Toast.LENGTH_LONG).show();
-                    }
                 }
                 if (next.isEnabled()==false) {
                     next.setBackgroundResource(R.drawable.joinbtn);
@@ -163,6 +152,7 @@ public class UploadReceipt extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
     private String uploadFile(Integer num) {
+        System.out.println("image uri " + imageUri);
         if (imageUri != null) {
             //StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
                  //   + "." + getFileExtension(imageUri));
@@ -182,6 +172,11 @@ public class UploadReceipt extends AppCompatActivity {
                     //Toast.makeText(UploadReceipt.this, "Upload successful", Toast.LENGTH_LONG).show();
                     receiptImageString = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                     //replace with orderId path when get it
+                    databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
+                    String picLabel = "Picture Number " + (picNum).toString() + " Reference String";
+                    databaseReceipts.child(picLabel).setValue(receiptImageString);
+                    Toast.makeText(UploadReceipt.this, "Upload successful", Toast.LENGTH_LONG).show();
+                    picNum++;
 
                 }
             })
@@ -189,6 +184,7 @@ public class UploadReceipt extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(UploadReceipt.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UploadReceipt.this, "Upload failed, please try again", Toast.LENGTH_LONG).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -201,6 +197,7 @@ public class UploadReceipt extends AppCompatActivity {
         }
         else {
             Toast.makeText(this, "Please Select a Profile Photo!", Toast.LENGTH_SHORT).show();
+
         }
         return receiptImageString;
     }
