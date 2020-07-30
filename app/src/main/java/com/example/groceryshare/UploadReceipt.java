@@ -125,13 +125,12 @@ public class UploadReceipt extends AppCompatActivity {
 
             public void onClick(View v) {
                 //add way to handle empty or bad input
-                Intent intent = new Intent(UploadReceipt.this, OrderFulfillShopper.class);
                 //databaseReceipts = FirebaseDatabase.getInstance().getReference("Orders");
                 databaseReceipts = FirebaseDatabase.getInstance().getReference(uploadLocation);
                 totalString = total.getText().toString();
                 databaseReceipts.child("Total").setValue(totalString);
                 // start the activity connect to the specified class
-                startActivity(intent);
+                finish();
             }
 
         });
@@ -139,8 +138,7 @@ public class UploadReceipt extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, OrderFulfillShopper.class);
-        startActivity(intent);
+        finish();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

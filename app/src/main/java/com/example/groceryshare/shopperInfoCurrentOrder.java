@@ -48,17 +48,13 @@ import java.io.IOException;
 public class shopperInfoCurrentOrder extends AppCompatActivity {
 
     String name;
-    String firstName;
-    String lastName;
     String phone;
-    String rating;
 
     public String orderid;
     public String shopperid;
 
     TextView nameInput;
     TextView phoneInput;
-    TextView ratingInput;
 
 
     //Profile Pic Content Start
@@ -96,10 +92,8 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
         img = findViewById(R.id.GoBackIcon);//defines the back button image
         nameInput = (TextView) findViewById(R.id.nameid);
         phoneInput = (TextView) findViewById(R.id.phoneid);
-        ratingInput = (TextView) findViewById(R.id.ratingid);
         ProfileImage = (ImageView) findViewById(R.id.imageid);
 
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
         final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -109,10 +103,10 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
                 for (DataSnapshot snapshot : snapshots.getChildren()) {
                     if (snapshot.child("buyerId").getValue(String.class).equals(user.getUid())) {
-                        System.out.println(snapshot.child("buyerId").getValue(String.class) + "  " + user.getUid());
+                       // System.out.println(snapshot.child("buyerId").getValue(String.class) + "  " + user.getUid());
                         if (snapshot.child("orderId").getValue(String.class).contains(orderid)) {
                             shopperid = snapshot.child("shopperId").getValue(String.class);
-                            getshopper(database, dataSnapshot, shopperid);
+                            getShopper(database, dataSnapshot, shopperid);
                         }
                     }
                 }
@@ -126,33 +120,18 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
         });
     }
 
-    private void getshopper(DatabaseReference database, DataSnapshot dataSnapshot, String shopperId) {
+    private void getShopper(DatabaseReference database, DataSnapshot dataSnapshot, String shopperId) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
             if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
-                name = snapshot.child("firstName").getValue(String.class);
+                name = snapshot.child("firstName").getValue(String.class) + snapshot.child("lastName").getValue(String.class) ;
                 phone = snapshot.child("phoneNumber").getValue(String.class);
-                rating = snapshot.child("lastName").getValue(String.class);
-                viewText(name,phone,rating);
+                viewText(name,phone);
             }
         }
 
     }
-
-      /*  FirebaseDatabase.getInstance().getReference().child("Buyers").child(name)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        newBuyerCreds buyer = dataSnapshot.getValue(newBuyerCreds.class);
-                        nameInput.setText(buyer.getFirstName() + " " + buyer.getLastName());
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                }); */
-
 
     //used to navigate back to the previous screen
     public void goBack(View v){
@@ -160,10 +139,9 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void viewText(String name, String phone, String rating){
+    public void viewText(String name, String phone){
         nameInput.setText(name);
         phoneInput.setText(phone);
-        ratingInput.setText(rating);
     }
 
 }

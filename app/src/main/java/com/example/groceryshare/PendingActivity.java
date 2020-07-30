@@ -5,13 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 
-import com.example.groceryshare.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,8 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class PendingActivity extends AppCompatActivity {
+import org.apache.commons.lang.StringUtils;
 
+import java.util.ArrayList;
+
+public class PendingActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -29,11 +29,11 @@ public class PendingActivity extends AppCompatActivity {
     ArrayList<String> s1 = new ArrayList<String>();
     ArrayList<String> s2 = new ArrayList<String>();
     ArrayList<String> s3 = new ArrayList<String>();
+    ArrayList<String> s4 = new ArrayList<String>();
+    ArrayList<String> s5 = new ArrayList<String>();
 
-    String storeName;
-    String orderId;
-    String shopperId;
-    String name;
+    String name, storeName, orderId, shopperId, orderNickname;
+    Button settingsBuyer;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -46,13 +46,14 @@ public class PendingActivity extends AppCompatActivity {
         setContentView(R.layout.pending_activity);
 
         recyclerView = findViewById(R.id.recyclerView);
+        settingsBuyer = findViewById(R.id.settingsBuyer);
 
-        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3);
+        final pendingAdapter myAdapter = new pendingAdapter(this, s1, s2, s3, s4, s5);
 
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
@@ -61,7 +62,9 @@ public class PendingActivity extends AppCompatActivity {
                         storeName = snapshot.child("storeName").getValue(String.class);
                         orderId = snapshot.child("orderId").getValue(String.class);
                         shopperId = snapshot.child("shopperId").getValue(String.class);
-                        getBuyer(database, dataSnapshot, storeName, orderId, shopperId, myAdapter);
+                        orderNickname = snapshot.child("orderNickname").getValue(String.class);
+                        getShopper(dataSnapshot, storeName, orderId, shopperId, orderNickname, myAdapter);
+
                     }
                 }
             }
@@ -70,19 +73,33 @@ public class PendingActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+        settingsBuyer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                settingsBuyer();
+            }
+        });
     }
 
-    private void getBuyer(DatabaseReference database, DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, pendingAdapter myAdapter) {
+    private void getShopper(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, String orderNickname, pendingAdapter myAdapter) {
         DataSnapshot snapshots;
         snapshots = dataSnapshot.child("Shoppers");
         for (DataSnapshot snapshot : snapshots.getChildren()) {
-            if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
-                name = snapshot.child("firstName").getValue(String.class);
+            if (snapshot.child("shopperID").getValue(String.class) != null) {
+                name = null;
+                if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
+                    name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class).charAt(0) + ".";
+                    if (name.length() > 18)
+                        name = StringUtils.abbreviate(name, 15);
+                    break;
+                }
+                else if(name == null)
+                    name = "Unassigned";
             }
         }
-        myAdapter.addOrder(storeName, orderId, name);
-    }
 
+        myAdapter.addOrder(storeName, orderId, name, orderNickname, shopperId);
+    }
 
     public void goBack(View v) {
         Intent intent = new Intent(this, BuyerHomeScreen.class);
@@ -92,6 +109,10 @@ public class PendingActivity extends AppCompatActivity {
     public void goDetails(String orderId) {
         Intent intent = new Intent(this, OrderFulfillBuyer.class);
         intent.putExtra("ORDER_ID", orderId);
+        startActivity(intent);
+    }
+    public void settingsBuyer() {
+        Intent intent = new Intent(this, SettingsBuyer.class);
         startActivity(intent);
     }
 }

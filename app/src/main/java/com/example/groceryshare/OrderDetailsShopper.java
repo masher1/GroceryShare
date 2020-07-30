@@ -1,116 +1,92 @@
 package com.example.groceryshare;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RatingBar;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.onesignal.OneSignal;
 
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-public class ShopperRatesBuyer extends AppCompatActivity {
-    private DatabaseReference databaseOrders;
-    private DatabaseReference databaseBuyers;
-    private Button doneBtnRatingByShopper;
-    private RatingBar ratingBarShopper;
-    private EditText userReviewByShopperEditText;
-    Float ratingByShopperValue;
-    String userReviewByShopperString;
-    String orderID;
-    String buyerId;
+public class OrderDetailsShopper extends AppCompatActivity {
+    private Button viewOrderBtnShopper;
+    private Button viewShoppingListBtnShopper;
+    private Button addOrder;
+
+    DatabaseReference databaseOrders;
     String user;
+    FirebaseUser mAuth;
+
+    private TextView orderNameText;
+    public String orderid,userID;
     public String send_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shopper_rates_buyer);
-
-        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        Intent intent = getIntent();
-        orderID = intent.getStringExtra("ORDER_ID");
+        setContentView(R.layout.order_details_shopper);
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
-        databaseBuyers = FirebaseDatabase.getInstance().getReference("Buyers");
-        doneBtnRatingByShopper = (Button) findViewById(R.id.doneRatingByShopperBtn);
-        ratingBarShopper = (RatingBar) findViewById(R.id.ratingBarByShopper);
-        userReviewByShopperEditText = (EditText) findViewById(R.id.tellUsByShopperInput);
-        doneBtnRatingByShopper.setOnClickListener(new View.OnClickListener() {
+        Intent intent= getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null)
+            orderid = extras.getString("ORDER_ID");
+            userID = extras.getString("USER_ID");
+
+        /* use findViewById() to get the next Button */
+        viewOrderBtnShopper = (Button) findViewById(R.id.orderInfoBtn);
+        viewShoppingListBtnShopper = (Button) findViewById(R.id.viewListBtnShopper);
+        addOrder = findViewById(R.id.addOrderBtn);
+
+        orderNameText = (TextView) findViewById(R.id.orderNameTxt);
+
+
+
+        orderNameText.setText("Order Number: " + orderid);
+        // Add_button add click listener
+        viewOrderBtnShopper.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ShopperRatesBuyer.this, ShopperHomeScreen.class);
+                Intent intent = new Intent(OrderDetailsShopper.this, ViewOrderInfoShopper.class);
+                intent.putExtra("orderid", orderid);
                 // start the activity connect to the specified class
-
-                ratingByShopperValue = ratingBarShopper.getRating();
-
-                userReviewByShopperString=userReviewByShopperEditText.getText().toString();
-                databaseOrders.child(orderID).child("ReviewByShopper").setValue(userReviewByShopperString);
-                databaseOrders.child(orderID).child("RatingByShopper").setValue(ratingByShopperValue);
-                databaseOrders.child(orderID).child("Status").setValue("Complete");
-                System.out.println("Yes");
-                FirebaseDatabase.getInstance().getReference()
-                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                buyerId = dataSnapshot.child("Orders").child(orderID).child("buyerId").getValue(String.class);
-                                System.out.println(buyerId);
-                                if (dataSnapshot.child("Buyers").child(buyerId).child("Rating").getValue(double.class) == null) {
-                                    databaseBuyers.child(buyerId).child("Rating").setValue((double) ratingByShopperValue);
-                                    databaseBuyers.child(buyerId).child("numRatings").setValue(1);
-                                } else {
-                                    int numRatings = dataSnapshot.child("Buyers").child(buyerId).child("numRatings").getValue(int.class) + 1;
-                                    double newRating = (double) (dataSnapshot.child("Buyers").child(buyerId).child("Rating").getValue(double.class) * (numRatings - 1) + ratingByShopperValue) / (double) numRatings;
-                                    databaseBuyers.child(buyerId).child("numRatings").setValue(numRatings);
-                                    databaseBuyers.child(buyerId).child("Rating").setValue(newRating);
-                                }
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                            }
-                        });
-                sendNotif();
-
-
                 startActivity(intent);
             }
 
         });
+        viewShoppingListBtnShopper.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderDetailsShopper.this, ShoppingListShopperView.class);
+                intent.putExtra("orderid",orderid);
+                // start the activity connect to the specified class
+                startActivity(intent);
+            }
+
+        });
+        addOrder.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                databaseOrders.child(orderid).child("shopperId").setValue(userID);
+                databaseOrders.child(orderid).child("Status").setValue("In-Progress");
+                sendNotif();
+
+                Intent intent = new Intent(OrderDetailsShopper.this, ShopperHomeScreen.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
-    //used to navigate back to the previous screen
-    public void goBack(View v) {
-        Intent intent = new Intent(this, OrderFulfillShopper.class);
-        startActivity(intent);
-    }
-
 
     public void sendNotifications(final String send_user) {
         AsyncTask.execute(new Runnable() {
@@ -142,7 +118,7 @@ public class ShopperRatesBuyer extends AppCompatActivity {
 
                                 + "\"filters\": [{\"field\": \"tag\", \"key\": \"UserID\", \"relation\": \"=\", \"value\": \"" + send_user + "\"},{\"operator\": \"OR\"},{\"field\": \"amount_spent\", \"relation\": \">\",\"value\": \"0\"}],"
                                 + "\"data\": {\"foo\": \"bar\"},"
-                                + "\"contents\": {\"en\": \"Your shopper completed your order!\"}"
+                                + "\"contents\": {\"en\": \"Someone claimed you order!\"}"
                                 + "}";
 
 
@@ -183,7 +159,7 @@ public class ShopperRatesBuyer extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if (snapshot.child("orderId").getValue(String.class).equals(orderID)) {
+                            if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
                                 if (snapshot.child("shopperId").getValue(String.class).equals(user)) {
                                     send_user = snapshot.child("buyerId").getValue(String.class);
 
@@ -198,5 +174,18 @@ public class ShopperRatesBuyer extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance().getCurrentUser();
+       user =  mAuth.getUid();
+    }
+
+
+    //used to navigate back to the previous screen
+    public void goBack(View v) {
+        Intent intent = new Intent(this, ShopperHomeScreen.class);
+        startActivity(intent);
     }
 }

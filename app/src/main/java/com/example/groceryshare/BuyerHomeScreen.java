@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.onesignal.OneSignal;
 
 public class BuyerHomeScreen extends AppCompatActivity {
     private CardView newOrder;
@@ -20,12 +22,25 @@ public class BuyerHomeScreen extends AppCompatActivity {
     Button logoutBtn;
     String userID;
     private FirebaseAuth mAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_homescreen);
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
+        OneSignal.sendTag("UserID", userId);
+      
+        // OneSignal Initialization
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
+
+        OneSignal.sendTag("UserID",user.getUid());
 
         Intent intent = getIntent();
         userID = intent.getStringExtra("USER_ID");

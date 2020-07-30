@@ -13,7 +13,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsShopper extends AppCompatActivity {
     private Button personalBtn;
@@ -84,11 +87,10 @@ public class SettingsShopper extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShopperHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
 
-    public void openPersonal(){
+    public void openPersonal() {
         Intent intent = new Intent(this, PersonalActivityShopper.class);
         startActivity(intent);
     }
