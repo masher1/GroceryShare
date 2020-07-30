@@ -88,11 +88,12 @@ public class PendingActivity extends AppCompatActivity {
         }
         else{
             name = dataSnapshot.child("Shoppers").child(shopperId).child("firstName").getValue(String.class) + " " + dataSnapshot.child("Shoppers").child(shopperId).child("lastName").getValue(String.class).charAt(0) + ".";
-        }
 
+        }
         if (name.length() > 18) {
             name = StringUtils.abbreviate(name, 15);
         }
+
         myAdapter.addOrder(storeName, orderId, name, orderNickname, shopperId);
     }
 

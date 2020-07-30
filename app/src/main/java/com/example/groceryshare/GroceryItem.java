@@ -1,5 +1,7 @@
 package com.example.groceryshare;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -7,8 +9,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
 
 public class GroceryItem {
     private String itemName;
@@ -74,11 +74,4 @@ public class GroceryItem {
         return listRes;
     }
 
-
-    @Override
-    public String toString() {
-        return ("Item Name:"+this.getItemName()+
-                " Quantity: "+ this.getQuantity() +
-                " Brand: "+ this.getBrand());
-    }
 }

@@ -48,7 +48,6 @@ public class BuyerHomeScreen extends AppCompatActivity {
         pendingOrder = findViewById(R.id.pendingorderId);
         pastOrder = findViewById(R.id.pastorderId);
         settings = findViewById(R.id.settingsId);
-        rate = findViewById(R.id.ratingIDBuyer);
         complaint = findViewById(R.id.problemIDBuyer);
         logoutBtn = findViewById(R.id.logOutBuyerBtn);
 
@@ -92,14 +91,6 @@ public class BuyerHomeScreen extends AppCompatActivity {
             }
         });
 
-        rate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BuyerHomeScreen.this, RatingActivity.class);
-                startActivity(intent);
-
-            }
-        });
         complaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

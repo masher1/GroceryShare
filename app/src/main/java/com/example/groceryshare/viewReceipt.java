@@ -162,8 +162,7 @@ public class viewReceipt extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, BuyerHomeScreen.class);
-        startActivity(intent);
+        finish();
     }
     public void pause(String imgString, String arrayItem) {
         if (imgArray!=null) {

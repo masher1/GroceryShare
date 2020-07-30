@@ -38,20 +38,6 @@
             app:layout_constraintLeft_toLeftOf="@+id/GoBackIcon" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/notifswitch"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/notifications"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout1" />
-
     <Button
         android:id="@+id/personalinfo"
         android:layout_width="match_parent"
@@ -66,7 +52,7 @@
         android:textColor="@color/whitecolor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notifswitch" />
+        app:layout_constraintTop_toBottomOf="@+id/layout1" />
 
     <Button
         android:id="@+id/privacypolicy"
@@ -88,15 +74,17 @@
         android:id="@+id/changePasswordBuyer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/signupbtn"
-        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/joinbtn"
+        android:fontFamily="sans-serif-medium"
         android:text="Reset Password"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/whitecolor"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/privacypolicy"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/privacypolicy" />
 
     <Button
         android:id="@+id/logoutbtn"
@@ -112,6 +100,6 @@
         android:textColor="@color/whitecolor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordShopper" />
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordBuyer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

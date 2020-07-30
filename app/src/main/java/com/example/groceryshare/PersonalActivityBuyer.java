@@ -164,8 +164,7 @@ public class PersonalActivityBuyer extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, OrderActivity.class);
-        startActivity(intent);
+        finish();
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
