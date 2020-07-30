@@ -102,7 +102,7 @@ public class shopperInfoCurrentOrder extends AppCompatActivity {
                         }
                     }
                 });
-                name = snapshot.child("firstName").getValue(String.class) + snapshot.child("lastName").getValue(String.class) ;
+                name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class) ;
                 phone = snapshot.child("phoneNumber").getValue(String.class);
                 viewText(name,phone);
             }

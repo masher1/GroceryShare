@@ -62,7 +62,7 @@ public class CurrentTripsShopper extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
                 for (DataSnapshot snapshot : snapshots.getChildren()) {
-                    if (snapshot.child("Status").getValue(String.class).equals(inProgress)) {
+                    if (snapshot.child("status").getValue(String.class).equals(inProgress)) {
                         if (snapshot.child("shopperId").getValue(String.class).equals(userID)) {
                             buyerID = snapshot.child("buyerId").getValue(String.class);
                             storeName = snapshot.child("storeName").getValue(String.class);
@@ -98,15 +98,12 @@ public class CurrentTripsShopper extends AppCompatActivity {
     }
 
     private void getBuyer(DataSnapshot dataSnapshot, String buyerID, String storeName, String addressShopper, String orderID, Current_trips_shopper_adapter myAdapter) throws IOException, JSONException {
-        DataSnapshot snapshots;
-        snapshots = dataSnapshot.child("Buyers");
-        for (DataSnapshot snapshot : snapshots.getChildren()) {
-            if (snapshot.child("buyerID").getValue(String.class).equals(buyerID)) {
-                name = snapshot.child("firstName").getValue(String.class);
-                addressBuyer = snapshot.child("address").getValue(String.class);
-                recyclerView.setVisibility(View.VISIBLE);
-            }
-        }
+
+        name = dataSnapshot.child("Buyers").child(buyerID).child("firstName").getValue(String.class) + " " + dataSnapshot.child("Buyers").child(buyerID).child("lastName").getValue(String.class);
+        addressBuyer = dataSnapshot.child("Buyers").child(buyerID).child("address").getValue(String.class);
+        recyclerView.setVisibility(View.VISIBLE);
+
+
         String distance = DistanceCalculator.main(addressBuyer, addressShopper);
         orderData data = new orderData(name, buyerID, storeName, distance, orderID);
         orders.add(data);

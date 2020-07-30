@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class SettingsBuyer extends AppCompatActivity {
     String userID;
     private String emailAddress;
     private Button passwordReset;
+    private Button policyBtn;
 
 
 
@@ -44,6 +46,8 @@ public class SettingsBuyer extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Email is sent to change password!",
+                                                    Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -53,8 +57,21 @@ public class SettingsBuyer extends AppCompatActivity {
 
                 }
         );
+        policyBtn = findViewById(R.id.privacypolicy);
+        policyBtn.setOnClickListener(
+                new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        //add way to handle empty or bad input
+                        Intent intent = new Intent(SettingsBuyer.this, PrivacyPolicy.class);
+                        // start the activity connect to the specified class
+                        startActivity(intent);
+
+                    }
 
 
+                }
+        );
         logoutBtn = findViewById(R.id.logoutbtn);
         logoutBtn.setOnClickListener(
                 new View.OnClickListener() {

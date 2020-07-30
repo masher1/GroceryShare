@@ -160,12 +160,12 @@ public class PersonalActivityBuyer extends AppCompatActivity {
 
 
         Toast.makeText(this, "Submitted Info!", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, OrderActivity.class);
-        startActivity(intent);
+        finish();
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {

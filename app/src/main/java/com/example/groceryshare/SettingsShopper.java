@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.groceryshare.ui.login.LoginActivity;
 import com.firebase.ui.auth.AuthUI;
@@ -27,6 +28,7 @@ public class SettingsShopper extends AppCompatActivity {
     String userID;
     private String emailAddress;
     private Button passwordReset;
+    private Button policyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class SettingsShopper extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Email is sent to change password!",
+                                                    Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -63,7 +67,21 @@ public class SettingsShopper extends AppCompatActivity {
 
             }
         });
+        policyBtn = findViewById(R.id.privacypolicyshopper);
+        policyBtn.setOnClickListener(
+                new View.OnClickListener() {
 
+                    public void onClick(View v) {
+                        //add way to handle empty or bad input
+                        Intent intent = new Intent(SettingsShopper.this, PrivacyPolicy.class);
+                        // start the activity connect to the specified class
+                        startActivity(intent);
+
+                    }
+
+
+                }
+        );
 
         logoutBtn = findViewById(R.id.logoutshopperbtn);
         logoutBtn.setOnClickListener(

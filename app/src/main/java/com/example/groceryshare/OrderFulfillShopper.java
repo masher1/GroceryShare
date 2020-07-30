@@ -31,19 +31,18 @@ public class OrderFulfillShopper extends AppCompatActivity {
     private Button cancelOrder;
 
     DatabaseReference databaseOrders;
-    FirebaseUser user;
+    String user;
+    FirebaseUser mAuth;
 
     private TextView orderNameText;
     public String orderid;
     public String send_user;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_fulfill_shopper);
 
-        mAuth = FirebaseAuth.getInstance();
         databaseOrders = FirebaseDatabase.getInstance().getReference("Orders");
         Intent intent= getIntent();
         Bundle extras = intent.getExtras();
@@ -101,9 +100,9 @@ public class OrderFulfillShopper extends AppCompatActivity {
         });
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                databaseOrders.child(orderid).child("shopperId").setValue(null);
-                databaseOrders.child(orderid).child("Status").setValue("Available");
                 sendNotif();
+                databaseOrders.child(orderid).child("shopperId").setValue(null);
+                databaseOrders.child(orderid).child("status").setValue("Available");
                 finish();
             }
         });
@@ -111,8 +110,8 @@ public class OrderFulfillShopper extends AppCompatActivity {
 
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        user = mAuth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance().getCurrentUser();
+        user =  mAuth.getUid();
     }
     //used to navigate back to the screen it came from
     public void goBack(View v) {
@@ -191,12 +190,11 @@ public class OrderFulfillShopper extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if (snapshot.child("orderId").getValue(String.class).equals(orderid)) {
-                                if (snapshot.child("shopperId").getValue(String.class).equals(user.getUid())) {
                                     send_user = snapshot.child("buyerId").getValue(String.class);
 
                                     sendNotifications(send_user);
                                 }
-                            }
+
                         }
                     }
 
