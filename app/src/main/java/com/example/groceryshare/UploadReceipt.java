@@ -60,8 +60,7 @@ public class UploadReceipt extends AppCompatActivity {
     String orderID;
     String receipt;
     String uploadLocation;
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Intent intent = getIntent();

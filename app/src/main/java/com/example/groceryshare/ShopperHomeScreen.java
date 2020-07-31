@@ -40,7 +40,7 @@ public class ShopperHomeScreen extends AppCompatActivity {
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        OneSignal.sendTag("UserID",user.getUid());
+        OneSignal.sendTag("UserID",userID);
 
         availableTrips = findViewById(R.id.availableIDShop);
         currentTrips = findViewById(R.id.currentOrderIDShop);

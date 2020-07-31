@@ -98,15 +98,6 @@
             android:textSize="20sp"
             android:text="@string/upload_receipt" />
 
-        <TextView
-            android:id="@+id/orderNameTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/order_name_placeholder"
-            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>
