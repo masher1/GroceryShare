@@ -12,7 +12,7 @@ Covid-19 Inspired Android App to help folks who can't leave their homes get groc
 ## Setup
 - Install **[Android Studio](https://developer.android.com/studio)**
 - Clone this repo to your local machine using: https://github.com/masher1/GroceryShare.git
-- Import the root folder of the project into Android Studio and wait for it to open
+- Import the root folder of the project into Android Studio and wait for all the processes to finish in the bottom right corner.
 - Build project Gradle
 ![Setup Image1](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instructions%20pic%201.png)
 - In the Project window, right-click a testable item and select either Run filename or Debug filename. Android Studio creates a temporary run/debug configuration and launches your app.
