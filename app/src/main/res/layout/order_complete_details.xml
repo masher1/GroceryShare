@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderCompleteShopper"
+    tools:context=".OrderCompleteDetails"
     android:orientation="vertical">
 
     <LinearLayout
@@ -32,15 +32,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/orderNameTxt"
+            android:id="@+id/orderID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif-medium"
             android:text="@string/order_name_placeholder"
             android:textSize="25dp"
-
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/orderNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/order_name_placeholder"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/orderInfoBtn"
@@ -89,6 +97,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:text="@string/upload_receipt" />
+
     </LinearLayout>
 
 </LinearLayout>

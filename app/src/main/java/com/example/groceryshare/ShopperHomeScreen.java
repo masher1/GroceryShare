@@ -40,13 +40,12 @@ public class ShopperHomeScreen extends AppCompatActivity {
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        OneSignal.sendTag("UserID",user.getUid());
+        OneSignal.sendTag("UserID",userID);
 
         availableTrips = findViewById(R.id.availableIDShop);
         currentTrips = findViewById(R.id.currentOrderIDShop);
         pastTrips = findViewById(R.id.pastOrderIDShop);
         settings =  findViewById(R.id.settingsIDShop);
-        ratings = findViewById(R.id.ratingIDShop);
         problems =  findViewById(R.id.problemIDShop);
         logoutBtn = findViewById(R.id.logOutShopperBtn);
         // Add_button add click listener
@@ -90,17 +89,6 @@ public class ShopperHomeScreen extends AppCompatActivity {
             public void onClick(View v) {
                 //add way to handle empty or bad input
                 Intent intent = new Intent(ShopperHomeScreen.this, SettingsShopper.class);
-
-                // start the activity connect to the specified class
-                startActivity(intent);
-            }
-
-        });
-        ratings.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                //add way to handle empty or bad input
-                Intent intent = new Intent(ShopperHomeScreen.this, ReviewsAndRatingsShopper.class);
 
                 // start the activity connect to the specified class
                 startActivity(intent);

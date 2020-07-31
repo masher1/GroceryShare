@@ -74,11 +74,4 @@ public class GroceryItem {
         return listRes;
     }
 
-
-    @Override
-    public String toString() {
-        return ("Item Name:"+this.getItemName()+
-                " Quantity: "+ this.getQuantity() +
-                " Brand: "+ this.getBrand()) + "\n";
-    }
 }

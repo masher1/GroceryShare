@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -15,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +33,6 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<GroceryItem> itemList = new ArrayList<>();
     ItemAdapter itemAdapter;
     RecyclerView recyclerView;
-    TextView addbtn;
     Button submitbtn;
     EditText nickNameEdit;
     AlertDialog.Builder builder;
@@ -57,7 +56,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
         recyclerView = findViewById(R.id.recycler_view);
-        addbtn = findViewById(R.id.tv_add_item);
+        FloatingActionButton addbtn = findViewById(R.id.fab);
         submitbtn = findViewById(R.id.btn_submit);
         nickNameEdit = findViewById(R.id.order_nickname);
         itemList = populateList();
@@ -89,49 +88,67 @@ public class ListActivity extends AppCompatActivity {
                 if (nickNameEdit.length() > 33)
                     nickNameEdit.setText(StringUtils.abbreviate(nickNameEdit.getText().toString(), 30));
 
-                if( TextUtils.isEmpty(nickNameEdit.getText())){
-                    Toast.makeText(getApplicationContext(),"Don't forget the order name!",
+                if (TextUtils.isEmpty(nickNameEdit.getText())) {
+                    Toast.makeText(getApplicationContext(), "Don't forget the order name!",
                             Toast.LENGTH_SHORT).show();
 
-                    nickNameEdit.setError( "Order Name is required!" );
+                    nickNameEdit.setError("Order Name is required!");
 
-                }else{
-                //Uncomment the below code to Set the message and title from the strings.xml file
-                builder.setMessage("Confirm").setTitle("Confirm your personal information");
-                //Setting message manually and performing action on button click
-                builder.setMessage("Address: " + address + "\nPayment Type: " + payment + "\nShopping List: " + itemList.toString())
-                        .setCancelable(false)
-                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                orderNickname = nickNameEdit.getText().toString();
-                                addShoppingList();
-                                sendtoPending();
-                                finish();
-                                Toast.makeText(getApplicationContext(), "you chose confirm action for alertbox",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //  Action for 'NO' Button
-                                Intent intent = new Intent(ListActivity.this, PersonalActivityBuyer.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "you chose edit action for alertbox",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        })
+                } else {
+                    //Uncomment the below code to Set the message and title from the strings.xml file
+                    builder.setMessage("Confirm").setTitle("Confirm your personal information");
+                    //Setting message manually and performing action on button click
 
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                //Setting the title manually
-                alert.setTitle("Confirm Personal Information");
-                alert.show();
+                    String shoppingList = "";
 
-            }
+                    for (int i = 0; i < itemList.size(); i++) {
+                        if ((itemList.get(i).getBrand() == null || itemList.get(i).getBrand().equals("")) && (itemList.get(i).getQuantity() == null || itemList.get(i).getQuantity().equals("")) && (itemList.get(i).getItemName() == null || itemList.get(i).getItemName().equals(""))) {
+                        } else{
+                            if (itemList.get(i).getItemName() == null || itemList.get(i).getItemName().equals(""))
+                                itemList.get(i).setItemName("N/A");
+                            if (itemList.get(i).getQuantity() == null || itemList.get(i).getQuantity().equals(""))
+                                itemList.get(i).setQuantity("N/A");
+                            if (itemList.get(i).getBrand() == null || itemList.get(i).getBrand().equals(""))
+                                itemList.get(i).setBrand("N/A");
+
+                            shoppingList += "\nItem Name: " + itemList.get(i).getItemName() + "\tQuantity: " + itemList.get(i).getQuantity() + "\tBrand: " + itemList.get(i).getBrand();
+                        }
+                    }
+
+                    builder.setMessage("Address: " + address + "\nPayment Type: " + payment + "\nStore: " + storeName + "\nShopping List: " + shoppingList)
+                            .setCancelable(false)
+                            .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    orderNickname = nickNameEdit.getText().toString();
+                                    addShoppingList();
+                                    sendtoPending();
+                                    finish();
+                                    Toast.makeText(getApplicationContext(), "you chose confirm action for alertbox",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //  Action for 'NO' Button
+                                    Intent intent = new Intent(ListActivity.this, PersonalActivityBuyer.class);
+                                    startActivity(intent);
+                                    dialog.cancel();
+                                    Toast.makeText(getApplicationContext(), "you chose edit action for alertbox",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            })
+
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    //Setting the title manually
+                    alert.setTitle("Confirm Personal Information");
+                    alert.show();
+
+                }
             }
         });
         addbtn.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +183,7 @@ public class ListActivity extends AppCompatActivity {
         if (ItemAdapter.shopList.size() != 0) {
             String id = databaseOrders.push().getKey();
             status = "Available";
-            newOrder order = new newOrder(id, status, dateFulfilled, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment,otherInfo, orderNickname);
+            newOrder order = new newOrder(id, status, dateFulfilled, storeName, user.getUid(), shopperId, receiptcopy, ItemAdapter.shopList, address, payment, otherInfo, orderNickname);
 
             databaseOrders.child(id).setValue(order);
             Toast.makeText(getApplicationContext(), "New Shopping List Added!", Toast.LENGTH_LONG).show();

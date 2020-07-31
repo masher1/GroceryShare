@@ -23,10 +23,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ComplaintsBuyer" />
         <activity android:name=".PrivacyPolicy"></activity>
         <activity android:name=".ui.login.ResetPassword" />
-        <activity android:name=".buyerComplaints" />
         <activity android:name=".PersonalActivityShopper" />
+        <activity android:name=".PastOrderDetails" />
         <activity android:name=".SettingsBuyer" />
         <activity android:name=".BuyerRatesShopper" />
         <activity android:name=".viewReceipt" />
@@ -48,7 +49,6 @@
         <activity android:name=".OrderFulfillShopper" />
         <activity android:name=".OrderDetailsShopper" />
         <activity android:name=".ComplaintsShopper" />
-        <activity android:name=".ReviewsAndRatingsShopper" />
         <activity android:name=".OrderCompleteDetails" />
         <activity android:name=".SettingsShopper" />
         <activity android:name=".BuyerHomeScreen" />
@@ -60,7 +60,6 @@
         <activity android:name=".PastActivity" />
         <activity android:name=".PendingActivity" />
         <activity android:name=".PersonalActivityBuyer" />
-        <activity android:name=".RatingActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

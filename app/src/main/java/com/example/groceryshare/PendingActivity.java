@@ -52,13 +52,13 @@ public class PendingActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        final String complete = "Complete";
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot snapshots = dataSnapshot.child("Orders");
                 for (DataSnapshot snapshot : snapshots.getChildren()) {
-                    if (snapshot.child("buyerId").getValue(String.class).equals(user.getUid())) {
+                    if (snapshot.child("buyerId").getValue(String.class).equals(user.getUid()) && !(snapshot.child("status").getValue(String.class).equals(complete))) {
                         storeName = snapshot.child("storeName").getValue(String.class);
                         orderId = snapshot.child("orderId").getValue(String.class);
                         shopperId = snapshot.child("shopperId").getValue(String.class);
@@ -82,20 +82,16 @@ public class PendingActivity extends AppCompatActivity {
     }
 
     private void getShopper(DataSnapshot dataSnapshot, String storeName, String orderId, String shopperId, String orderNickname, pendingAdapter myAdapter) {
-        DataSnapshot snapshots;
-        snapshots = dataSnapshot.child("Shoppers");
-        for (DataSnapshot snapshot : snapshots.getChildren()) {
-            if (snapshot.child("shopperID").getValue(String.class) != null) {
-                name = null;
-                if (snapshot.child("shopperID").getValue(String.class).equals(shopperId)) {
-                    name = snapshot.child("firstName").getValue(String.class) + " " + snapshot.child("lastName").getValue(String.class).charAt(0) + ".";
-                    if (name.length() > 18)
-                        name = StringUtils.abbreviate(name, 15);
-                    break;
-                }
-                else if(name == null)
-                    name = "Unassigned";
-            }
+
+        if(shopperId == null){
+            name = "Unassigned";
+        }
+        else{
+            name = dataSnapshot.child("Shoppers").child(shopperId).child("firstName").getValue(String.class) + " " + dataSnapshot.child("Shoppers").child(shopperId).child("lastName").getValue(String.class).charAt(0) + ".";
+
+        }
+        if (name.length() > 18) {
+            name = StringUtils.abbreviate(name, 15);
         }
 
         myAdapter.addOrder(storeName, orderId, name, orderNickname, shopperId);

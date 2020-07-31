@@ -165,8 +165,7 @@ public class PersonalActivityShopper extends AppCompatActivity {
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, SettingsShopper.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override

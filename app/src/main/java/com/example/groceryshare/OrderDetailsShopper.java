@@ -54,9 +54,7 @@ public class OrderDetailsShopper extends AppCompatActivity {
 
         orderNameText = (TextView) findViewById(R.id.orderNameTxt);
 
-
-
-        orderNameText.setText("Order Number: " + orderid);
+        orderNameText.setText(orderid);
         // Add_button add click listener
         viewOrderBtnShopper.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -78,9 +76,9 @@ public class OrderDetailsShopper extends AppCompatActivity {
         });
         addOrder.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                databaseOrders.child(orderid).child("shopperId").setValue(userID);
-                databaseOrders.child(orderid).child("Status").setValue("In-Progress");
                 sendNotif();
+                databaseOrders.child(orderid).child("shopperId").setValue(userID);
+                databaseOrders.child(orderid).child("status").setValue("In-Progress");
 
                 Intent intent = new Intent(OrderDetailsShopper.this, ShopperHomeScreen.class);
                 startActivity(intent);
