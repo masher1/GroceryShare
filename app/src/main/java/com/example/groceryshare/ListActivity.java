@@ -123,8 +123,6 @@ public class ListActivity extends AppCompatActivity {
                                     addShoppingList();
                                     sendtoPending();
                                     finish();
-                                    Toast.makeText(getApplicationContext(), "you chose confirm action for alertbox",
-                                            Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
@@ -133,14 +131,14 @@ public class ListActivity extends AppCompatActivity {
                                     Intent intent = new Intent(ListActivity.this, PersonalActivityBuyer.class);
                                     startActivity(intent);
                                     dialog.cancel();
-                                    Toast.makeText(getApplicationContext(), "you chose edit action for alertbox",
-                                            Toast.LENGTH_SHORT).show();
                                 }
                             })
 
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
+                                    Toast.makeText(getApplicationContext(), "Your order was canceled",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             });
                     AlertDialog alert = builder.create();
