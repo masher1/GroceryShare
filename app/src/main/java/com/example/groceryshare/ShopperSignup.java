@@ -285,8 +285,7 @@ public class ShopperSignup extends AppCompatActivity implements AdapterView.OnIt
 
     //used to navigate back to the previous screen
     public void goBack(View v) {
-        Intent intent = new Intent(this, ShoppingTripsAvailable.class);
-        startActivity(intent);
+        finish();
     }
 
     //used to navigate back to the Login Screen
