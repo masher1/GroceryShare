@@ -4,31 +4,35 @@ Covid-19 Inspired Android App to help folks who can't leave their homes get groc
 ![Test Image 1](https://github.com/masher1/GroceryShare/blob/malkiel/app/src/img/SocialScreen.png)
 
 ## Table of Contents
-- [Installation](#installation)
+- [Setup](#setup)
 - [Features](#features)
 - [Team](#team)
 - [License](#license)
 
-## Installation
+## Setup
 - Install **[Android Studio](https://developer.android.com/androidstudio/download)**
 - Clone this repo to your local machine using: https://github.com/masher1/GroceryShare.git
 - Import the root folder of the project into Android Studio and wait for it to open
-- Build project Gradle 
+- Build project Gradle
 ![Setup Image1](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instructions%20pic%201.png)
 - In the Project window, right-click a testable item and select either Run filename or Debug filename. Android Studio creates a temporary run/debug configuration and launches your app.
 - Select Save from the Select Run/Debug Configuration drop-down list in the toolbar. If you do not see the toolbar, select View > Toolbar.
 ![Save the configuration](https://developer.android.com/studio/images/run/rundebug-saveconfiguration_2x.png)
-- Open AVD manager and press "Create Virtual Device.."
+- Open AVD manager and press "Create Virtual Device..."
 ![Setup Image2](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%202.png)
-- Choose a phone device of your choice (most of the testing was done on a Pixel 2)
 ![Setup Image3](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%203.png)
-- Follow the AVD wizard, ensuring that System Image has an API of 29 or higher. Press finish once the wizard is complete. 
+- Choose a phone device of your choice (most of the testing was done on a Pixel 2)
 ![Setup Image4](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%204.png)
-- Once the new emulator has been installed, run the project with the emulator.
+- Follow the AVD wizard, ensuring that System Image has an API of 29 or higher. Press finish once the wizard is complete. 
 ![Setup Image5](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%205.png)
-- Once the project has been built and installed onto the phone, the app will be fully functional for use.
+- Once the new emulator has been installed, run the project with the emulator.
 ![Setup Image6](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%206.png)
+- Once the project has been built and installed onto the phone, the app will be fully functional for use.
 ![Setup Image7](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%207.png)
+
+### Note:
+- We used Firebase's Realtime Database, Authentication, and Storage tools to build our application. Find out more about the tools we used **[here](https://firebase.google.com/)**
+- We also utilized OneSignal to roll out notifications to users when certain trigers occured. Find out more about OneSignal **[here](https://app.onesignal.com/)**
 
 ## Features
 
@@ -67,7 +71,6 @@ A new way for people in high-risk groups (immunocompromised, elderly, etc.) to r
 ---
 
 ## License
-
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[Privacy Policy](https://github.com/masher1/GroceryShare/blob/malkiel/app/src/img/PrivacyPolicy.txt)**
