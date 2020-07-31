@@ -1,13 +1,16 @@
 # GroceryShare
 Covid-19 Inspired Android App to help folks who can't leave their homes get groceries from family, friends, and neighbors who would like to shop for them.
 
-![Test Image 1](https://github.com/masher1/GroceryShare/blob/malkiel/app/src/img/SocialScreen.png)
 
 ## Table of Contents
+- [Demo](#demo)
 - [Setup](#setup)
 - [Features](#features)
 - [Team](#team)
 - [License](#license)
+
+## Demo
+[![GroceryShare Demo](https://github.com/masher1/GroceryShare/blob/malkiel/app/src/img/SocialScreen.png)](https://www.youtube.com/watch?v=71_3D9gpscU "GroceryShare Demo")
 
 ## Setup
 - Install **[Android Studio](https://developer.android.com/studio)**
