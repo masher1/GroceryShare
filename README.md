@@ -17,7 +17,6 @@ Covid-19 Inspired Android App to help folks who can't leave their homes get groc
 ![Setup Image1](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instructions%20pic%201.png)
 - In the Project window, right-click a testable item and select either Run filename or Debug filename. Android Studio creates a temporary run/debug configuration and launches your app.
 - Select Save from the Select Run/Debug Configuration drop-down list in the toolbar. If you do not see the toolbar, select View > Toolbar.
-![Save the configuration](https://developer.android.com/studio/images/run/rundebug-saveconfiguration_2x.png)
 - Open AVD manager and press "Create Virtual Device..."
 ![Setup Image2](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%202.png)
 ![Setup Image3](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%203.png)
