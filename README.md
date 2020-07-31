@@ -9,6 +9,26 @@ Covid-19 Inspired Android App to help folks who can't leave their homes get groc
 - [Team](#team)
 - [License](#license)
 
+## Installation
+- Install **[Android Studio](https://developer.android.com/androidstudio/download)**
+- Clone this repo to your local machine using: https://github.com/masher1/GroceryShare.git
+- Import the root folder of the project into Android Studio and wait for it to open
+- Build project Gradle 
+![Setup Image1](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instructions%20pic%201.png)
+- In the Project window, right-click a testable item and select either Run filename or Debug filename. Android Studio creates a temporary run/debug configuration and launches your app.
+- Select Save from the Select Run/Debug Configuration drop-down list in the toolbar. If you do not see the toolbar, select View > Toolbar.
+![Save the configuration](https://developer.android.com/studio/images/run/rundebug-saveconfiguration_2x.png)
+- Open AVD manager and press "Create Virtual Device.."
+![Setup Image2](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%202.png)
+- Choose a phone device of your choice (most of the testing was done on a Pixel 2)
+![Setup Image3](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%203.png)
+- Follow the AVD wizard, ensuring that System Image has an API of 29 or higher. Press finish once the wizard is complete. 
+![Setup Image4](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%204.png)
+- Once the new emulator has been installed, run the project with the emulator.
+![Setup Image5](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%205.png)
+- Once the project has been built and installed onto the phone, the app will be fully functional for use.
+![Setup Image6](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%206.png)
+![Setup Image7](https://github.com/masher1/GroceryShare/blob/master/app/src/img/Instruction%20pic%207.png)
 
 ## Features
 
@@ -39,10 +59,10 @@ A new way for people in high-risk groups (immunocompromised, elderly, etc.) to r
 
 ## Team
 
-| <a href="malkielasher.com" target="_blank">**Malkiel Asher**</a> | <a href="https://www.linkedin.com/in/celeste-lemus-806083195/" target="_blank">**Celeste Lemus**</a> | <a href="https://www.linkedin.com/in/fiona-powers-beggs-518a21170/" target="_blank">**Fiona Powers Beggs**</a> | <a href="https://www.linkedin.com/in/john-sobieski-a9811b195/" target="_blank">**John Sobieski**</a> |
+| <a href="https://malkielasher.com" target="_blank">**Malkiel Asher**</a> | <a href="https://www.linkedin.com/in/celeste-lemus-806083195/" target="_blank">**Celeste Lemus**</a> | <a href="https://www.linkedin.com/in/fiona-powers-beggs-518a21170/" target="_blank">**Fiona Powers Beggs**</a> | <a href="https://www.linkedin.com/in/john-sobieski-a9811b195/" target="_blank">**John Sobieski**</a> |
 | :---: |:---: | :---: | :---: |
 | [![Malkiel Asher](https://avatars2.githubusercontent.com/u/44737740?s=60&v=4s=200)](https://malkielasher.com) | [![Celeste Lemus](https://avatars0.githubusercontent.com/u/47994727?s=460&v=4&s=200)](https://www.linkedin.com/in/celeste-lemus-806083195/) | [![Fiona Powers Beggs](https://avatars3.githubusercontent.com/u/59042926?s=460&v=4&s=200)](https://www.linkedin.com/in/fiona-powers-beggs-518a21170/) | [![John Sobieski](https://avatars0.githubusercontent.com/u/35733259?s=460&v=4&s=200)](https://www.linkedin.com/in/john-sobieski-a9811b195/) 
-| <a href="http://github.com/masher1" target="_blank">`github.com/masher1`</a> | <a href="https://github.com/clemus55" target="_blank">`https://github.com/clemus55`</a> | <a href="https://github.com/fcpowe" target="_blank">`https://github.com/fcpowe`</a> | <a href="https://github.com/jfsobieski" target="_blank">`https://github.com/jfsobieski`</a> |
+| <a href="http://github.com/masher1" target="_blank">`https://github.com/masher1`</a> | <a href="https://github.com/clemus55" target="_blank">`https://github.com/clemus55`</a> | <a href="https://github.com/fcpowe" target="_blank">`https://github.com/fcpowe`</a> | <a href="https://github.com/jfsobieski" target="_blank">`https://github.com/jfsobieski`</a> |
 
 ---
 
